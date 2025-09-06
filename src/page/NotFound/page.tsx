@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import Breadcrumb from "../component/general/breadCrumb/Breadcrumb.tsx";
+import Breadcrumb from "../../component/general/breadCrumb/Breadcrumb.tsx";
 
 const NotFoundPage = () => {
   const [vhMultiplier, setVhMultiplier] = useState(90.5); // مقدار پیش‌فرض

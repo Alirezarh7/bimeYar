@@ -1,5 +1,5 @@
-import HomePage from "../page/HomePage.tsx";
-import NotFoundPage from "../page/NotFoundPage";
+import HomePage from "../page/page.tsx";
+import NotFoundPage from "../page/NotFound/page.tsx";
 
 export interface RouteConfig {
   path: string;
@@ -10,5 +10,5 @@ export interface RouteConfig {
 
 export const Paths: RouteConfig[] = [
   { path: '*', label: 'صفحه مورد نظر یافت نشد', element: <NotFoundPage /> },
-  { path: '/', label: 'خانه', element: <HomePage /> },
+  { path: '/', label: 'خانه', element: <HomePage />  },
 ];

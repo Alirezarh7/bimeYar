@@ -8,6 +8,7 @@ import {FAQ} from "../component/page/home/FAQ/FAQ.tsx";
 
 
 const HomePage = () => {
+
   return (
     <div>
       <Hero />
