@@ -188,7 +188,7 @@ const Footer = () => {
                             setIsModalOpen(false)
                             setSelectedTab(currentPath)
                           }}
-                          className="w-10 h-10 border border-primary bg-white text-sliderBlueColor    rounded-full flex  items-center justify-center shadow-md mr-[14.5px] my-7"
+                          className="w-10 h-10 border border-primary bg-white text-sliderBlueColor rounded-full flex  items-center justify-center shadow-md mr-[14.5px] my-7"
                         >
                           {item.icon}
                         </div>
