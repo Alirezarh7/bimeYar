@@ -2,12 +2,14 @@
 @import url("../public/content/fonts/iransans/css/style.css");
 @theme {
     --color-primary: var(--primary);
+    --color-background: var(--background);
     --color-muted: var(--muted);
     --color-footerBack: var(--footerBack);
 }
 
 :root {
     --primary: #16a34a;
+    --background:#F3F3F3
     --muted: #494c57;
     --footerBack: #ffffff;
 }
@@ -18,7 +20,9 @@
     box-shadow: 0 10px 30px rgba(22, 163, 74, 0.06);
 }
 
-
+body{
+    background-color: #f3f3f3;
+}
 
 .pulse {
     animation: pulse 2.2s infinite;

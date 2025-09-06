@@ -1,43 +1,31 @@
-import {motion} from 'framer-motion'
-import {QuoteMiniCard} from "./QuoteMiniCard.tsx";
+import type { FC } from "react";
 
-export const Hero = () => {
+const Hero: FC = () => {
   return (
-    <section className="bg-gradient-to-b from-primary-50 to-white">
-      <div className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-8 items-center">
-        <motion.div initial={{opacity: 0, y: 12}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6}}>
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 text-primary text-sm font-semibold">مقایسه
-            هوشمند
+    <div className="w-full h-screen ">
+      <div className="grid grid-cols-12 grid-rows-12 gap-5 w-full h-full p-5">
+        <div className="col-span-6 row-span-12 bg-white shadow-lg rounded-xl">
+          <div className="flex flex-col items-center justify-center gap-7 w-full h-full ">
+            <img src="/logo.png" alt="logo" className="w-40 h-28" />
+            <h1 className="text-4xl text-primary font-bold text-center">بیمه یار آسودگی خاطر شما</h1>
+            <h5 className=" text-gray-700 font-bold text-center">خرید آنلاین بیمه در چند دقیقه با بهترین قیمت و پشتیبانی ۲۴ ساعته</h5>
           </div>
-          <h1 className="mt-6 text-4xl md:text-5xl font-extrabold text-primary leading-tight">خرید آنلاین بیمه با
-            پشتیبانی واقعی و صدور آنی</h1>
-          <p className="mt-4 text-gray-600">از بین چندین شرکت بیمه، قیمت و پوشش مناسب را انتخاب کنید. امکان پرداخت
-            اقساطی و صدور دیجیتال.</p>
-
-          <div className="mt-8 flex gap-4">
-            <a href="#quote"
-               className="rounded-full px-6 py-3 bg-primary text-white shadow hover:scale-[1.02] transform transition">استعلام
-              فوری</a>
-            <a href="#compare" className="rounded-full px-6 py-3 border border-primary text-primary bg-white shadow-sm">مقایسه
-              شرکت‌ها</a>
+        </div>
+        <div className="col-span-4 row-span-4 col-start-7 bg-white shadow-lg rounded-xl">
+          <div className="flex items-center justify-center flex-col w-full h-full gap-2">
+            <img src="/logo.png" alt="logo" className="w-40 h-28" />
+            <h4 className="text-xl text-gray-700 font-semibold text-center">بیمه شخص ثالث خودرو</h4>
+            <p className=" text-gray-400 text-center text-sm">سواری , وانت و کامیون و ...</p>
           </div>
-
-          <div className="mt-6 flex items-center gap-3 text-sm">
-            <div className="flex items-center gap-2 text-amber-500">
-              <div className="text-amber-400">★ ★ ★ ★ ★</div>
-            </div>
-            <div className="text-gray-500">۴.۹ از ۵ — بیش از ۱۲٬۳۰۰ نظر</div>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{opacity: 0, y: 18}} animate={{opacity: 1, y: 0}}
-                    transition={{duration: 0.7, delay: 0.05}}>
-          <div className="card p-6">
-            <QuoteMiniCard/>
-          </div>
-        </motion.div>
+        </div>
+        <div className="col-span-2 row-span-4 col-start-11 bg-white shadow-lg rounded-xl">3</div>
+        <div className="col-span-6 row-span-3 col-start-7 row-start-5 bg-white shadow-lg rounded-xl">4</div>
+        <div className="col-span-2 row-span-2 col-start-7 row-start-8 bg-white shadow-lg rounded-xl">5</div>
+        <div className="col-span-2 row-span-2 col-start-9 row-start-8 bg-white shadow-lg rounded-xl">6</div>
+        <div className="col-span-2 row-span-2 col-start-11 row-start-8 bg-white shadow-lg rounded-xl">7</div>
+        <div className="col-span-6 row-span-3 col-start-7 row-start-10 bg-white shadow-lg rounded-xl">8</div>
       </div>
-    </section>
-  )
-}
+    </div>
+  );
+};
+export default Hero;
