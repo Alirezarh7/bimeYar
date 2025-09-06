@@ -1,5 +1,5 @@
 import {Header} from "./Header.tsx";
-import Footer from "./Footer.tsx";
+import Footer from "./footer/Footer.tsx";
 import WebRouter from "../../router/WebRouter.tsx";
 
 const MainLayout = () => {
