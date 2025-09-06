@@ -1,6 +1,7 @@
-import {Header} from "./Header.tsx";
+
 import Footer from "./footer/Footer.tsx";
 import WebRouter from "../../router/WebRouter.tsx";
+import Header from "./header/Header.tsx";
 
 const MainLayout = () => {
   return (
