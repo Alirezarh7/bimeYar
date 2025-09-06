@@ -2,8 +2,8 @@ import type { FC } from "react";
 
 const Hero: FC = () => {
   return (
-    <div className="w-full h-screen ">
-      <div className="grid grid-cols-12 grid-rows-12 gap-5 w-full h-full p-5">
+    <div className="w-full h-[calc(100vh-60px)]">
+      <div className="grid grid-cols-12 grid-rows-12 gap-5 w-full h-full px-5 pb-5">
         <div className="col-span-6 row-span-12 bg-white shadow-lg rounded-xl">
           <div className="flex flex-col items-center justify-center gap-7 w-full h-full ">
             <img src="/logo.png" alt="logo" className="w-40 h-28" />
