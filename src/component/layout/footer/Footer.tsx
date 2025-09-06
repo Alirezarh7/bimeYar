@@ -95,7 +95,7 @@ const Footer = () => {
 
   return (
     <>
-      {useWindowWidth() > 550 ?
+      {useWindowWidth() > 850 ?
         <footer className="bg-gradient-to-r from-primary to-white bg- ">
           <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-muted">
             <strong>کلیه حقوق این وب سایت محفوظ و متعلق به شرکت بیمه یار می‌باشد.</strong>
