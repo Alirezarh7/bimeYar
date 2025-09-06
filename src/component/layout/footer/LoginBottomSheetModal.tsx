@@ -4,18 +4,11 @@ interface IProps {
   onClose: (e:boolean) => void;
   open: boolean;
 }
-export default function ExamplePage({onClose,open}:IProps) {
+export default function LoginBottomSheetModal({onClose,open}:IProps) {
 
 
   return (
     <div className="p-4">
-      <button
-        onClick={() => onClose(true)}
-        className="bg-primary text-white px-4 py-2 rounded-xl"
-      >
-        باز کردن مودال
-      </button>
-
       <BottomSheetModal isOpen={open} onClose={() => onClose(false)}>
         <h2 className="text-lg font-bold">ورود / ثبت‌نام</h2>
         <p className="text-gray-600 mb-4">برای ورود یا ثبت‌نام شماره موبایل خود را وارد کنید.</p>
