@@ -3,11 +3,13 @@
 @theme {
     --color-primary: var(--primary);
     --color-muted: var(--muted);
+    --color-footerBack: var(--footerBack);
 }
 
 :root {
     --primary: #16a34a;
-    --muted: #6b7280;
+    --muted: #494c57;
+    --footerBack: #ffffff;
 }
 
 .card {

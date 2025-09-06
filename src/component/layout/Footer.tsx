@@ -8,7 +8,7 @@ import {RiCustomerService2Line} from "react-icons/ri";
 import {TfiHome} from "react-icons/tfi";
 import {useWindowWidth} from "../../hook/useWindowWidth.ts";
 
-const BottomNav = () => {
+const Footer = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   useEffect(() => {
@@ -31,21 +31,31 @@ const BottomNav = () => {
   const navItems = [
     {
       id: '/',
-      icon: <TfiHome color={selectedTab === '/' ? "#black" : "black"}/>,
+      icon: <TfiHome className={selectedTab === '/' ? "text-primary" : "text-muted"}/>,
       label: "خانه",
       history: '/'
     },
     {
+      id: '/profile-asd',
+      icon: <TfiHome className={selectedTab === '/' ? "text-primary" : "text-muted"}/>,
+      label: "اقساط و اعتبار",
+      history: '/profile-asd'
+    },
+    {
       id: 2,
-      icon: <RiCustomerService2Line color={"black"}/>,
+      icon: <RiCustomerService2Line className={"text-muted"}/>,
       label: "خدمات",
     },
     {
       id: '/profile',
-      icon: <MdOutlineManageAccounts color={selectedTab === '/profile' ? "#black" : "black"}/>,
+      icon: <MdOutlineManageAccounts className={selectedTab === '/' ? "text-primary" : "text-muted"}/>,
       label: "پروفایل",
       history: '/profile',
-
+    },
+    {
+      id: 3,
+      icon: <MdOutlineManageAccounts  className={"text-muted"}/>,
+      label: "چت بات",
     },
   ];
 
@@ -98,14 +108,14 @@ const BottomNav = () => {
     <>
       {useWindowWidth() > 550 ?
         <footer className="bg-primary-50 mt-12">
-          <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-gray-600">
+          <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-muted">
             © {new Date().getFullYear()} بیمه‌یار — نمونه TypeScript و Vite
           </div>
         </footer>
         :
         <>
           <div
-            className="md:hidden fixed bottom-0 left-0 right-0  p-4 flex border border-gridColor bg-white justify-around items-center shadow-xl rounded-t-3xl z-30 ">
+            className=" fixed bottom-0 left-0 right-0 py-2 px-4 flex border border-primary bg-footerBack justify-between items-center shadow-xl rounded-t-3xl z-30 ">
             {navItems.map((item) => (
               <div
                 key={item.id}
@@ -122,21 +132,21 @@ const BottomNav = () => {
                 {selectedTab === item.id && (
                   <motion.div
                     layoutId="indicator"
-                    className="absolute -top-12 w-16 h-16 bg-white rounded-full flex items-center justify-center "
+                    className="absolute -top-10 w-fit p-1 bg-footerBack rounded-full flex items-center justify-center "
                     transition={{type: "spring", stiffness: 300, damping: 20}}
                   >
                     <div
-                      className=" text-gray-800  w-12 h-12 bg-gradient-to-r from-customBlue/50 to-customBlue rounded-full flex items-center justify-center shadow-2xl ">
+                      className="w-10 h-10 border border-primary rounded-full flex items-center justify-center shadow-2xl ">
                       {item.icon}
                     </div>
                   </motion.div>
                 )}
                 <span
-                  className={`text-gray-800 ${selectedTab === item.id ? "opacity-0" : "opacity-100"}`}
+                  className={` ${selectedTab === item.id ? "opacity-0" : "opacity-100"}`}
                 >
               {item.icon}
             </span>
-                <span className="text-xs text-gray-800 mt-1">{item.label}</span>
+                <span className="text-[10.5px] text-muted mt-1">{item.label}</span>
               </div>
             ))}
           </div>
@@ -149,7 +159,7 @@ const BottomNav = () => {
                 animate={{opacity: 1, y: 0}}
                 exit={{opacity: 0, y: 50}}
                 transition={{duration: 0.3}}
-                className="fixed top-0 left-0 w-full h-full bg-white/75 flex flex-col items-center justify-center z-[1000001] overflow-hidden"
+                className="fixed top-0 left-0 w-full h-full bg-white/70 flex flex-col items-center justify-center z-[1000001] overflow-hidden"
               >
                 <div
                   className={
@@ -166,7 +176,7 @@ const BottomNav = () => {
                             setSelectedTab(currentPath)
                           }}
                           className={
-                            "bg-gradient-to-r from-sliderColor to-customBlue/90 text-sliderBlueColor rounded-xl flex flex-col items-center justify-center w-[90px] h-[90px] shadow-xl"
+                            " border border-muted text-sliderBlueColor rounded-xl flex flex-col items-center justify-center w-[90px] h-[90px] shadow-xl"
                           }
                         >
                           <div className={"mb-2"}>{item.icon}</div>
@@ -178,7 +188,7 @@ const BottomNav = () => {
                             setIsModalOpen(false)
                             setSelectedTab(currentPath)
                           }}
-                          className="w-12 h-12 bg-gradient-to-r from-sliderColor  to-customBlue/80 text-sliderBlueColor   rounded-full flex  items-center justify-center shadow-md ml-4 my-8"
+                          className="w-10 h-10 border border-primary bg-white text-sliderBlueColor    rounded-full flex  items-center justify-center shadow-md mr-[14.5px] my-7"
                         >
                           {item.icon}
                         </div>
@@ -195,5 +205,5 @@ const BottomNav = () => {
   );
 };
 
-export default BottomNav;
+export default Footer;
 

@@ -1,5 +1,5 @@
 import {Header} from "./Header.tsx";
-import BottomNav from "./Footer.tsx";
+import Footer from "./Footer.tsx";
 import WebRouter from "../../router/WebRouter.tsx";
 
 const MainLayout = () => {
@@ -10,7 +10,7 @@ const MainLayout = () => {
         <WebRouter/>
       </main>
       <div className={'max-md:mt-20'}>
-        <BottomNav/>
+        <Footer/>
       </div>
     </>
   );
