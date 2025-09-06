@@ -9,7 +9,6 @@ const NotFoundPage = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-      // تعیین multiplier بر اساس عرض صفحه
       const smallMobile = window.innerHeight <= 667;
       const bigMobile =window.innerHeight <= 844;
 
