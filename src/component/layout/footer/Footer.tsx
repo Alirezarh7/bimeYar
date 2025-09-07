@@ -11,6 +11,9 @@ import {CiCreditCard2} from "react-icons/ci";
 import LoginBottomSheetModal from "./LoginBottomSheetModal.tsx";
 import {useModalStore} from "../../../store/modalStore.ts";
 import {AiOutlineEnter} from "react-icons/ai";
+import {BsChatRightText} from "react-icons/bs";
+import ChatbotBottomSheetModal from "./ChatbotBottomSheetModal.tsx";
+
 
 const Footer = () => {
   const location = useLocation();
@@ -23,6 +26,7 @@ const Footer = () => {
   const {modals, open, close} = useModalStore();
   const token = localStorage.getItem("token");
   const isOpenLoginBottomSheetModal = modals['LoginBottomSheetModal'];
+  const isOpenChatbotBottomSheetModal = modals['ChatbotBottomSheetModal'];
   const history = useNavigate()
   useEffect(() => {
     if (isModalOpen) {
@@ -61,7 +65,7 @@ const Footer = () => {
     },
     {
       id: token ? '/profile-asd' : 5,
-      icon: <MdOutlineManageAccounts className={"text-muted"}/>,
+      icon: <BsChatRightText  className={"text-muted"}/>,
       label: "چت بات",
     },
   ];
@@ -116,6 +120,8 @@ const Footer = () => {
                   } else {
                     if (item.id === 2) {
                       setIsModalOpen(true)
+                    }else if (item.id === 5){
+                      open('ChatbotBottomSheetModal')
                     } else {
                       open('LoginBottomSheetModal')
                     }
@@ -196,6 +202,10 @@ const Footer = () => {
             close('LoginBottomSheetModal')
             setSelectedTab(currentPath)
           }} open={isOpenLoginBottomSheetModal}/>
+          <ChatbotBottomSheetModal onClose={() => {
+            close('ChatbotBottomSheetModal')
+            setSelectedTab(currentPath)
+          }} open={isOpenChatbotBottomSheetModal}/>
         </>
       }
     </>
