@@ -6,7 +6,7 @@ import ImportantServices from "./ImportantServices.tsx";
 const Header = () => {
   return (
     <>
-      <div className="w-full fixed bg-white/90 backdrop-blur-sm border-b py-3 z-30  ">
+      <div className="w-full fixed bg-white border-b py-3 z-10  ">
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-center justify-between">
             <div className={'flex mx-2'}>
