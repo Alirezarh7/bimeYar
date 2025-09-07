@@ -1,16 +1,16 @@
-import {useEffect, useState} from "react";
-import { motion} from "framer-motion";
-import {useWindowWidth} from "../../../hook/useWindowWidth.ts";
-import {CarIcon, HeadlineIcon, MemberIcon} from "../../../icons/Icon.tsx";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useWindowWidth } from "../../../hook/useWindowWidth.ts";
+import { CarIcon, HeadlineIcon, MemberIcon } from "../../../icons/Icon.tsx";
 
 const ImportantServices = () => {
   const [scrollNumber, setScrollNumber] = useState(false);
   const windowWidth = useWindowWidth();
 
   const data = [
-    {icon: <CarIcon/>, title: "بیمه وسایل نقلیه"},
-    {icon: <MemberIcon/>, title: "بیمه اشخاص"},
-    {icon: <HeadlineIcon/>, title: "بیمه اموال"},
+    { icon: <CarIcon />, title: "بیمه وسایل نقلیه" },
+    { icon: <MemberIcon />, title: "بیمه اشخاص" },
+    { icon: <HeadlineIcon />, title: "بیمه اموال" },
   ];
 
   useEffect(() => {
@@ -46,38 +46,27 @@ const ImportantServices = () => {
       {/*    className="fixed h-full w-full xl:w-3/4 bg-gradient-to-r z-10 from-green-400 to-blue-500 rounded-b-[20px] xl:rounded-b-[300px] "*/}
       {/*  />*/}
       {/*</AnimatePresence>*/}
-      {useWindowWidth() < 850 ? null :
+      {useWindowWidth() < 850 ? null : (
         <motion.div
           animate={{
-            top: scrollNumber
-              ? "4vh"
-              : "0vh",
+            top: scrollNumber ? "4vh" : "0vh",
             scale: scrollNumber ? 0.9 : 1,
           }}
-          transition={{type: "spring", stiffness: 80, damping: 15}}
+          transition={{ type: "spring", stiffness: 80, damping: 15 }}
           className={`z-10 fixed w-[95%]  md:w-[43%]  rounded-lg  ${scrollNumber ? "border h-[50px] bg-white  " : " bg-white/90 h-[50px]"}`}
         >
           <div className="w-full h-full flex justify-around ">
             {data.map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex max-lg:flex-col justify-between items-center"
-                animate={{opacity: scrollNumber ? 0.9 : 1}}
-                transition={{duration: 0.3}}
-              >
+              <motion.div key={index} className="flex max-lg:flex-col justify-between items-center" animate={{ opacity: scrollNumber ? 0.9 : 1 }} transition={{ duration: 0.3 }}>
                 {item.icon}
-                <motion.p
-                  animate={{opacity: scrollNumber ? 1 : 1}}
-                  transition={{duration: 0.3}}
-                  className={` px-2 text-sm max-lg:text-[11px] font-light`}
-                >
+                <motion.p animate={{ opacity: scrollNumber ? 1 : 1 }} transition={{ duration: 0.3 }} className={` px-2 text-sm max-lg:text-[11px] font-light`}>
                   {item.title}
                 </motion.p>
               </motion.div>
             ))}
           </div>
         </motion.div>
-      }
+      )}
     </div>
   );
 };

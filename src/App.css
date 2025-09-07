@@ -6,6 +6,7 @@ body{
 }
 @theme {
     --color-primary: var(--primary);
+    --color-card: var(--card);
     --color-background: var(--background);
     --color-muted: var(--muted);
     --color-footerBack: var(--footerBack);
@@ -14,10 +15,11 @@ body{
 
 
 :root {
-    --primary: #16a34a;
-    --background:#F3F3F3
+    --primary: #7D2C1B;
+    --card:#DDD2CE
+    --background:#F3F2ED
     --muted: #494c57;
-    --footerBack: #ffffff;
+    --footerBack: #F3F2ED;
 }
 
 .card {
@@ -27,7 +29,7 @@ body{
 }
 
 body{
-    background-color: #f3f3f3;
+    background-color: #F3F2ED;
 }
 
 .pulse {
