@@ -55,7 +55,7 @@ const ImportantServices = () => {
             scale: scrollNumber ? 0.9 : 1,
           }}
           transition={{type: "spring", stiffness: 80, damping: 15}}
-          className={`z-50 fixed w-[95%]  md:w-[43%]  rounded-lg bg-white  ${scrollNumber ? "border h-[50px] " : " h-[50px]"}`}
+          className={`z-10 fixed w-[95%]  md:w-[43%]  rounded-lg  ${scrollNumber ? "border h-[50px] bg-white  " : " bg-white/90 h-[50px]"}`}
         >
           <div className="w-full h-full flex justify-around ">
             {data.map((item, index) => (
