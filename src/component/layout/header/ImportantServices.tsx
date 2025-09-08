@@ -50,8 +50,8 @@ const ImportantServices = () => {
         <motion.div
           animate={{
             top: scrollNumber
-              ? "4vh"
-              : "0vh",
+              ? "6vh"
+              : "1vh",
             scale: scrollNumber ? 0.9 : 1,
           }}
           transition={{type: "spring", stiffness: 80, damping: 15}}
