@@ -24,16 +24,16 @@ const cards = [
 
 const CarBodyInsurance: FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full gap-16">
+    <div className="flex flex-col items-center justify-center w-full  gap-16">
       <h5 className="text-center text-primary text-2xl font-bold">بیمه بدنه لازمه چون :</h5>
 
-      <div className="grid grid-cols-12 justify-between items-center gap-5">
+      <div className="grid grid-cols-12 justify-between items-center gap-10">
         {cards.map((item) => {
           return (
-            <div key={item.id} className="col-span-4 flex flex-col items-center justify-between">
-              <img src="/logo.png" alt="logo" />
+            <div key={item.id} className="col-span-12 md:col-span-6 flex flex-col items-center  h-56 p-5 gap-3 border border-gray-200 rounded-xl cursor-pointer">
+              <img src="/logo.png" alt="logo" className="h-16" />
               <p className="text-center font-semibold">{item.title}</p>
-              <p className="text-center text-sm text-gray-700">{item.description}</p>
+              <p className="text-center text-sm text-gray-700 max-w-56">{item.description}</p>
             </div>
           );
         })}

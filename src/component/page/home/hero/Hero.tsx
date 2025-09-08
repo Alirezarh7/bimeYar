@@ -12,8 +12,8 @@ const cards = [
   },
   {
     id: 2,
-    title: "بیمه بدنه خودرو",
-    subTitle: "سواری , وانت",
+    title: "بیمه موبایل",
+    subTitle: "سرقت ، آسیب دیدگی و ...",
     imgUrl: "/logo.png",
     className: "col-span-2 row-span-3 col-start-5 row-start-1",
   },

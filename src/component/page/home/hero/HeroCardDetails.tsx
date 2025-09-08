@@ -1,6 +1,11 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import CarBodyInsurance from "./cardDetailsComponents/CarBodyInsurance";
+import MotorInsurance from "./cardDetailsComponents/MotorInsurance";
+import MobileInsurance from "./cardDetailsComponents/MobileInsurance";
+import ThirdPartyInsurance from "./cardDetailsComponents/ThirdPartyInsurance";
+import HomeInsurance from "./cardDetailsComponents/HomeInsurance";
+import HealthInsurance from "./cardDetailsComponents/HealthInsurance";
 
 interface IProps {
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
@@ -14,23 +19,23 @@ const cardDetails = [
   },
   {
     id: 2,
-    childrenComponent: <p>2</p>,
+    childrenComponent: <MobileInsurance />,
   },
   {
     id: 3,
-    childrenComponent: <p>3</p>,
+    childrenComponent: <ThirdPartyInsurance />,
   },
   {
     id: 4,
-    childrenComponent: <p>4</p>,
+    childrenComponent: <HomeInsurance />,
   },
   {
     id: 5,
-    childrenComponent: <p>5</p>,
+    childrenComponent: <HealthInsurance />,
   },
   {
     id: 6,
-    childrenComponent: <p>6</p>,
+    childrenComponent: <MotorInsurance />,
   },
   {
     id: 7,
@@ -46,7 +51,7 @@ const HeroCardDetails: FC<IProps> = ({ selectedId }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.8 }}
-      className="col-span-6 row-span-12 col-start-7 row-start-1 bg-card shadow-sm rounded-xl p-5"
+      className="col-span-6 row-span-12 col-start-7 row-start-1 bg-card shadow-sm rounded-xl p-5 overflow-auto"
     >
       {selectedId === 0 && (
         <div className="flex flex-col items-center justify-center gap-7 w-full h-full ">
