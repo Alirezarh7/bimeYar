@@ -1,37 +1,21 @@
 const prisma = require('../lib/prisma');
-const { signToken } = require('../utils/jwt');
 
-async function loginOrRegister(phone, code, profile) {
-    if (code !== '1111') {
-        const err = new Error('INVALID_CODE');
-        err.code = 'INVALID_CODE';
-        throw err;
-    }
+exports.findUserByPhone = (phone) => {
+    return prisma.user.findUnique({ where: { phone }, include: { wallet: true } });
+};
 
-    let user = await prisma.user.findUnique({
-        where: { phone },
+exports.createUser = async (data) => {
+    // کاربر + کیف پول بساز
+    return prisma.user.create({
+        data: {
+            phone: data.phone,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            nationalId: data.nationalId,
+            city: data.city,
+            createdAt: new Date(),
+            wallet: { create: {} }
+        },
         include: { wallet: true }
     });
-
-    if (!user) {
-        if (!profile) {
-            return { needProfile: true };
-        }
-        user = await prisma.user.create({
-            data: {
-                phone,
-                firstName: profile.firstName ?? null,
-                lastName: profile.lastName ?? null,
-                nationalId: profile.nationalId ?? null,
-                city: profile.city ?? null,
-                wallet: { create: {} }
-            },
-            include: { wallet: true }
-        });
-    }
-
-    const token = signToken(user, user.wallet);
-    return { token, user, wallet: user.wallet };
-}
-
-module.exports = { loginOrRegister };
+};

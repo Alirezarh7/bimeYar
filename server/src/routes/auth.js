@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { login } = require('../controllers/authController');
+const { getToken, register } = require('../controllers/authController');
 
 /**
  * @swagger
- * /auth/login:
+ * /auth/token:
  *   post:
- *     summary: Login or register user
- *     description: If user exists, returns JWT token. If not, returns needProfile=true
+ *     summary: Login user by phone
  *     tags:
  *       - Auth
  *     requestBody:
@@ -23,42 +22,48 @@ const { login } = require('../controllers/authController');
  *               code:
  *                 type: string
  *                 example: "1111"
+ *     responses:
+ *       200:
+ *         description: User found -> returns token
+ *       204:
+ *         description: User not found -> needProfile=true
+ */
+router.post('/token', getToken);
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Create new user after phone verification
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               phone:
+ *                 type: string
+ *                 example: "+491701234567"
  *               profile:
  *                 type: object
  *                 properties:
  *                   firstName:
  *                     type: string
- *                     example: "Ali"
  *                   lastName:
  *                     type: string
- *                     example: "Rahimi"
  *                   nationalId:
  *                     type: string
- *                     example: "1234567890"
  *                   city:
  *                     type: string
- *                     example: "Berlin"
  *     responses:
- *       200:
- *         description: User logged in or need profile
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 needProfile:
- *                   type: boolean
- *                 token:
- *                   type: string
- *                 user:
- *                   type: object
- *                 wallet:
- *                   type: object
- *       401:
- *         description: Invalid code
+ *       201:
+ *         description: User created and token returned
  *       400:
- *         description: Missing phone or code
+ *         description: Missing data or user already exists
  */
-router.post('/login', login);
+router.post('/register', register);
 
 module.exports = router;
