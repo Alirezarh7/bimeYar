@@ -21,14 +21,20 @@ const Footer = () => {
   });
 
   useEffect(() => {
-    const listener = (e: CustomEvent) => {
-      setProfile(e.detail); // وقتی لاگین شد، state آپدیت میشه
+    const loginListener = (e: CustomEvent) => {
+      setProfile(e.detail);
     };
 
-    window.addEventListener('auth:login', listener as EventListener);
+    const logoutListener = () => {
+      setProfile(null);
+    };
+
+    window.addEventListener('auth:login', loginListener as EventListener);
+    window.addEventListener('auth:logout', logoutListener);
 
     return () => {
-      window.removeEventListener('auth:login', listener as EventListener);
+      window.removeEventListener('auth:login', loginListener as EventListener);
+      window.removeEventListener('auth:logout', logoutListener);
     };
   }, []);
 
@@ -81,7 +87,7 @@ const Footer = () => {
       history: profile?.firstName ? '/profile' : null,
     },
     {
-      id: profile?.firstName ? '' : 5,
+      id:  5,
       icon: <BsChatRightText className={"text-muted"}/>,
       label: "چت بات",
     },

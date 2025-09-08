@@ -1,24 +1,31 @@
 import ImportantServices from "./ImportantServices.tsx";
 import {useEffect, useState} from "react";
 import LoginModal from "../Login/LoginModal.tsx";
-import ProfileButton from "../Login/ProFileButton.tsx";
+import CustomDropDown from "../Login/CustomDropDown.tsx";
+import type {Tprofile} from "../../../types/generalType.ts";
 
 
 const Header = () => {
   const [openLogin, setOpenLogin] = useState(false);
-  const [profile, setProfile] = useState(() => {
+  const [profile, setProfile] = useState<Tprofile>(() => {
     return JSON.parse(localStorage.getItem("profile") || "null");
   });
 
   useEffect(() => {
-    const listener = (e: CustomEvent) => {
-      setProfile(e.detail);
+    const loginListener = (e: CustomEvent) => {
+      setProfile(e.detail); // وقتی لاگین شد
     };
-
-    window.addEventListener('auth:login', listener as EventListener);
+    const logoutListener = () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      setProfile(null); // وقتی لاگ‌اوت شد
+    };
+    window.addEventListener('auth:login', loginListener as EventListener);
+    window.addEventListener('auth:logout', logoutListener);
 
     return () => {
-      window.removeEventListener('auth:login', listener as EventListener);
+      window.removeEventListener('auth:login', loginListener as EventListener);
+      window.removeEventListener('auth:logout', logoutListener);
     };
   }, []);
 
@@ -35,7 +42,7 @@ const Header = () => {
             </div>
             <div className="flex items-center justify-center gap-1">
               {profile?.firstName ?
-                <ProfileButton profile={profile} />
+                <CustomDropDown profile={profile} />
                 :
                 <button onClick={() => setOpenLogin(true)}
                         className={'border border-primary p-1 px-4 w-fit text-primary rounded-2xl'}>
