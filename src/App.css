@@ -1,43 +1,50 @@
 @import url("/public/content/fonts/iransans/css/style.css");
 @import "tailwindcss";
 
-body{
-    font-family: IRANSans, serif;
+body {
+  font-family: IRANSans, serif;
 }
 @theme {
-    --color-primary: var(--primary);
-    --color-card: var(--card);
-    --color-background: var(--background);
-    --color-muted: var(--muted);
-    --color-footerBack: var(--footerBack);
+  --color-primary: var(--primary);
+  --color-card: var(--card);
+  --color-background: var(--background);
+  --color-muted: var(--muted);
+  --color-footerBack: var(--footerBack);
 }
 
-
-
 :root {
-    --primary: #7D2C1B;
-    --card:#DDD2CE
-    --background:#F3F2ED
-    --muted: #494c57;
-    --footerBack: #F3F2ED;
+  --primary: #7d2c1b;
+  --card: #fafaf2;
+  --background: #f3f2ed;
+  --muted: #494c57;
+  --footerBack: #f3f2ed;
 }
 
 .card {
-    background: white;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.06);
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.06);
 }
 
-body{
-    background-color: #F3F2ED;
+body {
+  background-color: #f3f2ed;
 }
 
 .pulse {
-    animation: pulse 2.2s infinite;
+  animation: pulse 2.2s infinite;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    70% { transform: scale(1.06); opacity: .7; }
-    100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.06);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
