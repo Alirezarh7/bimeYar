@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useToken } from "../../../../service/auth.service.ts";
+import { useToken } from "../../../service/auth.service.ts";
 
 interface OtpStepProps {
   phone: string;
@@ -84,6 +84,11 @@ const OtpStep = ({ phone, onSuccess }: OtpStepProps) => {
           if (value.status === 204) {
             onSuccess(false);
           } else if (value.status === 200) {
+            localStorage.setItem("profile", JSON.stringify(value.data?.user))
+            localStorage.setItem("token", JSON.stringify(value.data?.token))
+            window.dispatchEvent(new CustomEvent('auth:login', {
+              detail: value.data.user
+            }));
             onSuccess(true);
           }
         },

@@ -1,11 +1,27 @@
 import ImportantServices from "./ImportantServices.tsx";
-import {useState} from "react";
-import LoginModal from "./Login/LoginModal.tsx";
+import {useEffect, useState} from "react";
+import LoginModal from "../Login/LoginModal.tsx";
+import ProfileButton from "../Login/ProFileButton.tsx";
 
 
 const Header = () => {
   const [openLogin, setOpenLogin] = useState(false);
-  const profile = JSON.parse(localStorage.getItem("profile") || "null");
+  const [profile, setProfile] = useState(() => {
+    return JSON.parse(localStorage.getItem("profile") || "null");
+  });
+
+  useEffect(() => {
+    const listener = (e: CustomEvent) => {
+      setProfile(e.detail);
+    };
+
+    window.addEventListener('auth:login', listener as EventListener);
+
+    return () => {
+      window.removeEventListener('auth:login', listener as EventListener);
+    };
+  }, []);
+
   return (
     <>
       <div className="w-full fixed bg-white border-b py-3 z-10  ">
@@ -18,10 +34,8 @@ const Header = () => {
               <span className="text-lg font-bold text-primary">بیمه‌یار</span>
             </div>
             <div className="flex items-center justify-center gap-1">
-              {profile?.fullname ?
-                <button className={'border border-primary p-1 px-4 w-fit text-primary rounded-2xl'}>
-                  {profile?.fullname}
-                </button>
+              {profile?.firstName ?
+                <ProfileButton profile={profile} />
                 :
                 <button onClick={() => setOpenLogin(true)}
                         className={'border border-primary p-1 px-4 w-fit text-primary rounded-2xl'}>

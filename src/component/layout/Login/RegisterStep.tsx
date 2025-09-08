@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useRegister} from "../../../../service/auth.service.ts";
+import {useRegister} from "../../../service/auth.service.ts";
 
 interface RegisterStepProps {
   phone: string;
@@ -29,7 +29,8 @@ const RegisterStep = ({phone, onComplete}: RegisterStepProps) => {
       }
     }, {
       onSuccess: (value) => {
-        console.log(value)
+        localStorage.setItem("profile", JSON.stringify(value.data?.user))
+        localStorage.setItem("token", JSON.stringify(value.data?.token))
       }
     })
     onComplete();

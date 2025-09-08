@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import PhoneStep from "./PhoneStep";
-import OtpStep from "./OtpStep";
-import RegisterStep from "./RegisterStep";
+import PhoneStep from "./PhoneStep.tsx";
+import OtpStep from "./OtpStep.tsx";
+import RegisterStep from "./RegisterStep.tsx";
 
 interface LoginModalProps {
   open: boolean;

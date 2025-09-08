@@ -12,10 +12,26 @@ import {useModalStore} from "../../../store/modalStore.ts";
 import {AiOutlineEnter} from "react-icons/ai";
 import {BsChatRightText} from "react-icons/bs";
 import ChatbotBottomSheetModal from "./ChatbotBottomSheetModal.tsx";
-import LoginModal from "../header/Login/LoginModal.tsx";
+import LoginModal from "../Login/LoginModal.tsx";
 
 
 const Footer = () => {
+  const [profile, setProfile] = useState(() => {
+    return JSON.parse(localStorage.getItem("profile") || "null");
+  });
+
+  useEffect(() => {
+    const listener = (e: CustomEvent) => {
+      setProfile(e.detail); // وقتی لاگین شد، state آپدیت میشه
+    };
+
+    window.addEventListener('auth:login', listener as EventListener);
+
+    return () => {
+      window.removeEventListener('auth:login', listener as EventListener);
+    };
+  }, []);
+
   const location = useLocation();
   const currentPath = location.pathname;
   useEffect(() => {
@@ -24,7 +40,6 @@ const Footer = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>(currentPath);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {modals, open, close} = useModalStore();
-  const token = localStorage.getItem("token");
   const isOpenLoginBottomSheetModal = modals['LoginBottomSheetModal'];
   const isOpenChatbotBottomSheetModal = modals['ChatbotBottomSheetModal'];
   const history = useNavigate()
@@ -39,6 +54,7 @@ const Footer = () => {
       document.body.style.overflow = "auto";
     };
   }, [isModalOpen]);
+
   const navItems = [
     {
       id: '/',
@@ -47,10 +63,10 @@ const Footer = () => {
       history: '/'
     },
     {
-      id: token ? '/profile-asd' : 3,
-      icon: <CiCreditCard2 className={selectedTab === '/profile-asd' ? "text-primary" : "text-muted"}/>,
+      id: profile?.firstName ? '/profile/value' : 3,
+      icon: <CiCreditCard2 className={selectedTab === '/profile/value' ? "text-primary" : "text-muted"}/>,
       label: "اقساط و اعتبار",
-      history: token ? '/profile-asd' : null
+      history: profile?.firstName ? '/profile/value' : null
     },
     {
       id: 2,
@@ -58,18 +74,19 @@ const Footer = () => {
       label: "خدمات",
     },
     {
-      id: token ? '/profile' : 4,
-      icon: token ? <MdOutlineManageAccounts className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/> :
+      id: profile?.firstName ? '/profile' : 4,
+      icon: profile?.firstName ? <MdOutlineManageAccounts className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/> :
         <AiOutlineEnter className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/>,
-      label: token ? "پروفایل" : 'ورود/ ثبت نام',
-      history: token ? '/profile' : null,
+      label: profile?.firstName ? "پروفایل" : 'ورود/ ثبت نام',
+      history: profile?.firstName ? '/profile' : null,
     },
     {
-      id: token ? '/profile-asd' : 5,
+      id: profile?.firstName ? '' : 5,
       icon: <BsChatRightText className={"text-muted"}/>,
       label: "چت بات",
     },
   ];
+
 
   const servicesData = [
     {
@@ -188,7 +205,7 @@ const Footer = () => {
                             setIsModalOpen(false)
                             setSelectedTab(currentPath)
                           }}
-                          className="w-11 h-11 border border-primary bg-white text-sliderBlueColor  rounded-full flex  items-center justify-center shadow-md ml-[14px] my-7"
+                          className="w-11 h-11 border border-primary bg-white text-sliderBlueColor  rounded-full flex  items-center justify-center shadow-md mr-[8px] my-7"
                         >
                           {item.icon}
                         </div>
