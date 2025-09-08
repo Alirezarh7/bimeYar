@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
+import CarBodyInsurance from "./cardDetailsComponents/CarBodyInsurance";
 
 interface IProps {
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
@@ -9,7 +10,7 @@ interface IProps {
 const cardDetails = [
   {
     id: 1,
-    childrenComponent: <p>1</p>,
+    childrenComponent: <CarBodyInsurance />,
   },
   {
     id: 2,
@@ -44,7 +45,7 @@ const HeroCardDetails: FC<IProps> = ({ selectedId }) => {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8 }}
       className="col-span-6 row-span-12 col-start-7 row-start-1 bg-card shadow-sm rounded-xl p-5"
     >
       {selectedId === 0 && (
