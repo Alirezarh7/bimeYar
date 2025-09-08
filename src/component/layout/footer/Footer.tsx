@@ -8,11 +8,11 @@ import {RiCustomerService2Line} from "react-icons/ri";
 import {TfiHome} from "react-icons/tfi";
 import {useWindowWidth} from "../../../hook/useWindowWidth.ts";
 import {CiCreditCard2} from "react-icons/ci";
-import LoginBottomSheetModal from "./LoginBottomSheetModal.tsx";
 import {useModalStore} from "../../../store/modalStore.ts";
 import {AiOutlineEnter} from "react-icons/ai";
 import {BsChatRightText} from "react-icons/bs";
 import ChatbotBottomSheetModal from "./ChatbotBottomSheetModal.tsx";
+import LoginModal from "../header/Login/LoginModal.tsx";
 
 
 const Footer = () => {
@@ -59,13 +59,14 @@ const Footer = () => {
     },
     {
       id: token ? '/profile' : 4,
-      icon: token ?<MdOutlineManageAccounts className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/> : <AiOutlineEnter  className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/>,
+      icon: token ? <MdOutlineManageAccounts className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/> :
+        <AiOutlineEnter className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/>,
       label: token ? "پروفایل" : 'ورود/ ثبت نام',
       history: token ? '/profile' : null,
     },
     {
       id: token ? '/profile-asd' : 5,
-      icon: <BsChatRightText  className={"text-muted"}/>,
+      icon: <BsChatRightText className={"text-muted"}/>,
       label: "چت بات",
     },
   ];
@@ -120,7 +121,7 @@ const Footer = () => {
                   } else {
                     if (item.id === 2) {
                       setIsModalOpen(true)
-                    }else if (item.id === 5){
+                    } else if (item.id === 5) {
                       open('ChatbotBottomSheetModal')
                     } else {
                       open('LoginBottomSheetModal')
@@ -198,10 +199,14 @@ const Footer = () => {
               </motion.div>
             )}
           </AnimatePresence>
-          <LoginBottomSheetModal onClose={() => {
+          <LoginModal open={isOpenLoginBottomSheetModal} onClose={() => {
             close('LoginBottomSheetModal')
             setSelectedTab(currentPath)
-          }} open={isOpenLoginBottomSheetModal}/>
+          }}/>
+          {/*<LoginBottomSheetModal onClose={() => {*/}
+          {/*  close('LoginBottomSheetModal')*/}
+          {/*  setSelectedTab(currentPath)*/}
+          {/*}} open={isOpenLoginBottomSheetModal}/>*/}
           <ChatbotBottomSheetModal onClose={() => {
             close('ChatbotBottomSheetModal')
             setSelectedTab(currentPath)
