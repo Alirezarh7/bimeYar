@@ -2,20 +2,52 @@ import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {FaTimes} from "react-icons/fa";
 import {useLocation, useNavigate} from "react-router-dom";
-import {AllocationIcon, CycleIcon, HeadlineIcon, ManagementIcon, MemberIcon, QuotaIcon} from "../../icons/Icon.tsx";
+import {CarIcon, HeadlineIcon, MemberIcon} from "../../../icons/Icon.tsx";
 import {MdOutlineManageAccounts} from "react-icons/md";
 import {RiCustomerService2Line} from "react-icons/ri";
 import {TfiHome} from "react-icons/tfi";
-import {useWindowWidth} from "../../hook/useWindowWidth.ts";
+import {useWindowWidth} from "../../../hook/useWindowWidth.ts";
+import {CiCreditCard2} from "react-icons/ci";
+import {useModalStore} from "../../../store/modalStore.ts";
+import {AiOutlineEnter} from "react-icons/ai";
+import {BsChatRightText} from "react-icons/bs";
+import ChatbotBottomSheetModal from "./ChatbotBottomSheetModal.tsx";
+import LoginModal from "../Login/LoginModal.tsx";
+
 
 const Footer = () => {
+  const [profile, setProfile] = useState(() => {
+    return JSON.parse(localStorage.getItem("profile") || "null");
+  });
+
+  useEffect(() => {
+    const loginListener = (e: CustomEvent) => {
+      setProfile(e.detail);
+    };
+
+    const logoutListener = () => {
+      setProfile(null);
+    };
+
+    window.addEventListener('auth:login', loginListener as EventListener);
+    window.addEventListener('auth:logout', logoutListener);
+
+    return () => {
+      window.removeEventListener('auth:login', loginListener as EventListener);
+      window.removeEventListener('auth:logout', logoutListener);
+    };
+  }, []);
+
   const location = useLocation();
   const currentPath = location.pathname;
   useEffect(() => {
     setSelectedTab(currentPath);
   }, [currentPath]);
-  const [selectedTab, setSelectedTab] = useState<any>(currentPath);
+  const [selectedTab, setSelectedTab] = useState<string | number>(currentPath);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {modals, open, close} = useModalStore();
+  const isOpenLoginBottomSheetModal = modals['LoginBottomSheetModal'];
+  const isOpenChatbotBottomSheetModal = modals['ChatbotBottomSheetModal'];
   const history = useNavigate()
   useEffect(() => {
     if (isModalOpen) {
@@ -28,6 +60,7 @@ const Footer = () => {
       document.body.style.overflow = "auto";
     };
   }, [isModalOpen]);
+
   const navItems = [
     {
       id: '/',
@@ -36,10 +69,10 @@ const Footer = () => {
       history: '/'
     },
     {
-      id: '/profile-asd',
-      icon: <TfiHome className={selectedTab === '/' ? "text-primary" : "text-muted"}/>,
+      id: profile?.firstName ? '/profile/value' : 3,
+      icon: <CiCreditCard2 className={selectedTab === '/profile/value' ? "text-primary" : "text-muted"}/>,
       label: "اقساط و اعتبار",
-      history: '/profile-asd'
+      history: profile?.firstName ? '/profile/value' : null
     },
     {
       id: 2,
@@ -47,54 +80,38 @@ const Footer = () => {
       label: "خدمات",
     },
     {
-      id: '/profile',
-      icon: <MdOutlineManageAccounts className={selectedTab === '/' ? "text-primary" : "text-muted"}/>,
-      label: "پروفایل",
-      history: '/profile',
+      id: profile?.firstName ? '/profile' : 4,
+      icon: profile?.firstName ? <MdOutlineManageAccounts className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/> :
+        <AiOutlineEnter className={selectedTab === '/profile' ? "text-primary" : "text-muted"}/>,
+      label: profile?.firstName ? "پروفایل" : 'ورود/ ثبت نام',
+      history: profile?.firstName ? '/profile' : null,
     },
     {
-      id: 3,
-      icon: <MdOutlineManageAccounts  className={"text-muted"}/>,
+      id:  5,
+      icon: <BsChatRightText className={"text-muted"}/>,
       label: "چت بات",
     },
   ];
 
+
   const servicesData = [
     {
       id: 1,
-      icon: <CycleIcon/>,
-      title: "دوره و زیر دوره",
+      icon: <CarIcon/>,
+      title: "بیمه وسایل نقلیه",
       navigate: '/period-sub-period'
     },
     {
       id: 2,
-      icon: <MemberIcon/>,
-      title: "ارگان",
+      icon: <HeadlineIcon/>,
+      title: "بیمه اموال",
       navigate: '/organ'
     },
     {
       id: 3,
-      icon: <HeadlineIcon/>,
-      title: "سرفصل",
+      icon: <MemberIcon/>,
+      title: "بیمه اشخاص",
       navigate: '/headline'
-    },
-    {
-      id: 4,
-      icon: <AllocationIcon/>,
-      title: "تخصیص به ارگان",
-      navigate: '/assigning-heading-to-organs'
-    },
-    {
-      id: 7,
-      icon: <ManagementIcon/>,
-      title: "مدیریت کاربران",
-      navigate: '/user-management'
-    },
-    {
-      id: 6,
-      icon: <QuotaIcon/>,
-      title: "سهمیه",
-      navigate: '/quota'
     },
     {},
     {
@@ -106,10 +123,10 @@ const Footer = () => {
 
   return (
     <>
-      {useWindowWidth() > 550 ?
-        <footer className="bg-primary-50 mt-12">
+      {useWindowWidth() > 850 ?
+        <footer className="bg-gradient-to-r from-primary to-white bg- ">
           <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-muted">
-            © {new Date().getFullYear()} بیمه‌یار — نمونه TypeScript و Vite
+            <strong>کلیه حقوق این وب سایت محفوظ و متعلق به شرکت بیمه یار می‌باشد.</strong>
           </div>
         </footer>
         :
@@ -125,7 +142,13 @@ const Footer = () => {
                   if (item.history) {
                     history(item.history)
                   } else {
-                    setIsModalOpen(true)
+                    if (item.id === 2) {
+                      setIsModalOpen(true)
+                    } else if (item.id === 5) {
+                      open('ChatbotBottomSheetModal')
+                    } else {
+                      open('LoginBottomSheetModal')
+                    }
                   }
                 }}
               >
@@ -176,7 +199,7 @@ const Footer = () => {
                             setSelectedTab(currentPath)
                           }}
                           className={
-                            " border border-muted text-sliderBlueColor rounded-xl flex flex-col items-center justify-center w-[90px] h-[90px] shadow-xl"
+                            " border border-muted bg-footerBack text-sliderBlueColor rounded-xl flex flex-col items-center justify-center w-[90px] h-[90px] shadow-xl"
                           }
                         >
                           <div className={"mb-2"}>{item.icon}</div>
@@ -188,7 +211,7 @@ const Footer = () => {
                             setIsModalOpen(false)
                             setSelectedTab(currentPath)
                           }}
-                          className="w-10 h-10 border border-primary bg-white text-sliderBlueColor    rounded-full flex  items-center justify-center shadow-md mr-[14.5px] my-7"
+                          className="w-11 h-11 border border-primary bg-white text-sliderBlueColor  rounded-full flex  items-center justify-center shadow-md mr-[8px] my-7"
                         >
                           {item.icon}
                         </div>
@@ -199,6 +222,18 @@ const Footer = () => {
               </motion.div>
             )}
           </AnimatePresence>
+          <LoginModal open={isOpenLoginBottomSheetModal} onClose={() => {
+            close('LoginBottomSheetModal')
+            setSelectedTab(currentPath)
+          }}/>
+          {/*<LoginBottomSheetModal onClose={() => {*/}
+          {/*  close('LoginBottomSheetModal')*/}
+          {/*  setSelectedTab(currentPath)*/}
+          {/*}} open={isOpenLoginBottomSheetModal}/>*/}
+          <ChatbotBottomSheetModal onClose={() => {
+            close('ChatbotBottomSheetModal')
+            setSelectedTab(currentPath)
+          }} open={isOpenChatbotBottomSheetModal}/>
         </>
       }
     </>

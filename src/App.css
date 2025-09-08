@@ -1,10 +1,16 @@
+@import url("/public/content/fonts/iransans/css/style.css");
 @import "tailwindcss";
-@import url("../public/content/fonts/iransans/css/style.css");
+
+body{
+    font-family: IRANSans, serif;
+}
 @theme {
     --color-primary: var(--primary);
     --color-muted: var(--muted);
     --color-footerBack: var(--footerBack);
 }
+
+
 
 :root {
     --primary: #16a34a;
