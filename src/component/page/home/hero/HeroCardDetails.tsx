@@ -51,13 +51,13 @@ const HeroCardDetails: FC<IProps> = ({ selectedId }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.8 }}
-      className="col-span-6 row-span-12 col-start-7 row-start-1 bg-card shadow-sm rounded-xl p-5 overflow-auto"
+      className="col-span-12 col-start-1 lg:col-span-6 row-span-12 lg:col-start-7 row-start-1 bg-card shadow-sm rounded-xl p-5 overflow-auto"
     >
       {selectedId === 0 && (
         <div className="flex flex-col items-center justify-center gap-7 w-full h-full ">
-          <img src="/logo.png" alt="logo" className="w-40 h-28" />
-          <h1 className="text-4xl text-primary font-bold text-center">بیمه یار آسودگی خاطر شما</h1>
-          <h5 className=" text-gray-700 font-bold text-center">خرید آنلاین بیمه در چند دقیقه با بهترین قیمت و پشتیبانی ۲۴ ساعته</h5>
+          <img src="/logo.png" alt="logo" className="w-28 h-16 lg:w-40 lg:h-28" />
+          <h1 className="text-xl lg:text-4xl text-primary font-bold text-center">بیمه یار آسودگی خاطر شما</h1>
+          <h5 className=" text-card-foreground font-bold text-center">خرید آنلاین بیمه در چند دقیقه با بهترین قیمت و پشتیبانی ۲۴ ساعته</h5>
         </div>
       )}
 

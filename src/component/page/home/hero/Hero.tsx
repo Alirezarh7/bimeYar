@@ -1,69 +1,68 @@
 import { useState, type FC } from "react";
 import HeroCard from "./HeroCard";
 import HeroCardDetails from "./HeroCardDetails";
+import { CarIcon2, HealthIcon, HomeIcon, LifeIcon, MobileIcon, MotorIcon, PersonIcon } from "../../../../icons/Icon";
 
 const cards = [
   {
     id: 1,
     title: "بیمه بدنه خودرو",
     subTitle: "سواری , وانت",
-    imgUrl: "/logo.png",
-    className: "col-span-4 row-span-3 col-start-1",
+    icon: <CarIcon2 />,
+    className: "col-span-12 row-span-2 lg:col-span-4 lg:row-span-3 col-start-1",
   },
   {
     id: 2,
     title: "بیمه موبایل",
     subTitle: "سرقت ، آسیب دیدگی و ...",
-    imgUrl: "/logo.png",
-    className: "col-span-2 row-span-3 col-start-5 row-start-1",
+    icon: <MobileIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-2 lg:row-span-3 lg:col-start-5 lg:row-start-1",
   },
   {
     id: 3,
     title: "بیمه شخص ثالث خودرو",
     subTitle: "سواری , وانت و کامیون و ...",
-    imgUrl: "/logo.png",
-    className: "col-span-6 row-span-3 col-start-1 row-start-4",
+    icon: <PersonIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-6 lg:row-span-3 lg:col-start-1 lg:row-start-4",
   },
   {
     id: 4,
     title: "بیمه خانه",
     subTitle: "آتش سوزی ,  زلزله ,  آسانسور",
-    imgUrl: "/logo.png",
-    className: "col-span-3 row-span-3 row-start-7",
+    icon: <HomeIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-3 lg:row-span-3 lg:row-start-7",
   },
   {
     id: 5,
     title: "بیمه تکمیلی",
     subTitle: "انفرادی , خانوادگی و شرکتی",
-    imgUrl: "/logo.png",
-    className: "col-span-3 row-span-3 col-start-4 row-start-7",
+    icon: <HealthIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-3 lg:row-span-3 lg:col-start-4 lg:row-start-7",
   },
   {
     id: 6,
     title: "بیمه موتور",
     subTitle: "تک سیلندر , دو سیلندر و ...",
-    imgUrl: "/logo.png",
-    className: "col-span-4 row-span-3 row-start-10",
+    icon: <MotorIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-4 lg:row-span-3 lg:row-start-10",
   },
   {
     id: 7,
     title: "بیمه عمر",
     subTitle: "عمر و سرمایه گذاری و ...",
-    imgUrl: "/logo.png",
-    className: "col-span-2 row-span-3 col-start-5 row-start-10",
+    icon: <LifeIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-2 lg:row-span-3 lg:col-start-5 lg:row-start-10",
   },
 ];
 
 const Hero: FC = () => {
   const [selectedId, setSelectedId] = useState(0);
   return (
-    <div className="w-full h-[90vh] mb-10 ">
+    <div className="w-full h-[90vh]  mb-10 ">
       <div className="grid grid-cols-12 grid-rows-12 gap-5 w-full h-full p-5">
         <HeroCardDetails selectedId={selectedId} setSelectedId={setSelectedId} />
         {cards.map((item) => {
-          return (
-            <HeroCard className={item.className} imgUrl={item.imgUrl} subTitle={item.subTitle} title={item.title} key={item.id} id={item.id} selectedId={selectedId} setSelectedId={setSelectedId} />
-          );
+          return <HeroCard className={item.className} icon={item.icon} subTitle={item.subTitle} title={item.title} key={item.id} id={item.id} selectedId={selectedId} setSelectedId={setSelectedId} />;
         })}
       </div>
     </div>

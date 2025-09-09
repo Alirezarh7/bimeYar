@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import LoginModal from "../Login/LoginModal.tsx";
 import CustomDropDown from "../Login/CustomDropDown.tsx";
 import type { Tprofile } from "../../../types/generalType.ts";
+import { useThemeStore } from "../../../store/themeStore.ts";
+import { MoonIcon, SunIcon } from "../../../icons/Icon.tsx";
 
 const Header = () => {
   const [openLogin, setOpenLogin] = useState(false);
+  const { theme, toggleTheme } = useThemeStore();
   const [profile, setProfile] = useState<Tprofile>(() => {
     return JSON.parse(localStorage.getItem("profile") || "null");
   });
@@ -30,8 +33,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="w-full fixed bg-white border-b py-3 z-10  ">
-        <div className="max-w-6xl mx-auto px-5">
+      <div className="w-full fixed bg-white dark:bg-background shadow-sm py-3 z-10  ">
+        <div className="max-w-7xl mx-auto px-5">
           <div className="flex items-center justify-between">
             <div className={"flex mx-2"}>
               <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -39,14 +42,17 @@ const Header = () => {
               </svg>
               <span className="text-lg font-bold text-primary">بیمه‌یار</span>
             </div>
-            <div className="flex items-center justify-center gap-1">
+            <div className="flex items-center justify-center gap-3">
               {profile?.firstName ? (
                 <CustomDropDown profile={profile} />
               ) : (
-                <button onClick={() => setOpenLogin(true)} className={"border border-primary p-1 px-4 w-fit text-primary rounded-2xl"}>
+                <button onClick={() => setOpenLogin(true)} className={"border-2 border-primary p-2 px-4 w-fit font-medium text-primary rounded-2xl cursor-pointer"}>
                   ورود/ثبت نام
                 </button>
               )}
+              <button className={"border-2 border-primary p-1 px-3 w-fit rounded-2xl cursor-pointer"} onClick={toggleTheme}>
+                {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+              </button>
             </div>
           </div>
         </div>
