@@ -1,6 +1,33 @@
 import ImportantServices from "./ImportantServices.tsx";
+import { useEffect, useState } from "react";
+import LoginModal from "../Login/LoginModal.tsx";
+import CustomDropDown from "../Login/CustomDropDown.tsx";
+import type { Tprofile } from "../../../types/generalType.ts";
 
 const Header = () => {
+  const [openLogin, setOpenLogin] = useState(false);
+  const [profile, setProfile] = useState<Tprofile>(() => {
+    return JSON.parse(localStorage.getItem("profile") || "null");
+  });
+
+  useEffect(() => {
+    const loginListener = (e: CustomEvent) => {
+      setProfile(e.detail); // وقتی لاگین شد
+    };
+    const logoutListener = () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      setProfile(null); // وقتی لاگ‌اوت شد
+    };
+    window.addEventListener("auth:login", loginListener as EventListener);
+    window.addEventListener("auth:logout", logoutListener);
+
+    return () => {
+      window.removeEventListener("auth:login", loginListener as EventListener);
+      window.removeEventListener("auth:logout", logoutListener);
+    };
+  }, []);
+
   return (
     <>
       <div className="w-full fixed bg-white border-b py-3 z-10  ">
@@ -12,44 +39,24 @@ const Header = () => {
               </svg>
               <span className="text-lg font-bold text-primary">بیمه‌یار</span>
             </div>
-            <div className="flex items-center justify-center gap-1"></div>
+            <div className="flex items-center justify-center gap-1">
+              {profile?.firstName ? (
+                <CustomDropDown profile={profile} />
+              ) : (
+                <button onClick={() => setOpenLogin(true)} className={"border border-primary p-1 px-4 w-fit text-primary rounded-2xl"}>
+                  ورود/ثبت نام
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
       <div className="mb-8">
         <ImportantServices />
       </div>
+      <LoginModal open={openLogin} onClose={() => setOpenLogin(false)} />
     </>
   );
 };
 
 export default Header;
-
-// export const Header = () => {
-//   return (
-//     <header className="w-full sticky top-0 z-40 bg-white/70 backdrop-blur-sm border-b">
-//       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
-//         <div className="flex items-center gap-3">
-//           <div className="w-10 h-10 rounded-xl bg-primary/10 grid place-items-center">
-
-//           </div>
-//
-//           <span className="text-xs text-gray-500 ml-2 hidden sm:inline">نمونه TypeScript + Vite</span>
-//         </div>
-//
-//         <nav className="hidden md:flex items-center gap-6 text-sm">
-//           <a href="#services" className="hover:text-primary">خدمات</a>
-//           <a href="#compare" className="hover:text-primary">مقایسه</a>
-//           <a href="#seller" className="hover:text-primary">همکاری</a>
-//           <a href="#blog" className="hover:text-primary">وبلاگ</a>
-//         </nav>
-//
-//         <div className="flex items-center gap-3">
-//           <button className="px-4 py-2 rounded-full bg-primary text-white shadow-sm hover:shadow-lg transition">ورود
-//           </button>
-//           <button className="px-4 py-2 rounded-full border border-primary text-primary bg-white">ثبت‌نام</button>
-//         </div>
-//       </div>
-//     </header>
-//   )
-// }

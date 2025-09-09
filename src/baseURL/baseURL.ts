@@ -1,0 +1,1 @@
+export const currentBaseUrl = 'http://localhost:4000';

@@ -49,7 +49,7 @@ const ImportantServices = () => {
       {useWindowWidth() < 850 ? null : (
         <motion.div
           animate={{
-            top: scrollNumber ? "4vh" : "0vh",
+            top: scrollNumber ? "6vh" : "1vh",
             scale: scrollNumber ? 0.9 : 1,
           }}
           transition={{ type: "spring", stiffness: 80, damping: 15 }}
