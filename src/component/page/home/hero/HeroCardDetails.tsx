@@ -6,6 +6,7 @@ import MobileInsurance from "./cardDetailsComponents/MobileInsurance";
 import ThirdPartyInsurance from "./cardDetailsComponents/ThirdPartyInsurance";
 import HomeInsurance from "./cardDetailsComponents/HomeInsurance";
 import HealthInsurance from "./cardDetailsComponents/HealthInsurance";
+import LifeInsuranceBenefits from "./cardDetailsComponents/LifeInsuranceBenefits";
 
 interface IProps {
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
@@ -39,7 +40,7 @@ const cardDetails = [
   },
   {
     id: 7,
-    childrenComponent: <p>7</p>,
+    childrenComponent: <LifeInsuranceBenefits />,
   },
 ];
 

@@ -58,7 +58,7 @@ const cards = [
 const Hero: FC = () => {
   const [selectedId, setSelectedId] = useState(0);
   return (
-    <div className="w-full h-[90vh]  mb-10 ">
+    <div className="w-full h-[90vh] mb-10 ">
       <div className="grid grid-cols-12 grid-rows-12 gap-5 w-full h-full p-5">
         <HeroCardDetails selectedId={selectedId} setSelectedId={setSelectedId} />
         {cards.map((item) => {
