@@ -1,43 +1,71 @@
-import {motion} from 'framer-motion'
-import {QuoteMiniCard} from "./QuoteMiniCard.tsx";
+import { useState, type FC } from "react";
+import HeroCard from "./HeroCard";
+import HeroCardDetails from "./HeroCardDetails";
+import { CarIcon2, HealthIcon, HomeIcon, LifeIcon, MobileIcon, MotorIcon, PersonIcon } from "../../../../icons/Icon";
 
-export const Hero = () => {
+const cards = [
+  {
+    id: 1,
+    title: "بیمه بدنه خودرو",
+    subTitle: "سواری , وانت",
+    icon: <CarIcon2 />,
+    className: "col-span-12 row-span-2 lg:col-span-4 lg:row-span-3 col-start-1",
+  },
+  {
+    id: 2,
+    title: "بیمه موبایل",
+    subTitle: "سرقت ، آسیب دیدگی و ...",
+    icon: <MobileIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-2 lg:row-span-3 lg:col-start-5 lg:row-start-1",
+  },
+  {
+    id: 3,
+    title: "بیمه شخص ثالث خودرو",
+    subTitle: "سواری , وانت و کامیون و ...",
+    icon: <PersonIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-6 lg:row-span-3 lg:col-start-1 lg:row-start-4",
+  },
+  {
+    id: 4,
+    title: "بیمه خانه",
+    subTitle: "آتش سوزی ,  زلزله ,  آسانسور",
+    icon: <HomeIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-3 lg:row-span-3 lg:row-start-7",
+  },
+  {
+    id: 5,
+    title: "بیمه تکمیلی",
+    subTitle: "انفرادی , خانوادگی و شرکتی",
+    icon: <HealthIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-3 lg:row-span-3 lg:col-start-4 lg:row-start-7",
+  },
+  {
+    id: 6,
+    title: "بیمه موتور",
+    subTitle: "تک سیلندر , دو سیلندر و ...",
+    icon: <MotorIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-4 lg:row-span-3 lg:row-start-10",
+  },
+  {
+    id: 7,
+    title: "بیمه عمر",
+    subTitle: "عمر و سرمایه گذاری و ...",
+    icon: <LifeIcon />,
+    className: "col-span-12 row-span-2 col-start-1 lg:col-span-2 lg:row-span-3 lg:col-start-5 lg:row-start-10",
+  },
+];
+
+const Hero: FC = () => {
+  const [selectedId, setSelectedId] = useState(0);
   return (
-    <section className="bg-gradient-to-b from-primary-50 to-white">
-      <div className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-8 items-center">
-        <motion.div initial={{opacity: 0, y: 12}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6}}>
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 text-primary text-sm font-semibold">مقایسه
-            هوشمند
-          </div>
-          <h1 className="mt-6 text-4xl md:text-5xl font-extrabold text-primary leading-tight">خرید آنلاین بیمه با
-            پشتیبانی واقعی و صدور آنی</h1>
-          <p className="mt-4 text-gray-600">از بین چندین شرکت بیمه، قیمت و پوشش مناسب را انتخاب کنید. امکان پرداخت
-            اقساطی و صدور دیجیتال.</p>
-
-          <div className="mt-8 flex gap-4">
-            <a href="#quote"
-               className="rounded-full px-6 py-3 bg-primary text-white shadow hover:scale-[1.02] transform transition">استعلام
-              فوری</a>
-            <a href="#compare" className="rounded-full px-6 py-3 border border-primary text-primary bg-white shadow-sm">مقایسه
-              شرکت‌ها</a>
-          </div>
-
-          <div className="mt-6 flex items-center gap-3 text-sm">
-            <div className="flex items-center gap-2 text-amber-500">
-              <div className="text-amber-400">★ ★ ★ ★ ★</div>
-            </div>
-            <div className="text-gray-500">۴.۹ از ۵ — بیش از ۱۲٬۳۰۰ نظر</div>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{opacity: 0, y: 18}} animate={{opacity: 1, y: 0}}
-                    transition={{duration: 0.7, delay: 0.05}}>
-          <div className="card p-6">
-            <QuoteMiniCard/>
-          </div>
-        </motion.div>
+    <div className="w-full lg:h-[90vh] mb-10 ">
+      <div className="grid grid-cols-12 grid-rows-12 gap-5 w-full h-full p-5">
+        <HeroCardDetails selectedId={selectedId} setSelectedId={setSelectedId} />
+        {cards.map((item) => {
+          return <HeroCard className={item.className} icon={item.icon} subTitle={item.subTitle} title={item.title} key={item.id} id={item.id} selectedId={selectedId} setSelectedId={setSelectedId} />;
+        })}
       </div>
-    </section>
-  )
-}
+    </div>
+  );
+};
+export default Hero;

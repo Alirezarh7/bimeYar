@@ -36,18 +36,12 @@ const LoginModal = ({ open, onClose }: LoginModalProps) => {
       {open && (
         <>
           {/* بک‌دراپ تار */}
-          <motion.div
-            className="fixed inset-0 bg-black/40 z-40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
+          <motion.div className="fixed inset-0 bg-black/40 z-40" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
 
           {/* مودال مربعی که از پایین میاد وسط */}
           <motion.div
             key={step}
-            className={`fixed bg-white rounded-2xl shadow-2xl p-6 z-50 ${modalSize}`}
+            className={`fixed bg-card rounded-2xl shadow-2xl p-6 z-50 ${modalSize}`}
             initial={{ y: "100%", opacity: 0, scale: 0.8 }}
             animate={{ y: "-50%", x: "-50%", top: "50%", left: "50%", opacity: 1, scale: 1 }}
             exit={{ y: "100%", opacity: 0, scale: 0.8 }}
