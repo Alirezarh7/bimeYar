@@ -84,11 +84,13 @@ const OtpStep = ({ phone, onSuccess }: OtpStepProps) => {
           if (value.status === 204) {
             onSuccess(false);
           } else if (value.status === 200) {
-            localStorage.setItem("profile", JSON.stringify(value.data?.user))
-            localStorage.setItem("token", JSON.stringify(value.data?.token))
-            window.dispatchEvent(new CustomEvent('auth:login', {
-              detail: value.data.user
-            }));
+            localStorage.setItem("profile", JSON.stringify(value.data?.user));
+            localStorage.setItem("token", JSON.stringify(value.data?.token));
+            window.dispatchEvent(
+              new CustomEvent("auth:login", {
+                detail: value.data.user,
+              })
+            );
             onSuccess(true);
           }
         },
@@ -115,9 +117,7 @@ const OtpStep = ({ phone, onSuccess }: OtpStepProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-lg font-bold text-center text-[var(--primary)]">
-        کد ارسال شده به {phone}
-      </h2>
+      <h2 className="text-lg font-bold text-center text-[var(--primary)]">کد ارسال شده به {phone}</h2>
 
       {/* مهم: dir="ltr" تا ترتیب و فوکوس از چپ به راست باشه */}
       <div className="flex justify-center gap-3" dir="ltr">
@@ -135,7 +135,7 @@ const OtpStep = ({ phone, onSuccess }: OtpStepProps) => {
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
             onPaste={handlePaste}
-            className="w-12 h-12 text-center border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-[var(--primary)]"
+            className="w-12 h-12 text-center border border-gray-300 rounded-xl text-lg text-card-foreground"
             style={{ direction: "ltr" }} // caret و ورودی هم LTR باشه
           />
         ))}
