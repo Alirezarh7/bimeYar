@@ -6,10 +6,10 @@ interface IProps {
 }
 const BeneftCard: FC<IProps> = ({ description, icon, title }) => {
   return (
-    <div className="flex items-center justify-center bg-card p-5 w-full md:w-1/2 shadow-lg">
+    <div className="flex items-center flex-col justify-center bg-card p-5 w-full md:w-1/2 shadow-lg rounded-2xl gap-5">
       {icon}
-      <p className="text-sm text-primary font-semibold ">{title}</p>
-      <p className="text-sm text-primary font-semibold ">{description}</p>
+      <p className="text-sm text-primary font-semibold">{title}</p>
+      <p className="text-sm text-gray-500 font-medium">{description}</p>
     </div>
   );
 };
