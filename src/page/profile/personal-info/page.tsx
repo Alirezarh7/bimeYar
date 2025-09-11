@@ -1,14 +1,11 @@
-import Sidebar from "../../../component/page/profile/sidebar/Sidebar";
-
+import ProfileLayout from "../../../component/layout/ProfileLayout";
 
 const PersonalInfoPage = () => {
-    return (
-        <>
-            <div className="container">
-                <Sidebar />
-            </div>
-        </>
-    )
-}
+  return (
+    <ProfileLayout>
+      <div></div>
+    </ProfileLayout>
+  );
+};
 
 export default PersonalInfoPage;

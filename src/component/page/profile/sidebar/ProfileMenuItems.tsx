@@ -31,7 +31,7 @@ export const menuItems: ParentItem[] = [
   {
     index: 0,
     title: "بیمه‌های من",
-    primaryLink: "/profile/insurances",
+    primaryLink: "/profile/insurances/purchased",
     icon: <FiUsers />,
     children: [
       {
@@ -70,8 +70,16 @@ export const menuItems: ParentItem[] = [
     icon: <FiUser />,
     primaryLink: "/profile/claims",
     children: [
-      { name: "خسارت جدید", icon: <FiUser />, href: "/profile/claims/new" },
-      { name: "لیست خسارت‌ها", icon: <FiUser />, href: "/profile/claims" },
+      {
+        name: "خسارت جدید",
+        icon: <FiUser />,
+        href: "/profile/claims/supplementary",
+      },
+      {
+        name: "لیست خسارت‌ها",
+        icon: <FiUser />,
+        href: "/profile/claims/vehicle-claims",
+      },
     ],
   },
   {

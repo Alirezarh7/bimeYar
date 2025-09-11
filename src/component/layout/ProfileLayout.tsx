@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../page/profile/sidebar/Sidebar";
+import ProfileSidebar from "../page/profile/sidebar/ProfileSidebar";
 import MobileHorizontalNav from "../page/profile/sidebar/MobileHorizontalNav";
 
 type ProfileLayoutProps = {
@@ -10,7 +10,7 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
       <aside className="hidden shrink-0 md:block">
-        <Sidebar />
+        <ProfileSidebar />
       </aside>
 
       <div className="flex flex-col w-full">

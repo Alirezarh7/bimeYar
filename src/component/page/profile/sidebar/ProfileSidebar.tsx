@@ -1,17 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiCreditCard, FiAward } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
-import { menuItems } from "./ProfileMenuItems";
-import type { ParentItem } from "./ProfileMenuItems";
+import { menuItems } from "./ProfileMenuItems"; // مسیر فایل منو را چک کنید
+import type { ParentItem } from "./ProfileMenuItems"; // مسیر فایل منو را چک کنید
 
 const ProfileSidebar = () => {
   const location = useLocation();
   const pathname = location.pathname;
-  const [expanded, setExpanded] = useState<Record<number, boolean>>({
-    0: true,
-  }); // باز بودن "بیمه‌های من" بصورت پیش‌فرض
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({});
 
   const toggleExpand = (index: number) => {
     setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
@@ -25,10 +23,26 @@ const ProfileSidebar = () => {
   const personalInfoIsActive = pathname === "/profile/personal-info";
 
   const isParentActive = (item: ParentItem) => {
-    if (item.href && isActivePath(item.href)) return true;
     if (!item.children) return false;
     return item.children.some((c) => isActivePath(c.href));
   };
+
+  useEffect(() => {
+    const activeParent = menuItems.find((item) => isParentActive(item));
+    setExpanded((currentExpandedState) => {
+      if (activeParent) {
+        if (currentExpandedState[activeParent.index]) {
+          return currentExpandedState;
+        }
+        return { [activeParent.index]: true };
+      } else {
+        if (Object.keys(currentExpandedState).length === 0) {
+          return currentExpandedState;
+        }
+        return {};
+      }
+    });
+  }, [pathname]);
 
   return (
     <div
@@ -90,10 +104,11 @@ const ProfileSidebar = () => {
               <AnimatePresence>
                 {expanded[item.index] && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
+                    key={item.index}
+                    initial={false}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
                     className="pr-6 overflow-hidden"
                   >
                     {item.children.map((child) => (
