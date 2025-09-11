@@ -64,34 +64,34 @@ const Footer = () => {
   const navItems = [
     {
       id: "/",
-      icon: <TfiHome className={selectedTab === "/" ? "text-primary" : "text-muted"} />,
+      icon: <TfiHome className={selectedTab === "/" ? "text-primary" : "text-card-foreground"} />,
       label: "خانه",
       history: "/",
     },
     {
       id: profile?.firstName ? "/profile/value" : 3,
-      icon: <CiCreditCard2 className={selectedTab === "/profile/value" ? "text-primary" : "text-muted"} />,
+      icon: <CiCreditCard2 className={selectedTab === "/profile/value" ? "text-primary" : "text-card-foreground"} />,
       label: "اقساط و اعتبار",
       history: profile?.firstName ? "/profile/value" : null,
     },
     {
       id: 2,
-      icon: <RiCustomerService2Line className={"text-muted"} />,
+      icon: <RiCustomerService2Line className={"text-card-foreground"} />,
       label: "خدمات",
     },
     {
       id: profile?.firstName ? "/profile" : 4,
       icon: profile?.firstName ? (
-        <MdOutlineManageAccounts className={selectedTab === "/profile" ? "text-primary" : "text-muted"} />
+        <MdOutlineManageAccounts className={selectedTab === "/profile" ? "text-primary" : "text-card-foreground"} />
       ) : (
-        <AiOutlineEnter className={selectedTab === "/profile" ? "text-primary" : "text-muted"} />
+        <AiOutlineEnter className={selectedTab === "/profile" ? "text-primary" : "text-card-foreground"} />
       ),
       label: profile?.firstName ? "پروفایل" : "ورود/ ثبت نام",
       history: profile?.firstName ? "/profile" : null,
     },
     {
       id: 5,
-      icon: <BsChatRightText className={"text-muted"} />,
+      icon: <BsChatRightText className={"text-card-foreground"} />,
       label: "چت بات",
     },
   ];
@@ -127,14 +127,14 @@ const Footer = () => {
     <>
       {useWindowWidth() > 850 ? (
         // <footer className="bg-gradient-to-r from-primary to-white bg- ">
-        //   <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-muted">
+        //   <div className="max-w-6xl mx-auto px-6 py-6 text-center text-sm text-card-foreground">
         //     <strong>کلیه حقوق این وب سایت محفوظ و متعلق به شرکت بیمه یار می‌باشد.</strong>
         //   </div>
         // </footer>
         <MdFooter />
       ) : (
         <>
-          <div className=" fixed bottom-0 left-0 right-0 py-2 px-4 flex border border-primary bg-footerBack justify-between items-center shadow-xl rounded-t-3xl z-30 ">
+          <div className=" fixed bottom-0 left-0 right-0 py-2 px-4 flex border border-primary bg-card justify-between items-center shadow-xl rounded-t-3xl z-30 ">
             {navItems.map((item) => (
               <div
                 key={item.id}
@@ -157,14 +157,14 @@ const Footer = () => {
                 {selectedTab === item.id && (
                   <motion.div
                     layoutId="indicator"
-                    className="absolute -top-10 w-fit p-1 bg-footerBack rounded-full flex items-center justify-center "
+                    className="absolute -top-10 w-fit p-1 bg-card rounded-full flex items-center justify-center "
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
                     <div className="w-10 h-10 border border-primary rounded-full flex items-center justify-center shadow-2xl ">{item.icon}</div>
                   </motion.div>
                 )}
                 <span className={` ${selectedTab === item.id ? "opacity-0" : "opacity-100"}`}>{item.icon}</span>
-                <span className="text-[10.5px] text-muted mt-1">{item.label}</span>
+                <span className="text-[10.5px] text-card-foreground mt-1">{item.label}</span>
               </div>
             ))}
           </div>
@@ -177,7 +177,7 @@ const Footer = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
                 transition={{ duration: 0.3 }}
-                className="fixed top-0 left-0 w-full h-full bg-white/70 flex flex-col items-center justify-center z-[1000001] overflow-hidden"
+                className="fixed top-0 left-0 w-full h-full bg-black/90 flex flex-col items-center justify-center z-[1000001] overflow-hidden"
               >
                 <div className={"grid grid-cols-3 w-full justify-items-center bottom-3 gap-5  fixed "}>
                   {servicesData.map((item) => (
@@ -189,7 +189,7 @@ const Footer = () => {
                             setIsModalOpen(false);
                             setSelectedTab(currentPath);
                           }}
-                          className={" border border-muted bg-footerBack text-sliderBlueColor rounded-xl flex flex-col items-center justify-center w-[90px] h-[90px] shadow-xl"}
+                          className={" border border-card text-card-foreground bg-card text-sliderBlueColor rounded-xl flex flex-col items-center justify-center w-[90px] h-[90px] shadow-xl"}
                         >
                           <div className={"mb-2"}>{item.icon}</div>
                           <p className={"text-[12px]"}>{item.title}</p>
@@ -200,7 +200,7 @@ const Footer = () => {
                             setIsModalOpen(false);
                             setSelectedTab(currentPath);
                           }}
-                          className="w-11 h-11 border border-primary bg-white text-sliderBlueColor  rounded-full flex  items-center justify-center shadow-md mr-[8px] my-7"
+                          className="w-11 h-11 border border-card-foreground bg-card text-sliderBlueColor text-card-foreground rounded-full flex  items-center justify-center shadow-md mr-[8px] my-7"
                         >
                           {item.icon}
                         </div>
