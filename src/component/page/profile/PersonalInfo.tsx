@@ -17,7 +17,7 @@ const PersonalInfo = () => {
 
   return (
     <ProfileSectionWrapper title="اطلاعات شخصی">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-3">
         <DetailItem label="نام و نام خانوادگی" value={user.fullName} />
         <DetailItem label="شماره موبایل" value={user.mobile} />
         <DetailItem label="کد ملی" value={user.nationalId} />
