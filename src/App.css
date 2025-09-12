@@ -31,24 +31,25 @@ body {
 }
 
 :root {
-  --primary: #2164f3;
+  --primary: #02a67f;
   --primary-foreground: white;
   --card: white;
   --card-foreground: #202020;
   --background: #f3f3f3;
   --foreground: black;
+  --textColor: #CAFBE2;
   --muted: #494c57;
   --footerBack: white;
 }
 .dark {
-  --primary: #2164f3;
+  --primary: #4ef09d;
   --primary-foreground: white;
   --card: #272727;
   --card-foreground: white;
   --background: #1e1e1e;
   --foreground: white;
   --muted: #494c57;
-
+  --textColor: #CAFBE2;
   --footerBack: white;
 }
 

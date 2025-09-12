@@ -8,7 +8,7 @@ const ImportantServices = () => {
   const windowWidth = useWindowWidth();
 
   const data = [
-    { icon: <CarIcon />, title: "بیمه وسایل نقلیه" },
+    { icon: <CarIcon  />, title: "بیمه وسایل نقلیه" },
     { icon: <MemberIcon />, title: "بیمه اشخاص" },
     { icon: <HeadlineIcon />, title: "بیمه اموال" },
   ];
