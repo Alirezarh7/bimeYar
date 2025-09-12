@@ -48,7 +48,7 @@ export const menuItems: ParentItem[] = [
         name: "بیمه‌های ناتمام",
         icon: <FiRefreshCw />,
         href: "/profile/insurances/incomplete",
-        specialClass: "text-blue-600",
+        // specialClass: "text-blue-600",
       },
     ],
   },
