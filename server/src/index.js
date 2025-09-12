@@ -7,10 +7,25 @@ const walletRoutes = require('./routes/wallet');
 const setupSwagger = require('./swagger/swagger');
 
 const app = express();
-app.use(cors({ origin }));
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://130.185.75.59',
+    'https://bime-yar.vercel.app'
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+}));
 app.use(express.json());
 
-setupSwagger(app);  // <----- این خط اضافه شد
+setupSwagger(app);
 
 app.use('/auth', authRoutes);
 app.use('/wallet', walletRoutes);

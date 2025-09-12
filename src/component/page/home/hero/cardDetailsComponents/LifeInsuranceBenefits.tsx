@@ -3,6 +3,8 @@ import type { FC } from "react";
 const LifeInsuranceBenefits: FC = () => {
   return (
     <div className="flex flex-col w-full p-5">
+      <img src="/Life_insurance_advantage_ab6d2b6e97.svg" alt="svg" className="w-56 h-56 mb-10 self-center" />
+
       <h1 className="text-2xl font-bold mb-4 text-primary">مزایای بیمه عمر و سرمایه‌گذاری</h1>
 
       <p className="text-card-foreground leading-8 mb-6">مزایای بیمه عمر فقط به پرداخت غرامت فوت و از کارافتادگی محدود نمی‌شود. شما می‌توانید با خرید بیمه عمر از مزایای زیر هم استفاده کنید:</p>

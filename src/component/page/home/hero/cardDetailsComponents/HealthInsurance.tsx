@@ -3,6 +3,8 @@ import type { FC } from "react";
 const HealthInsurance: FC = () => {
   return (
     <div className="flex flex-col w-full p-5">
+      <img src="/health.svg" alt="svg" className="w-56 h-56 mb-10 self-center" />
+
       <h1 className="text-2xl font-bold mb-4 text-primary">بیمه درمان تکمیلی</h1>
 
       <p className="text-card-foreground leading-8 mb-6">
