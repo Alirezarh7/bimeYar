@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FiChevronLeft, FiCopy, FiCheck } from "react-icons/fi";
-import { InventationIcom } from "../../../icons/Icon";
 
 const InvitationBanner = () => {
   const referralCode = "azkVxtua";
@@ -75,7 +74,8 @@ const InvitationBanner = () => {
 
         <div className="relative mt-4 h-48 w-48 shrink-0 md:h-auto md:w-64">
           <img
-            src={`data:image/svg+xml;base64,${InventationIcom}`}
+            // src={`data:image/svg+xml;base64,${InventationIcom}`}
+            src={"/undraw_no-signal_nqfa.svg"}
             alt="Invite Friends Vector"
             className="h-full w-full object-contain"
           />

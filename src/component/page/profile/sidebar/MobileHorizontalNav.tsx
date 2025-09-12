@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FiChevronLeft, FiCreditCard, FiGrid } from "react-icons/fi";
 import { menuItems as sidebarMenuItems } from "./ProfileMenuItems";
-import { ProfilePlaceHolder } from "../../../../icons/Icon";
 import BottomSheetModal from "../../../general/bottomShitModal/BottomSheetModal";
 
 type NavItem = {
@@ -49,7 +48,7 @@ const MobileHorizontalNav: React.FC = () => {
         {/* بخش اطلاعات کاربر - بدون تغییر */}
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <img src={ProfilePlaceHolder} alt="profile" className="w-20 h-20" />
+            <img src={"/new-profile.svg"} alt="profile" className="w-20 h-20" />
             <div className="flex flex-col gap-1.5 items-start">
               <p className="text-gray-800 text-base">علی قاسمی</p>
               <Link

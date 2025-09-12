@@ -4,7 +4,6 @@ import { FiChevronLeft, FiCreditCard, FiAward } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { menuItems } from "./ProfileMenuItems";
 import type { ParentItem } from "./ProfileMenuItems";
-import { ProfilePlaceHolder } from "../../../../../src/icons/Icon";
 
 const ProfileSidebar = () => {
   const location = useLocation();
@@ -46,7 +45,7 @@ const ProfileSidebar = () => {
       <div className="flex flex-col items-center">
         {/* <div className="w-20 h-20 bg-gray-100 rounded-full mb-3"></div> */}
         <img
-          src={ProfilePlaceHolder}
+          src={"/new-profile.svg"}
           className="w-28 h-28 mb-3"
           alt="profile"
         />
