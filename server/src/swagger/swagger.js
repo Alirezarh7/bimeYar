@@ -9,9 +9,6 @@ const options = {
             version: "1.0.0",
             description: "API documentation for demo-auth backend"
         },
-        servers: [
-            { url: "http://130.185.75.59:4000" }
-        ]
     },
     apis: ["./src/routes/*.js"],
 };
