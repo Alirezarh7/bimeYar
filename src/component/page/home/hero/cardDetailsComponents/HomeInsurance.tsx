@@ -3,6 +3,7 @@ import type { FC } from "react";
 const HomeInsurance: FC = () => {
   return (
     <div className="flex flex-col w-full p-5">
+      <img src="/dynamic-section-bg.svg" alt="svg" className="w-56 h-56 mb-10 self-center" />
       <h1 className="text-2xl font-bold mb-4 text-primary">بیمه منازل مسکونی چیست و چه پوشش‌هایی دارد؟</h1>
       <p className="text-card-foreground leading-8 mb-6">
         به‌عهده گرفتن مسئولیت مدیریت ساختمان ساده نیست. افراد مختلفی در هر مجتمع مسکونی زندگی می‌کنند و با آن در ارتباط‌اند. امکان بروز حوادث و رخدادهای متنوعی برای هریک از آن‌ها وجود دارد. با وجود

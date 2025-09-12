@@ -3,6 +3,7 @@ import type { FC } from "react";
 const ThirdPartyInsurance: FC = () => {
   return (
     <div className="flex flex-col w-full p-5">
+      <img src="/product_data_image_edf1ce62b1.svg" alt="svg" className="w-56 h-56 mb-10 self-center" />
       <h1 className="text-2xl font-bold mb-4 text-primary">بیمه شخص ثالث چیست؟</h1>
       <p className="text-card-foreground leading-8 mb-6">
         بیمه شخص ثالث یک بیمه اجباری برای همه وسایل نقلیه است که خسارت‌های جانی (مانند دیه و هزینه‌های درمان) و مالی (مانند آسیب خودرو یا اموال دیگران) را در حوادث رانندگی جبران می‌کند. نداشتن این
