@@ -6,6 +6,7 @@ import InsurancePurchasedPage from "../page/profile/insurances/purchased/page.ts
 import InsuranceIncompletePage from "../page/profile/insurances/incomplete/page.tsx";
 import VehicleClaimsPage from "../page/profile/claims/vehicle-claims/page.tsx";
 import SupplementaryClaimsPage from "../page/profile/claims/supplementary/page.tsx";
+import { Navigate } from "react-router-dom";
 
 export interface RouteConfig {
   path: string;
@@ -20,7 +21,8 @@ export const Paths: RouteConfig[] = [
   {
     path: "/profile",
     label: "اطلاعات شخصی",
-    element: <PersonalInfoPage />,
+    // element: <PersonalInfoPage />,
+    element: <Navigate to="/profile/personal-info" replace />,
   },
   {
     path: "/profile/personal-info",
