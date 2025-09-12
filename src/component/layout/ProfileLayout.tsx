@@ -17,7 +17,7 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({ children }) => {
         <div className="md:hidden">
           <MobileHorizontalNav />
         </div>
-        <main className="flex-1 p-4 md:p-8">{children}</main>
+        <main className="flex-1 p-2">{children}</main>
       </div>
     </div>
   );
