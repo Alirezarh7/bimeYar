@@ -28,7 +28,7 @@ export default function ChatDrawer() {
   return (
     <div>
       {useWindowWidth() < 850 ? null : (
-        <button onClick={() => setOpen(true)} className="fixed bottom-6 left-6 z-50 rounded-full p-4 shadow-lg bg-[var(--primary)] text-[var(--textColor)] hover:scale-105 transition-transform">
+        <button onClick={() => setOpen(true)} className="fixed bottom-6 left-6 z-50 rounded-full p-4 shadow-lg bg-[var(--primary)] text-[var(--chatBotColor)] hover:scale-105 transition-transform">
           <MessageCircle className="w-6 h-6" />
         </button>
       )}
