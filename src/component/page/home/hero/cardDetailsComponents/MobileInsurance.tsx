@@ -3,6 +3,8 @@ import type { FC } from "react";
 const MobileInsurance: FC = () => {
   return (
     <div className="flex flex-col w-full p-5">
+      <img src="/phone.png" alt="svg" className="w-60 h-80 mb-10 self-center " />
+
       <h1 className="text-2xl font-bold mb-4 text-primary">درباره بیمه موبایل (آکبند و کارکرده)</h1>
       <p className="text-card-foreground leading-8 mb-6">
         باتوجه‌به افزایش قیمت گوشی‌های هوشمند و هزینه بالای تعمیر آن‌ها، بیمه موبایل راهی مطمئن برای محافظت از این سرمایه ارزشمند است. بیمه موبایل، گوشی همراهتان را در برابر خطراتی مانند سرقت، شکستن،

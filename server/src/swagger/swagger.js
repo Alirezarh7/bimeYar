@@ -10,7 +10,7 @@ const options = {
             description: "API documentation for demo-auth backend"
         },
     },
-    apis: ["./src/routes/*.js"],
+    apis: [__dirname + "/routes/*.js"]
 };
 
 const swaggerSpec = swaggerJSDoc(options);

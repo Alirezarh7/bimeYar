@@ -10,8 +10,10 @@ const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
     'http://130.185.75.59',
+    'http://130.185.75.59/',
     'https://bime-yar.vercel.app'
 ];
+
 
 app.use(cors({
     origin: function (origin, callback) {
