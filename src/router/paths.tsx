@@ -7,6 +7,7 @@ import InsuranceIncompletePage from "../page/profile/insurances/incomplete/page.
 import VehicleClaimsPage from "../page/profile/claims/vehicle-claims/page.tsx";
 import SupplementaryClaimsPage from "../page/profile/claims/supplementary/page.tsx";
 import ThirdPartyInsurance from "../page/third-party-insurance/page.tsx";
+import MyPlatesPage from "../page/profile/plates/page.tsx";
 
 export interface RouteConfig {
   path: string;
@@ -52,5 +53,10 @@ export const Paths: RouteConfig[] = [
     path: "/third-party-insurance",
     label: "خرید بیمه شخص ثالث",
     element: <ThirdPartyInsurance />,
+  },
+  {
+    path: "/profile/plates",
+    label: "پلاک های من",
+    element: <MyPlatesPage />,
   },
 ];
