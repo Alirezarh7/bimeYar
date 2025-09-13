@@ -14,9 +14,7 @@ type NavItem = {
 const MobileHorizontalNav: React.FC = () => {
   const location = useLocation();
   const pathname = location.pathname;
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const horizontalMenuItems: NavItem[] = sidebarMenuItems.map((item) => {
     const href = item.href || item.primaryLink || "#";
     return {
@@ -51,7 +49,6 @@ const MobileHorizontalNav: React.FC = () => {
               <p className="text-base text-foreground">{profile?.firstName + ' ' + profile?.lastName}</p>
             </div>
           </div>
-
           <div className="text-left text-foreground">
             <div className="flex items-center justify-end gap-1.5 text-sm ">
               <FiCreditCard />
