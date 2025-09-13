@@ -36,10 +36,8 @@ const Header = () => {
       <div className="w-full fixed bg-white dark:bg-background shadow-sm py-3 z-10  ">
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex items-center justify-between">
-            <div className={"flex mx-2"}>
-              <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M12 2 L20 7 L12 22 L4 7 Z" />
-              </svg>
+            <div className={"flex mx-2 items-center"}>
+              <img src="/logo.png" alt="logo" className="w-14" />
               <span className="text-lg font-bold text-primary">بیمه‌یار</span>
             </div>
             <div className="flex items-center justify-center gap-3">

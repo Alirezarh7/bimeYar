@@ -3,6 +3,8 @@ import type { FC } from "react";
 const MotorInsurance: FC = () => {
   return (
     <div className="flex items-center flex-col w-full p-5">
+      <img src="/motor.png" alt="svg" className="w-60 h-72 mb-10 self-center " />
+
       <h1 className="text-2xl font-bold mb-4 text-primary self-start">درباره بیمه بدنه موتورسیکلت</h1>
       <p className="text-card-foreground leading-8 mb-6">
         بیمه بدنه موتورسیکلت یک بیمه اختیاری است که خسارت‌های واردشده به موتور را جبران می‌کند و برخلاف بیمه شخص ثالث موتور اجباری نیست. با خرید بیمه بدنه موتور سیکلت می‌توانید از پوشش‌هایی مانند
