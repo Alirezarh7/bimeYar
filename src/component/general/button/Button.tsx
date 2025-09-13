@@ -27,14 +27,7 @@ const CustomButton = ({
                           labelClassName,
                       }: IProps) => {
     const primaryClasses =
-        " w-fit text-black text-sm bg-gradient-to-r from-customBlue to-gridColor/55 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-gridColor font-medium rounded-lg  p-2.5 text-center  m-2  ";
-    const SelectClasses = `bg-gradient-to-r from-customBlue to-orangeColor
-    bg-clip-text text-transparent font-medium text-sm
-    border border-gray-500 p-2 rounded-xl
-    transition duration-300 ease-in-out
-    hover:scale-105 hover:shadow-lg
-    focus:scale-105 focus:shadow-lg
-    focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-orange-500`;
+        " w-fit !text-[var(--chatBotColor)] text-sm bg-[var(--primary)] focus:ring-4 focus:outline-none focus:ring-[var(--chatBotColor)] font-medium rounded-lg  p-2.5 text-center m-2 ";
   const CancelClasses = " w-fit text-white text-sm bg-gradient-to-r from-ColorFullRead to-ColorLessRead hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-gridColor font-medium rounded-lg  p-2.5 text-center  m-2  ";
     const InputClass = 'bg-[#C1A821] border !border-gray-900 !rounded-tl-lg !rounded-bl-lg outline-0  !text-black !hover:bg-[#C1A82199] px-2 ';
 
@@ -44,8 +37,6 @@ const CustomButton = ({
             finalClassName += primaryClasses;
         } else if (variant === "Cancel") {
             finalClassName += CancelClasses;
-        } else if (variant === "select") {
-            finalClassName += SelectClasses;
         }else if (variant === "InputClass") {
           finalClassName += InputClass;
         }

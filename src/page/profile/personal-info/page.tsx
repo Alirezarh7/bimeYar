@@ -9,7 +9,7 @@ const PersonalInfoPage = () => {
       <div className="p-8">
         <InvitationBanner />
       </div>
-      <div className="bg-gray-50 min-h-screen p-4 md:p-8">
+      <div className="min-h-screen p-4 md:p-8">
         <div className="max-w-5xl mx-auto flex flex-col gap-8">
           <PersonalInfo />
           <AccountInfo />

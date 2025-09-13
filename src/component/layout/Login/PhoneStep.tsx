@@ -9,7 +9,7 @@ const PhoneStep = ({ onSubmit }: PhoneStepProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-lg font-bold text-center text-[var(--primary)]">ورود / ثبت‌نام</h2>
+      <h2 className="text-lg font-bold text-center text-[var(--primary)]">ورود / ثبت ‌نام</h2>
       <input
         type="tel"
         placeholder="شماره موبایل"
