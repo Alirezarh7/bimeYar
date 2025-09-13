@@ -8,8 +8,8 @@ type DetailItemProps = {
 const DetailItem: React.FC<DetailItemProps> = ({ label, value }) => {
   return (
     <div>
-      <p className="text-sm text-gray-500">{label}:</p>
-      <p className="text-base font-medium text-gray-800 mt-1">{value || "-"}</p>
+      <p className="text-sm text-[var(--foreground)]">{label}:</p>
+      <p className="text-base font-medium text-[var(--foreground)] mt-1">{value || "-"}</p>
     </div>
   );
 };
