@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FiChevronLeft, FiCreditCard, FiGrid } from "react-icons/fi";
+import { FiCreditCard, FiGrid } from "react-icons/fi";
 import { menuItems as sidebarMenuItems } from "./ProfileMenuItems";
 import BottomSheetModal from "../../../general/bottomShitModal/BottomSheetModal";
+import {ProfileIcon} from "../../../../icons/Icon.tsx";
 
 type NavItem = {
   href: string;
@@ -37,44 +38,30 @@ const MobileHorizontalNav: React.FC = () => {
     }
     return pathname.startsWith(href);
   };
-  const personalInfoIsActive = pathname === "/profile/personal-info";
-
+  const profile = JSON.parse(localStorage.getItem('profile') as any)
   return (
     <>
       <div
         dir="rtl"
-        className="md:hidden w-full bg-white p-4 border-b  rounded-lg shadow-sm"
-      >
-        {/* بخش اطلاعات کاربر - بدون تغییر */}
-        <div className="flex justify-between items-center">
+        className="md:hidden w-full bg-card p-4 border-b  rounded-lg shadow-sm ">
+        <div className="flex justify-between items-center ">
           <div className="flex items-center gap-4">
-            <img src={"/new-profile.svg"} alt="profile" className="w-20 h-20" />
+            <ProfileIcon />
             <div className="flex flex-col gap-1.5 items-start">
-              <p className="text-gray-800 text-base">علی قاسمی</p>
-              <Link
-                to="/profile/personal-info"
-                className={`text-sm flex items-center gap-1 transition-colors ${
-                  personalInfoIsActive
-                    ? "text-primary font-medium"
-                    : "text-gray-500 hover:text-gray-800"
-                }`}
-              >
-                <span>اطلاعات شخصی</span>
-                <FiChevronLeft className="w-4 h-4" />
-              </Link>
+              <p className="text-base text-foreground">{profile?.firstName + ' ' + profile?.lastName}</p>
             </div>
           </div>
 
-          <div className="text-left">
-            <div className="flex items-center justify-end gap-1.5 text-sm text-gray-600">
+          <div className="text-left text-foreground">
+            <div className="flex items-center justify-end gap-1.5 text-sm ">
               <FiCreditCard />
               <span>کیف پول</span>
             </div>
-            <p className="font-bold text-gray-800 mt-1">۰ تومان</p>
+            <p className="font-bold mt-1">۰ تومان</p>
           </div>
         </div>
 
-        <hr className="my-4 text-gray-200" />
+        <hr className="my-4 text-primary" />
 
         <div className="flex justify-around overflow-x-auto whitespace-nowrap space-x-4 space-x-reverse pb-2">
           {visibleItems.map((item) => {
@@ -90,7 +77,7 @@ const MobileHorizontalNav: React.FC = () => {
                 }`}
               >
                 <div className="text-2xl">{item.icon}</div>
-                <span className="text-xs">{item.label}</span>
+                <span className="text-xs text-foreground">{item.label}</span>
               </Link>
             );
           })}

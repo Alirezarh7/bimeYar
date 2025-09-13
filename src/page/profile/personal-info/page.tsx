@@ -6,7 +6,7 @@ import PersonalInfo from "../../../component/page/profile/PersonalInfo";
 const PersonalInfoPage = () => {
   return (
     <ProfileLayout>
-      <div className="p-8">
+      <div className="p-1">
         <InvitationBanner />
       </div>
       <div className="min-h-screen p-4 md:p-8">
