@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { Link } from "react-router-dom";
 
 const ThirdPartyInsurance: FC = () => {
   return (
@@ -23,6 +24,9 @@ const ThirdPartyInsurance: FC = () => {
       </ul>
 
       <p className="text-card-foreground leading-8 font-semibold">همین حالا از طریق بیمه یار قیمت بیمه شخص ثالث خود را محاسبه کنید و تنها با چند دقیقه بیمه‌نامه معتبر خود را آنلاین خریداری نمایید.</p>
+      <Link className="bg-primary text-primary-foreground text-center font-medium rounded-lg p-3 my-5" to="/third-party-insurance">
+        خرید بیمه شخص ثالث
+      </Link>
     </div>
   );
 };
