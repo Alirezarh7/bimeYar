@@ -14,6 +14,10 @@ body {
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-input: var(--input);
+  --color-input-foreground: var(--input-foreground);
   --color-card: var(--card);
   --color-hover: var(--hover);
   --color-card-foreground: var(--card-foreground);
@@ -34,6 +38,10 @@ body {
 :root {
   --primary: #02a67f;
   --primary-foreground: white;
+  --secondary: #015945;
+  --secondary-foreground: white;
+  --input: #fefefe;
+  --input-foreground: #222;
   --hover: #e8e8e8;
   --card: white;
   --card-foreground: #202020;
@@ -44,8 +52,12 @@ body {
   --footerBack: white;
 }
 .dark {
-  --primary: #4ef09d;
+  --primary: #02a67f;
   --primary-foreground: white;
+  --secondary: #015945;
+  --secondary-foreground: white;
+  --input: #222;
+  --input-foreground: #fefefe;
   --card: #272727;
   --hover: #3f3f3f;
   --card-foreground: white;
@@ -53,7 +65,7 @@ body {
   --foreground: white;
   --muted: #494c57;
   --chatBotColor: #015945;
-  --textColor: #CAFBE2;
+  --textColor: #cafbe2;
   --footerBack: white;
 }
 

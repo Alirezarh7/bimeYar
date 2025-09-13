@@ -5,6 +5,7 @@ import CustomDropDown from "../Login/CustomDropDown.tsx";
 import type { Tprofile } from "../../../types/generalType.ts";
 import { useThemeStore } from "../../../store/themeStore.ts";
 import { MoonIcon, SunIcon } from "../../../icons/Icon.tsx";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [openLogin, setOpenLogin] = useState(false);
@@ -36,10 +37,10 @@ const Header = () => {
       <div className="w-full fixed bg-white dark:bg-background shadow-sm py-3 z-10  ">
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex items-center justify-between">
-            <div className={"flex mx-2 items-center"}>
+            <Link to="/" className={"flex mx-2 items-center"}>
               <img src="/logo.png" alt="logo" className="w-14" />
               <span className="text-lg font-bold text-primary">بیمه‌یار</span>
-            </div>
+            </Link>
             <div className="flex items-center justify-center gap-3 max-lg:hidden ">
               {profile?.firstName ? (
                 <CustomDropDown profile={profile} />

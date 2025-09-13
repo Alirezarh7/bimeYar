@@ -3,16 +3,12 @@ import DetailItem from "./wrapper/DetailItem";
 import { FiEdit2 } from "react-icons/fi";
 
 const PersonalInfo = () => {
+  const profile = JSON.parse(localStorage.getItem("profile") as any);
   const user = {
-    fullName: "علی قاسمی",
-    mobile: "۰۹۳۸۱۹۷۹۷۰۳",
-    nationalId: null,
-    birthDate: null,
-    job: null,
-    province: null,
-    email: null,
-    city: null,
-    address: null,
+    fullName: profile?.firstName + " " + profile?.lastName,
+    mobile: profile?.phone,
+    nationalId: profile?.nationalId,
+    province: profile?.city,
   };
 
   return (
@@ -21,17 +17,9 @@ const PersonalInfo = () => {
         <DetailItem label="نام و نام خانوادگی" value={user.fullName} />
         <DetailItem label="شماره موبایل" value={user.mobile} />
         <DetailItem label="کد ملی" value={user.nationalId} />
-
-        <DetailItem label="تاریخ تولد" value={user.birthDate} />
-        <DetailItem label="شغل" value={user.job} />
         <DetailItem label="استان" value={user.province} />
-
-        <DetailItem label="ایمیل" value={user.email} />
-        <DetailItem label="شهر" value={user.city} />
-        <DetailItem label="آدرس" value={user.address} />
       </div>
-
-      <hr className="my-6 border-gray-200" />
+      <hr className="my-6 border-[var(--primary)]" />
       <div className="flex justify-end">
         <button className="flex items-center gap-2 text-sm font-medium text-primary border border-primary/50 rounded-lg px-4 py-2 hover:bg-primary/5 transition-colors">
           <FiEdit2 className="w-4 h-4" />

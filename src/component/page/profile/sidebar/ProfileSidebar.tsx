@@ -4,6 +4,7 @@ import { FiChevronLeft, FiCreditCard, FiAward } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { menuItems } from "./ProfileMenuItems";
 import type { ParentItem } from "./ProfileMenuItems";
+import {ProfileIcon} from "../../../../icons/Icon.tsx";
 
 const ProfileSidebar = () => {
   const location = useLocation();
@@ -30,70 +31,48 @@ const ProfileSidebar = () => {
     return pathname === href;
   };
 
-  const personalInfoIsActive = pathname === "/profile/personal-info";
 
   const isParentActive = (item: ParentItem) => {
     if (!item.children) return isActivePath(item.href || "");
     return item.children.some((c) => isActivePath(c.href));
   };
-
+  const profile = JSON.parse(localStorage.getItem("profile") as any);
   return (
     <div
       dir="rtl"
-      className="w-[280px] bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex flex-col gap-1 text-gray-800"
+      className="w-[280px] bg-[var(--card)] border border-[var(--primary)] rounded-xl p-4 shadow-sm flex flex-col gap-1 text-gray-800"
     >
       <div className="flex flex-col items-center">
         {/* <div className="w-20 h-20 bg-gray-100 rounded-full mb-3"></div> */}
-        <img
-          src={"/new-profile.svg"}
-          className="w-28 h-28 mb-3"
-          alt="profile"
-        />
-
-        <h3 className="text-md my-2">علی قاسمی</h3>
-        <Link
-          to="/profile/personal-info"
-          className={`flex items-center gap-1 text-sm transition-colors ${
-            personalInfoIsActive
-              ? "text-primary font-semibold"
-              : "text-gray-500 hover:text-gray-800"
-          }`}
-        >
-          <span>اطلاعات شخصی</span>
-          <FiChevronLeft />
-        </Link>
+          <ProfileIcon />
+        <h3 className="text-md text-[var(--foreground)]  my-2">{profile?.firstName + ' ' + profile?.lastName}</h3>
       </div>
-
-      {/* <hr className="my-2" /> */}
-
-      <div className="flex items-center justify-between px-2 py-2.5">
+      <div className="flex items-center justify-between px-2 py-2.5 text-[var(--foreground)]">
         <div className="flex items-center gap-2 font-medium">
-          <FiCreditCard className="text-xl text-green-500 font-bold" />
+          <FiCreditCard className="text-xl text-[var(--primary)] font-bold" />
           <span>کیف پول</span>
         </div>
-        <span className="font-semibold">۰ تومان</span>
+        <span className="font-semibold">{profile?.wallet?.balance} تومان </span>
       </div>
-
-      <hr className="my-2 text-gray-200" />
-
-      <div className="flex flex-col gap-1">
+      <hr className="my-2 text-[var(--primary)]" />
+      <div className="flex flex-col gap-1 text-[var(--foreground)]">
         {menuItems.map((item) => (
           <div key={`menu-${item.index}`}>
             {item.children ? (
               <>
                 <div
-                  className={`flex items-center justify-between gap-3 px-2 py-2.5 rounded-lg transition-colors text-[14px] font-medium cursor-pointer ${
+                  className={`flex hover:bg-[var(--hover)] items-center justify-between gap-3 px-2 py-2.5 rounded-lg transition-colors text-[14px] font-medium cursor-pointer ${
                     isParentActive(item)
-                      ? "font-bold bg-gray-50"
-                      : "hover:bg-gray-100"
+                      ? "font-bold bg-[var(--hover)]"
+                      : "hover:bg-[var(--hover)]"
                   }`}
                   onClick={() => toggleExpand(item.index)}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl">{item.icon}</span> {item.title}
+                  <div className="flex items-center gap-3 text-[var(--foreground)]">
+                    <span className="text-xl ">{item.icon}</span> {item.title}
                   </div>
                   <FiChevronLeft
-                    className={`transition-transform text-gray-500 ${
+                    className={`transition-transform  ${
                       expanded[item.index] ? "-rotate-90" : ""
                     }`}
                   />
@@ -111,7 +90,7 @@ const ProfileSidebar = () => {
                         className={`flex items-center gap-3 text-[13px] py-0.5 px-3 rounded-md mt-3 mb-2 transition-colors ${
                           isActivePath(child.href)
                             ? "text-primary"
-                            : "text-gray-600 hover:text-gray-800"
+                            : "text-[var(--foreground)] hover:bg-[var(--hover)]"
                         } ${child.specialClass || ""}`}
                       >
                         <span
@@ -133,7 +112,7 @@ const ProfileSidebar = () => {
                 className={`flex items-center justify-between gap-3 px-2 py-2.5 rounded-lg transition-colors text-[14px] font-medium ${
                   isParentActive(item)
                     ? "font-bold bg-gray-50 text-primary"
-                    : "hover:bg-gray-100"
+                    : "hover:bg-[var(--hover)]"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -144,14 +123,14 @@ const ProfileSidebar = () => {
           </div>
         ))}
       </div>
-      <hr className="my-2" />
+      <hr className="my-2 text-[var(--primary)]" />
 
-      <div className="flex items-center justify-between px-2 py-2.5 rounded-lg hover:bg-gray-100 cursor-pointer">
+      <div className="flex items-center justify-between px-2 py-2.5 rounded-lg hover:bg-[var(--hover)] text-foreground cursor-pointer">
         <div className="flex items-center gap-3 font-medium">
-          <FiAward className="text-xl" />
+          <FiAward className="text-xl text-primary" />
           <span>بیمه یار کلاب</span>
         </div>
-        <div className="bg-pink-100 text-pink-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+        <div className="text-foreground border border-primary text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
           <span className="text-sm">💎</span>
           <span>۳۰۰</span>
         </div>

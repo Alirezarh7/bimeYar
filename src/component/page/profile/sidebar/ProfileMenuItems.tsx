@@ -32,21 +32,21 @@ export const menuItems: ParentItem[] = [
     index: 0,
     title: "بیمه‌های من",
     primaryLink: "/profile/insurances/purchased",
-    icon: <FiUsers />,
+    icon: <FiUsers className={'text-[var(--primary)]'} />,
     children: [
       {
         name: "در انتظار تمدید",
-        icon: <FiClock />,
+        icon: <FiClock className={'text-[var(--primary)]'} />,
         href: "/profile/insurances/pending",
       },
       {
         name: "بیمه‌های خریداری‌شده",
-        icon: <FiCheckSquare />,
+        icon: <FiCheckSquare className={'text-[var(--primary)]'} />,
         href: "/profile/insurances/purchased",
       },
       {
         name: "بیمه‌های ناتمام",
-        icon: <FiRefreshCw />,
+        icon: <FiRefreshCw className={'text-[var(--primary)]'} />,
         href: "/profile/insurances/incomplete",
         // specialClass: "text-blue-600",
       },
@@ -55,29 +55,29 @@ export const menuItems: ParentItem[] = [
   {
     index: 1,
     title: "پلاک‌های من",
-    icon: <FiClipboard />,
+    icon: <FiClipboard className={'text-[var(--primary)]'} />,
     href: "/profile/plates",
   },
   {
     index: 2,
     title: "مسافران من",
-    icon: <FiUsers />,
+    icon: <FiUsers className={'text-[var(--primary)]'} />,
     href: "/profile/travelers",
   },
   {
     index: 3,
     title: "خسارت‌ها",
-    icon: <FiUser />,
+    icon: <FiUser className={'text-[var(--primary)]'} />,
     primaryLink: "/profile/claims",
     children: [
       {
         name: "خسارت جدید",
-        icon: <FiUser />,
+        icon: <FiUser className={'text-[var(--primary)]'} />,
         href: "/profile/claims/supplementary",
       },
       {
         name: "لیست خسارت‌ها",
-        icon: <FiUser />,
+        icon: <FiUser className={'text-[var(--primary)]'} />,
         href: "/profile/claims/vehicle-claims",
       },
     ],
@@ -85,19 +85,19 @@ export const menuItems: ParentItem[] = [
   {
     index: 4,
     title: "تراکنش‌ها",
-    icon: <FiFileText />,
+    icon: <FiFileText className={'text-[var(--primary)]'} />,
     href: "/profile/transactions",
   },
   {
     index: 5,
     title: "یادآوری‌ها",
-    icon: <FiCalendar />,
+    icon: <FiCalendar className={'text-[var(--primary)]'} />,
     href: "/profile/reminders",
   },
   {
     index: 6,
     title: "تخفیف‌های من",
-    icon: <FiGift />,
+    icon: <FiGift className={'text-[var(--primary)]'} />,
     href: "/profile/discounts",
   },
 ];
