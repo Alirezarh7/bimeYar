@@ -15,6 +15,7 @@ body {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-card: var(--card);
+  --color-hover: var(--hover);
   --color-card-foreground: var(--card-foreground);
   --color-muted: var(--muted);
   --color-footerBack: var(--footerBack);
@@ -33,6 +34,7 @@ body {
 :root {
   --primary: #02a67f;
   --primary-foreground: white;
+  --hover: #e8e8e8;
   --card: white;
   --card-foreground: #202020;
   --background: #f3f3f3;
@@ -45,6 +47,7 @@ body {
   --primary: #4ef09d;
   --primary-foreground: white;
   --card: #272727;
+  --hover: #3f3f3f;
   --card-foreground: white;
   --background: #1e1e1e;
   --foreground: white;

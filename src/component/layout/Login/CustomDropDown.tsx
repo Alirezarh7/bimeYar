@@ -36,10 +36,10 @@ const CustomDropDown = ({profile}: IProps) => {
       <div ref={dropdownRef}>
         <button
           type="button"
-          className="w-fit  ml-1 h-10 items-center gap-x-2 text-sm font-medium rounded-lg border border-primary bg-white text-gray-800 shadow-sm hover:bg-gray-50"
+          className="w-fit   ml-1 h-10 items-center gap-x-2 text-sm font-medium rounded-lg border border-primary bg-[var(--card)] text-[var(--foreground)] shadow-sm"
           onClick={() => setIsOpen(!isOpen)}>
           <div className="flex justify-around w-full ">
-            <strong className="font-weight-bold text-gray-800 px-2 ">
+            <strong className="font-weight-bold text-[var(--foreground)] px-2 ">
               {profile?.firstName} {profile?.lastName}
             </strong>
             <div className=" border-r border-primary p-1 ">
@@ -48,12 +48,12 @@ const CustomDropDown = ({profile}: IProps) => {
           </div>
         </button>
         <div
-          className={`${!isOpen ? 'hidden' : ''} w-48 mt-5 py-2 p-2 absolute left-20 rounded-md shadow-lg bg-white`}>
+          className={`${!isOpen ? 'hidden' : ''} w-48 mt-5 py-2 p-2 absolute left-20 rounded-md border border-[var(--primary)] shadow-lg bg-[var(--card)]`}>
           <div className='flex items-center justify-between border-b border-primary p-3'>
-            <div className={'border border-gray-300 rounded-full p-2'}>
+            <div className={'border border-[var(--primary)] rounded-full text-[var(--foreground)] p-2'}>
               <UserCog/>
             </div>
-            <div>
+            <div className={'text-[var(--foreground)]'}>
               {profile?.firstName} {profile?.lastName}
             </div>
           </div>
@@ -62,7 +62,7 @@ const CustomDropDown = ({profile}: IProps) => {
               if (item.to) {
                 return (
                   <Link
-                    className="flex items-center mx-auto gap-x-5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                    className="flex items-center mx-auto gap-x-5 py-2 px-3 rounded-lg text-sm text-[var(--foreground)] hover:bg-[var(--hover)] focus:outline-none focus:bg-gray-100"
                     to={item.to}
                     onClick={() => setIsOpen(!isOpen)}
                     title={item.title}>
@@ -78,7 +78,7 @@ const CustomDropDown = ({profile}: IProps) => {
               } else {
                 return (
                   <button
-                    className="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                    className="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-[var(--foreground)] hover:bg-[var(--hover)] focus:outline-none focus:bg-gray-100"
                     onClick={() => {
                       localStorage.clear()
                       window.dispatchEvent(new Event('auth:logout'));

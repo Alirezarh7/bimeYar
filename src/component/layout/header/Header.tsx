@@ -40,7 +40,7 @@ const Header = () => {
               <img src="/logo.png" alt="logo" className="w-14" />
               <span className="text-lg font-bold text-primary">بیمه‌یار</span>
             </div>
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-center gap-3 max-lg:hidden ">
               {profile?.firstName ? (
                 <CustomDropDown profile={profile} />
               ) : (
