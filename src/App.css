@@ -56,10 +56,10 @@ body {
   --primary-foreground: white;
   --secondary: #015945;
   --secondary-foreground: white;
-  --input: #222;
+  --input: #202020;
   --input-foreground: #fefefe;
   --card: #272727;
-  --hover: #3f3f3f;
+  --hover: #272727;
   --card-foreground: white;
   --background: #1e1e1e;
   --foreground: white;

@@ -2,6 +2,7 @@ import { useState, type FC } from "react";
 import Steps from "../../component/general/step/Steps";
 import Step from "../../component/general/step/Step";
 import CustomSelect from "../../component/general/select/CustomSelect";
+import CustomInput from "../../component/general/input/Input";
 
 const carTypeArr = [
   { label: "سواری", value: "sedan" },
@@ -235,22 +236,40 @@ const insuranceCompanies = [
 
 const ThirdPartyInsurance: FC = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const steps = 7;
+  const nextStepHandler = () => {
+    if (activeStep === steps) {
+      return;
+    } else {
+      setActiveStep((prev) => prev + 1);
+    }
+  };
+  const prevStepHandler = () => {
+    if (activeStep === 1) {
+      return;
+    } else {
+      setActiveStep((prev) => prev - 1);
+    }
+  };
+
   return (
     <div className="w-full max-w-7xl px-5 mx-auto my-10">
       <div className="w-full px-5 bg-card rounded-xl shadow-lg py-10">
-        <h4 className="text-3xl text-foreground font-bold">خرید بیمه شخص ثالث خودرو</h4>
-        <Steps activeStep={activeStep} steps={6}>
+        <h4 className="text-xl md:text-3xl text-foreground font-bold">خرید بیمه شخص ثالث خودرو</h4>
+        <Steps activeStep={activeStep} steps={steps}>
           <Step activeStep={activeStep} number={1} />
           <Step activeStep={activeStep} number={2} />
           <Step activeStep={activeStep} number={3} />
           <Step activeStep={activeStep} number={4} />
           <Step activeStep={activeStep} number={5} />
           <Step activeStep={activeStep} number={6} />
+          <Step activeStep={activeStep} number={7} />
         </Steps>
 
         <div className="w-full max-w-5xl mx-auto p-5">
           {activeStep === 1 && (
-            <div className="flex items-center justify-center w-full ">
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">نوع خودرو را انتخاب کنید</h4>
               <CustomSelect
                 className="w-full lg:w-1/2"
                 onChange={() => {
@@ -262,7 +281,8 @@ const ThirdPartyInsurance: FC = () => {
             </div>
           )}
           {activeStep === 2 && (
-            <div className="flex items-center justify-center w-full ">
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">کاربری خودرو را انتخاب کنید</h4>
               <CustomSelect
                 className="w-full lg:w-1/2"
                 onChange={() => {
@@ -274,7 +294,8 @@ const ThirdPartyInsurance: FC = () => {
             </div>
           )}
           {activeStep === 3 && (
-            <div className="flex items-center justify-center w-full ">
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">برند خودرو را انتخاب کنید</h4>
               <CustomSelect
                 className="w-full lg:w-1/2"
                 onChange={() => {
@@ -286,7 +307,8 @@ const ThirdPartyInsurance: FC = () => {
             </div>
           )}
           {activeStep === 4 && (
-            <div className="flex items-center justify-center w-full ">
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">سال تولید خودرو را انتخاب کنید</h4>
               <CustomSelect
                 className="w-full lg:w-1/2"
                 onChange={() => {
@@ -312,8 +334,22 @@ const ThirdPartyInsurance: FC = () => {
               </div>
             </div>
           )}
+          {activeStep === 7 && (
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">تاریخ شروع بیمه نامه قبلی را انتخاب کنید</h4>
+              <CustomInput
+                // className="w-full lg:w-1/2"
+                isDatePicker={true}
+                onChange={() => {
+                  // setActiveStep(5);
+                }}
+                placeholder="تاریخ شروع بیمه نامه قبلی"
+              />
+            </div>
+          )}
           {activeStep === 6 && (
-            <div className="flex items-center justify-center w-full ">
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">شرکت بیمه گر قبلی را انتخاب کنید</h4>
               <CustomSelect
                 className="w-full lg:w-1/2"
                 onChange={() => {
@@ -324,6 +360,15 @@ const ThirdPartyInsurance: FC = () => {
               />
             </div>
           )}
+        </div>
+
+        <div className="flex items-center justify-between gap-5 w-full max-w-5xl mx-auto">
+          <button onClick={prevStepHandler} className="bg-primary text-primary-foreground font-medium text-center py-2 px-4 rounded-lg cursor-pointer">
+            قبلی
+          </button>
+          <button onClick={nextStepHandler} className="bg-primary text-primary-foreground font-medium text-center py-2 px-4 rounded-lg cursor-pointer">
+            بعدی
+          </button>
         </div>
       </div>
     </div>
