@@ -45,7 +45,7 @@ export default function ChatDrawer() {
               transition={{ type: "spring", stiffness: 120, damping: 15 }}
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-200">
-                <h2 className="text-lg font-bold text-[var(--primary)]">چت ‌بات بیمه یار</h2>
+                <h2 className="text-lg font-bold text-primary">چت ‌بات بیمه یار</h2>
                 <button onClick={() => setOpen(false)} className="p-2 rounded-full hover:bg-gray-100 transition">
                   <X className="w-5 h-5 text-[var(--muted)]" />
                 </button>

@@ -8,7 +8,7 @@ type ProfileLayoutProps = {
 
 const ProfileLayout: React.FC<ProfileLayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
+    <div className="flex flex-col md:flex-row min-h-screen">
       <aside className="hidden shrink-0 md:block p-1 pb-1.5">
         <ProfileSidebar />
       </aside>

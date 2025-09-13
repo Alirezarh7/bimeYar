@@ -43,7 +43,7 @@ const MobileHorizontalNav: React.FC = () => {
     <>
       <div
         dir="rtl"
-        className="md:hidden w-full bg-white p-4 border-b border-gray-200 rounded-lg shadow-sm"
+        className="md:hidden w-full bg-white p-4 border-b  rounded-lg shadow-sm"
       >
         {/* بخش اطلاعات کاربر - بدون تغییر */}
         <div className="flex justify-between items-center">
@@ -123,8 +123,8 @@ const MobileHorizontalNav: React.FC = () => {
                 onClick={() => setIsModalOpen(false)}
                 className={`flex flex-col items-center justify-center gap-2 p-2 rounded-lg transition-colors h-24 ${
                   active
-                    ? "text-primary font-bold bg-primary/10"
-                    : "text-gray-600 hover:bg-gray-100"
+                    ? "text-primary font-bold "
+                    : "text-gray-600 "
                 }`}
               >
                 <div className="text-3xl">{item.icon}</div>
