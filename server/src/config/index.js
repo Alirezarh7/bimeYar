@@ -1,7 +1,10 @@
 require('dotenv').config();
+
+const rawOrigins = process.env.ORIGIN || 'http://localhost:5173';
+const origins = rawOrigins.split(',').map(s => s.trim()).filter(Boolean);
+
 module.exports = {
-    port: process.env.PORT || 4000,
-    origin: process.env.ORIGIN || 'http://localhost:5173',
-    jwtSecret: process.env.JWT_SECRET || 'dev-secret',
-    baseUrl: process.env.BASE_URL || `http://localhost:${process.env.PORT || 4000}`
+    port: Number(process.env.PORT || 4000),
+    origins,               // آرایه از originها
+    jwtSecret: process.env.JWT_SECRET || 'dev-secret'
 };
