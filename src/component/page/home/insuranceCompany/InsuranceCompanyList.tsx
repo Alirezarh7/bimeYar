@@ -19,7 +19,7 @@ const logoCompany = [
 const InsuranceCompanyList: FC = () => {
   return (
     <div className="flex flex-col items-start w-full max-w-5xl mx-auto">
-      <h4 className="text-3xl text-foreground font-bold">شرکت های همکار</h4>
+      <h4 className="text-3xl text-foreground font-bold px-5">شرکت های همکار</h4>
 
       <div
         className="relative m-auto w-full overflow-hidden bg-transparent 
