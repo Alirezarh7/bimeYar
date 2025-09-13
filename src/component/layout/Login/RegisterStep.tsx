@@ -34,6 +34,11 @@ const RegisterStep = ({ phone, onComplete }: RegisterStepProps) => {
         onSuccess: (value) => {
           localStorage.setItem("profile", JSON.stringify(value.data?.user));
           localStorage.setItem("token", JSON.stringify(value.data?.token));
+          window.dispatchEvent(
+            new CustomEvent("auth:login", {
+              detail: value.data.user,
+            })
+          );
         },
       }
     );

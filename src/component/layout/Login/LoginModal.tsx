@@ -15,6 +15,7 @@ const LoginModal = ({ open, onClose }: LoginModalProps) => {
   const [step, setStep] = useState<Step>("phone");
   const [phone, setPhone] = useState("");
 
+
   const handlePhoneSubmit = (value: string) => {
     setPhone(value);
     setStep("otp");
