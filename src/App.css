@@ -56,10 +56,10 @@ body {
   --primary-foreground: white;
   --secondary: #015945;
   --secondary-foreground: white;
-  --input: #222;
+  --input: #202020;
   --input-foreground: #fefefe;
   --card: #272727;
-  --hover: #3f3f3f;
+  --hover: #272727;
   --card-foreground: white;
   --background: #1e1e1e;
   --foreground: white;
@@ -99,4 +99,49 @@ body {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.dark .rmdp-top-class {
+  background-color: #272727;
+}
+.rmdp-top-class {
+  background-color: #ffffff;
+}
+
+.dark .sd {
+  color: white;
+}
+.sd {
+  color: #272727;
+}
+.rmdp-selected .sd {
+  background-color: #02a67f !important;
+}
+.rmdp-today .sd {
+  background-color: #a5ffeac0 !important;
+}
+.sd:hover {
+  background-color: #123f35b9 !important;
+}
+.dark .rmdp-header-values > * {
+  color: white;
+}
+.rmdp-header-values > * {
+  color: #272727;
+}
+.rmdp-week-day {
+  color: #02a67f !important;
+}
+.rmdp-arrow {
+  border: solid #02a67f;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  height: 3px;
+  margin-top: 5px;
+  padding: 2px;
+  width: 3px;
+}
+.rmdp-arrow-container:hover {
+  color: white !important;
+  background-color: #02a67f !important;
 }

@@ -8,12 +8,13 @@ interface IProps {
   placeholder?: string;
   valueID?: number | undefined;
   onChange: any;
+  value: string | number;
   important?: boolean;
   disabledInput?: boolean;
   className?: string;
 }
 
-const CustomSelect = ({ options, placeholder, valueID, onChange, important, disabledInput = false, className }: IProps) => {
+const CustomSelect = ({ options, placeholder, valueID, onChange, important, disabledInput = false, className, value }: IProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -53,6 +54,12 @@ const CustomSelect = ({ options, placeholder, valueID, onChange, important, disa
     }
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (value) {
+      handleSelectOption(value);
+    }
+  });
 
   const normalizeString = (str: string) => {
     return str.replace(/ي/g, "ی").replace(/ك/g, "ک");
