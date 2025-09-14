@@ -4,6 +4,7 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import gregorian from "react-date-object/calendars/gregorian";
 import CustomButton from "../button/Button.tsx";
+import { useThemeStore } from "../../../store/themeStore.ts";
 
 interface IProps {
   value?: any;
@@ -51,6 +52,7 @@ const CustomInput = ({
       onChange && onChange(e);
     }
   };
+  const { theme } = useThemeStore();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
@@ -120,7 +122,7 @@ const CustomInput = ({
 
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   return (
-    <div className={`w-full relative flex overflow  h-12 border  border-gray-600 rounded-lg  ${isTextArea ? "h-auto" : ""} ${customClassName ? customClassName : ""}`}>
+    <div className={`w-full md:w-1/2 relative flex overflow  h-12 bg-input border  border-gray-600 rounded-lg  ${isTextArea ? "h-auto" : ""} ${customClassName ? customClassName : ""}`}>
       {isDatePicker ? (
         <DatePicker
           style={{ direction: "ltr" }}
@@ -129,12 +131,12 @@ const CustomInput = ({
           type={type}
           maxDate={maxLength}
           portal={true}
-          containerClassName={"w-full w-1/2"}
+          containerClassName={"w-full"}
           inputClass={
-            "peer z-100 w-full my-3 pl-1  text-[13px] sm:text-sm  bg-white text-blue-gray-700 font-normal outline-none focus:outline-0 disabled:bg-blue-gray-50 transition-all w-full md:w-1/2"
+            "peer z-100 w-full my-3 pl-1  text-[13px] sm:text-sm h-full  bg-input text-input-foreground text-blue-gray-700 font-normal outline-none focus:outline-0 disabled:bg-blue-gray-50 transition-all"
           }
           locale={persian_fa}
-          className={" w-full md:w-1/2"}
+          className={`w-full ${theme === "dark" && "bg-dark"}`}
           format="YYYY/MM/DD"
           value={parseValueToPicker(value)}
           onChange={handleDateChange}

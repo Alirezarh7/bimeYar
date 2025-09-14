@@ -1,14 +1,13 @@
-import './App.css'
+import "./App.css";
 import MainLayout from "./component/layout/MainLayout.tsx";
+import AlertProvider from "./provider/AlertProvider.tsx";
 
 function App() {
-
-
   return (
-    <div >
+    <AlertProvider>
       <MainLayout />
-    </div>
-  )
+    </AlertProvider>
+  );
 }
 
-export default App
+export default App;
