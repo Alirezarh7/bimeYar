@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import IranianPlate from "./IranianPlate"; // کامپوننت پلاک از قبل
+import IranianPlate from "./IranianPlate";
 import {
   FiChevronDown,
   FiChevronUp,
@@ -10,7 +10,6 @@ import {
 } from "react-icons/fi";
 import { FaCar, FaShieldAlt } from "react-icons/fa";
 
-// کامپوننت‌های کمکی از قبل
 const InsuranceStatus = ({ icon, title, status, label }: any) => (
   <div className="flex items-center justify-between text-sm">
     <div className="flex items-center gap-2 text-gray-600">
@@ -35,7 +34,6 @@ const DetailRow = ({ label, value }: any) => (
   </div>
 );
 
-// کامپوننت اصلی کارت پلاک با قابلیت باز و بسته شدن
 const ExpandablePlateCard = ({ plate }: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -46,7 +44,7 @@ const ExpandablePlateCard = ({ plate }: any) => {
 
   return (
     <div className="bg-gray-50 rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      {/* بخش خلاصه که همیشه نمایش داده می‌شود */}
+    
       <div className="p-4">
         <div className="flex flex-col sm:flex-row items-center gap-6 justify-between">
           <div className="flex items-center gap-4">
@@ -83,7 +81,6 @@ const ExpandablePlateCard = ({ plate }: any) => {
         </button>
       </div>
 
-      {/* بخش جزئیات که با انیمیشن باز و بسته می‌شود */}
       <AnimatePresence>
         {isExpanded && (
           <motion.section
@@ -93,7 +90,7 @@ const ExpandablePlateCard = ({ plate }: any) => {
             exit="closed"
             variants={variants}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="bg-white" // پس‌زمینه سفید برای بخش جزئیات
+            className="bg-white"
           >
             <div className="p-6 pt-4 border-t border-gray-200">
               <div className="flex items-center gap-3 mb-2">

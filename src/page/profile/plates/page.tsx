@@ -2,7 +2,6 @@ import React from "react";
 import PlateSection from "../../../component/page/profile/plates/PlateSection";
 import ProfileLayout from "../../../component/layout/ProfileLayout";
 
-// داده‌های نمونه - در یک پروژه واقعی، این داده‌ها از یک API دریافت می‌شوند
 const carPlatesData = [
   {
     id: 1,
@@ -19,13 +18,8 @@ const carPlatesData = [
   },
 ];
 
-// داده‌های نمونه برای موتورسیکلت، که فعلا خالی است
 const motorcyclePlatesData: any[] = [];
 
-/**
- * کامپوننت اصلی صفحه "پلاک‌های من"
- * این کامپوننت مسئول نمایش بخش‌های مختلف پلاک (خودرو و موتورسیکلت) است.
- */
 const MyPlatesPage = () => {
   return (
     <ProfileLayout>

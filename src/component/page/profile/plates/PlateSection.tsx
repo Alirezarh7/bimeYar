@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { FiPlus, FiTruck, FiGitMerge } from "react-icons/fi";
 import ExpandablePlateCard from "./ExpandablePlateCard";
 
-import AddPlateForm from "./AddPlateForm"; // کامپوننت فرم را وارد کنید
+import AddPlateForm from "./AddPlateForm";
 import Drawer from "../../../general/drawer/Drawer";
+import CustomModal from "../../../general/modal/Modal";
+import Modal2 from "../../../general/modal/Model2";
 
 const PlateSection = ({ title, plates, vehicleType }: any) => {
   const Icon = vehicleType === "car" ? FiTruck : FiGitMerge;
@@ -18,7 +20,7 @@ const PlateSection = ({ title, plates, vehicleType }: any) => {
             <h2 className="text-xl font-bold text-gray-800">{title}</h2>
           </div>
           <button
-            onClick={() => setIsDrawerOpen(true)} // با کلیک، Drawer باز می‌شود
+            onClick={() => setIsDrawerOpen(true)} 
             className="flex items-center gap-2 text-sm font-medium text-primary"
           >
             <FiPlus />
@@ -27,7 +29,7 @@ const PlateSection = ({ title, plates, vehicleType }: any) => {
         </div>
 
         {plates.length > 0 ? (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             {plates.map((plate: any) => (
               <ExpandablePlateCard key={plate.id} plate={plate} />
             ))}
@@ -45,14 +47,9 @@ const PlateSection = ({ title, plates, vehicleType }: any) => {
         )}
       </div>
 
-      {/* کامپوننت Drawer اینجا رندر می‌شود */}
-      <Drawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        title="پلاک جدید"
-      >
+      <Modal2 isOpen={isDrawerOpen} title="ثبت پلاک جدید" onDismiss={() => setIsDrawerOpen(false)}>
         <AddPlateForm onClose={() => setIsDrawerOpen(false)} />
-      </Drawer>
+      </Modal2>
     </>
   );
 };
