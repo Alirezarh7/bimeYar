@@ -9,10 +9,10 @@ const PlateInput = () => (
       <input
         type="text"
         maxLength={2}
-        className="w-10 text-center text-xl font-bold outline-none rounded-l-md"
+        className="w-10 text-center text-xl font-bold outline-none rounded-l-md  flex-1"
         placeholder="۳۰"
       />
-      <select className="w-12 text-center text-xl font-bold outline-none appearance-none bg-transparent border-x-2 border-gray-300 h-full">
+      <select className="w-12 text-center text-xl font-bold outline-none appearance-none bg-transparent border-x-2 border-gray-300 h-full  flex-1">
         <option>ب</option>
         <option>ج</option>
         <option>د</option>
@@ -30,15 +30,15 @@ const PlateInput = () => (
       <input
         type="text"
         maxLength={3}
-        className="w-14 text-center text-xl font-bold outline-none"
+        className="w-14 text-center text-xl font-bold outline-none flex-1"
         placeholder="۶۲۳"
-      />
-      <div className="h-full flex items-center px-2 text-white bg-blue-600 rounded-r-sm">
-        <span className="text-xs self-start mt-1.5">ایران</span>
+      /> 
+      <div className="h-full flex justify-around items-center px-2 text-white bg-blue-600 rounded-r-sm  flex-1">
+        <span className="text-xs mt-1.5">ایران</span>
         <input
           type="text"
           maxLength={2}
-          className="w-8 bg-transparent text-center text-xl font-bold outline-none self-end mb-1"
+          className="w-8 bg-transparent text-center text-xl font-bold outline-none mb-1"
           placeholder="۷۷"
         />
       </div>

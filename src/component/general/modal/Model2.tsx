@@ -10,14 +10,12 @@ interface ModalProps {
 }
 
 const Modal2 = ({ isOpen, onDismiss, children, title }: ModalProps) => {
-  // هوک برای جلوگیری از اسکرول صفحه هنگام باز بودن مودال
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-    // تابع Cleanup برای اطمینان از حذف استایل
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -56,7 +54,7 @@ const Modal2 = ({ isOpen, onDismiss, children, title }: ModalProps) => {
                 <FiX className="w-6 h-6" />
               </button>
             </div>
-            {/* بخش محتوا با قابلیت اسکرول */}
+
             <div
               className="p-6 flex-1 overflow-y-auto 
                          scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-thumb-rounded-full"
