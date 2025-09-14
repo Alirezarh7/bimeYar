@@ -1,4 +1,5 @@
 import { FaArrowUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const MdFooter = () => {
   const scrollToTop = () => {
@@ -34,7 +35,9 @@ const MdFooter = () => {
               <div className="flex flex-col items-center gap-5">
                 <p className="text-center font-semibold text-primary ">همین حالا بیمه خود را بخر!</p>
                 <div className="flex flex-col  md:flex-row items-center gap-5">
-                  <button className="bg-primary px-2 py-1 flex items-center justify-center rounded-xl font-medium text-primary-foreground cursor-pointer">خرید بیمه</button>
+                  <Link to="/third-party-insurance" className="bg-primary px-2 py-1 flex items-center justify-center rounded-xl font-medium text-primary-foreground cursor-pointer">
+                    خرید بیمه
+                  </Link>
                   <button className="bg-primary px-2 py-1 flex items-center justify-center rounded-xl font-medium text-primary-foreground cursor-pointer">راهنمای استفاده</button>
                 </div>
               </div>

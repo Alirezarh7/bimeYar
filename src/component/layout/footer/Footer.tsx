@@ -101,19 +101,19 @@ const Footer = () => {
       id: 1,
       icon: <CarIcon />,
       title: "بیمه وسایل نقلیه",
-      navigate: "/period-sub-period",
+      navigate: "/third-party-insurance",
     },
     {
       id: 2,
       icon: <HeadlineIcon />,
       title: "بیمه اموال",
-      navigate: "/organ",
+      navigate: "/third-party-insurance",
     },
     {
       id: 3,
       icon: <MemberIcon />,
       title: "بیمه اشخاص",
-      navigate: "/headline",
+      navigate: "/third-party-insurance",
     },
     {},
     {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useWindowWidth } from "../../../hook/useWindowWidth.ts";
 import { CarIcon, HeadlineIcon, MemberIcon } from "../../../icons/Icon.tsx";
+import { Link } from "react-router-dom";
 
 const ImportantServices = () => {
   const [scrollNumber, setScrollNumber] = useState(false);
@@ -56,12 +57,14 @@ const ImportantServices = () => {
         >
           <div className="w-full h-full flex justify-around ">
             {data.map((item, index) => (
-              <motion.div key={index} className="flex max-lg:flex-col justify-between items-center" animate={{ opacity: scrollNumber ? 0.9 : 1 }} transition={{ duration: 0.3 }}>
-                {item.icon}
-                <motion.p animate={{ opacity: scrollNumber ? 1 : 1 }} transition={{ duration: 0.3 }} className={` px-2 text-sm max-lg:text-[11px] font-medium text-card-foreground `}>
-                  {item.title}
-                </motion.p>
-              </motion.div>
+              <Link to="/third-party-insurance">
+                <motion.div key={index} className="flex max-lg:flex-col justify-between items-center" animate={{ opacity: scrollNumber ? 0.9 : 1 }} transition={{ duration: 0.3 }}>
+                  {item.icon}
+                  <motion.p animate={{ opacity: scrollNumber ? 1 : 1 }} transition={{ duration: 0.3 }} className={` px-2 text-sm max-lg:text-[11px] font-medium text-card-foreground `}>
+                    {item.title}
+                  </motion.p>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </motion.div>
