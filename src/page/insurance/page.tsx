@@ -1,4 +1,5 @@
 import { InsuranceOfferCard } from "../../component/general/insuranceCard/InsuranceOfferCard.tsx";
+import {GadgetButton} from "../../component/general/GadgetButton/GadgetButton.tsx";
 interface Company {
   src: string;
   alt: string;
@@ -166,6 +167,10 @@ const InsuranceOfferPage = () => {
       {sampleData.map((item) => (
         <InsuranceOfferCard {...item} />
       ))}
+        <GadgetButton
+            show={true}
+            onClick={() => alert("گجت کلیک شد ⚡")}
+        />
     </>
   );
 };
