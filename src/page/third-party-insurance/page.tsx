@@ -383,7 +383,7 @@ const ThirdPartyInsurance: FC = () => {
           )}
           {activeStep === 5 && (
             <div className="grid grid-cols-12 w-full ">
-              <h5 className="font-semibold text-card-foreground col-span-12">آیا این خودرو تاکنون بیمه شخص ثالث داشته است؟</h5>
+              <h5 className="font-semibold text-card-foreground col-span-12 text-center">آیا این خودرو تاکنون بیمه شخص ثالث داشته است؟</h5>
               <div className="flex flex-col gap-5 items-center col-span-12 my-10">
                 <Controller
                   name="hasInsurance"
