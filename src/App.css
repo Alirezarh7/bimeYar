@@ -54,7 +54,7 @@ body {
 .dark {
   --primary: #02a67f;
   --primary-foreground: white;
-  --secondary: #015945;
+  --secondary: #02a67f;
   --secondary-foreground: white;
   --input: #202020;
   --input-foreground: #fefefe;
