@@ -1,69 +1,76 @@
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+import {IoIosCloseCircleOutline, IoIosGitCompare} from 'react-icons/io';
+import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useWindowWidth} from "../../../hook/useWindowWidth.ts";
+
 
 interface IProps {
-  href?: string;
-  icon?: any;
-  title?: string;
-  dropdownItems?: { href: string; title: string }[];
+    isSidebarOpen: boolean;
+    setSidebarOpen: (e: boolean) => void;
 }
 
-const SideBarItem = ({ href, icon, title, dropdownItems = [] }: IProps) => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+const CustomSidebar = ({isSidebarOpen, setSidebarOpen}: IProps) => {
 
-  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+    const number = JSON.parse(localStorage.getItem('ComparisonInsuranceArr') as any)?.length
+    const [numberSelect, setNumberSelect] = useState(number)
+    useEffect(() => {
+        const update = () => {
+            const arr = JSON.parse(localStorage.getItem("ComparisonInsuranceArr") || "[]");
+            setNumberSelect(arr.length);
+        };
+        window.addEventListener("comparison-update", update);
 
-  return (
-    <div className="w-full">
-      {href ? (
-        <Link
-          to={href}
-          className="w-full cursor-pointer hover:bg-gray-400 py-3 border-b border-gray-200 grid grid-cols-5 items-center"
-        >
-          <div className="col-span-1 mx-auto">{icon}</div>
-          <div className="col-span-4">{title}</div>
-        </Link>
-      ) : (
-        <div className="w-full">
-          {/* هدر دراپ‌داون */}
-          <div
-            className="cursor-pointer hover:bg-gray-400 py-3 border-b border-gray-300 w-full grid grid-cols-5 items-center"
-            onClick={toggleDropdown}
-          >
-            <div className="col-span-1 mx-auto">{icon}</div>
-            <div className="col-span-4 flex justify-between">
-              {title}
-              {isDropdownOpen ? (
-                <RiArrowDropUpLine className="mx-2 h-6 w-6 border-r border-gray-500" />
-              ) : (
-                <RiArrowDropDownLine className="mx-2 h-6 w-6 border-r border-gray-500" />
-              )}
-            </div>
-          </div>
-          <div
-            ref={dropdownRef}
-            className={`transition-all duration-500 overflow-hidden ${
-              isDropdownOpen ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-          >
-            <div className="mt-1 flex flex-col bg-gray-200 ">
-              {dropdownItems.map((item, index) => (
-                <Link
-                  key={index}
-                  to={item.href}
-                  className="py-2 hover:bg-gray-400 border-b border-gray-300 pr-10 "
+        return () => window.removeEventListener("comparison-update", update);
+    }, []);
+    const data = [
+        {href: '/compare', icon: <IoIosGitCompare/>, src: '/compare', title: 'مشاهده مقایسه'},
+    ];
+    const withSize = useWindowWidth()
+    return (
+        <>
+
+            <div className="rtl">
+                {isSidebarOpen && withSize < 550 && (
+                    <div
+                        className={`fixed inset-0 bg-black/50 z-30`}
+                        onClick={() => {
+                            if (withSize < 550) {
+                                setSidebarOpen(false)
+                            }
+                        }}
+                    />
+                )}
+                <div
+                    className={`fixed top-0 right-0 z-[9999] w-72 h-screen transition-transform duration-700 transform ${
+                        isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
                 >
-                  {item.title}
-                </Link>
-              ))}
+                    <div className="h-full px-3 py-4 bg-card  border-l border-primary  ">
+                        {withSize < 550 ?
+                            <IoIosCloseCircleOutline
+                                className=" cursor-pointer text-primary w-9 h-9 fixed left-3 top-5  "
+                                onClick={() => setSidebarOpen(false)}/>
+                            : null}
+                        <div className="w-full mt-12  flex flex-col items-center">
+                            {data.map((item, index) =>
+                                <Link key={index} to={item.href} onClick={() => setSidebarOpen(false)}
+                                      className=" cursor-pointer hover:bg-gray-400 py-3 border-b border-primary w-full flex justify-around items-center ">
+                                    <div className=" col-span-4 text-card-foreground">
+                                        {item.title}
+                                    </div>
+                                    {}
+                                    <div
+                                        className=" flex justify-center items-center rounded-full text-sm  w-5 h-5 bg-badge-color text-card-foreground">
+                                        {numberSelect ?? 0}
+                                    </div>
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+        </>
+    );
 };
 
-export default SideBarItem;
+export default CustomSidebar;
