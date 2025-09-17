@@ -4,7 +4,7 @@ import { FiChevronLeft, FiCreditCard, FiAward } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { menuItems } from "./ProfileMenuItems";
 import type { ParentItem } from "./ProfileMenuItems";
-import {ProfileIcon} from "../../../../icons/Icon.tsx";
+import { ProfileIcon } from "../../../../icons/Icon.tsx";
 
 const ProfileSidebar = () => {
   const location = useLocation();
@@ -31,7 +31,6 @@ const ProfileSidebar = () => {
     return pathname === href;
   };
 
-
   const isParentActive = (item: ParentItem) => {
     if (!item.children) return isActivePath(item.href || "");
     return item.children.some((c) => isActivePath(c.href));
@@ -43,16 +42,26 @@ const ProfileSidebar = () => {
       className="w-[280px] bg-[var(--card)] border border-[var(--primary)] rounded-xl p-4 shadow-sm flex flex-col gap-1 text-gray-800"
     >
       <div className="flex flex-col items-center">
+        {/* <img
+          src={"/new-profile.svg"}
+          className="w-20 h-20 mb-3"
+          alt="profile"
+        /> */}
         {/* <div className="w-20 h-20 bg-gray-100 rounded-full mb-3"></div> */}
+        <Link to={"/profile"}>
           <ProfileIcon />
-        <h3 className="text-md text-[var(--foreground)]  my-2">{profile?.firstName + ' ' + profile?.lastName}</h3>
+        </Link>
+
+        <h3 className="text-md text-[var(--foreground)]  my-2">
+          {profile?.firstName + " " + profile?.lastName}
+        </h3>
       </div>
       <div className="flex items-center justify-between px-2 py-2.5 text-[var(--foreground)]">
         <div className="flex items-center gap-2 font-medium">
           <FiCreditCard className="text-xl text-[var(--primary)] font-bold" />
           <span>کیف پول</span>
         </div>
-        <span className="font-semibold">{profile?.wallet?.balance} تومان </span>
+        <span className="font-semibold">0{profile?.wallet?.balance} تومان</span>
       </div>
       <hr className="my-2 text-[var(--primary)]" />
       <div className="flex flex-col gap-1 text-[var(--foreground)]">
@@ -82,12 +91,12 @@ const ProfileSidebar = () => {
                     expanded[item.index] ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}
                 >
-                  <div className="min-h-0 pr-6">
+                  <div className="min-h-0 pr-4">
                     {item.children.map((child) => (
                       <Link
                         key={`child-${child.name}-${child.href}`}
                         to={child.href}
-                        className={`flex items-center gap-3 text-[13px] py-0.5 px-3 rounded-md mt-3 mb-2 transition-colors ${
+                        className={`flex items-center gap-3 py-1.5 text-[12px] px-3 rounded-md my-1 transition-colors ${
                           isActivePath(child.href)
                             ? "text-primary"
                             : "text-[var(--foreground)] hover:bg-[var(--hover)]"
