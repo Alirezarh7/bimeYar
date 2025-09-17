@@ -8,6 +8,7 @@ import VehicleClaimsPage from "../page/profile/claims/vehicle-claims/page.tsx";
 import SupplementaryClaimsPage from "../page/profile/claims/supplementary/page.tsx";
 import ThirdPartyInsurance from "../page/third-party-insurance/page.tsx";
 import InsuranceOfferPage from "../page/insurance/page.tsx";
+import ComparePage from "../page/compare/page.tsx";
 
 export interface RouteConfig {
     path: string;
@@ -58,5 +59,10 @@ export const Paths: RouteConfig[] = [
         path: "/insurance",
         label: "خرید بیمه شخص ثالث",
         element: <InsuranceOfferPage />,
+    },
+    {
+        path: "/compare",
+        label: "مقایسه",
+        element: <ComparePage />,
     },
 ];
