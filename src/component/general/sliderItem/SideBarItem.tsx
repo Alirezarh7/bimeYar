@@ -30,7 +30,7 @@ const CustomSidebar = ({isSidebarOpen, setSidebarOpen}: IProps) => {
         <>
 
             <div className="rtl">
-                {isSidebarOpen & withSize < 550 && (
+                {isSidebarOpen && withSize < 550 && (
                     <div
                         className={`fixed inset-0 bg-black/50 z-30`}
                         onClick={() => {

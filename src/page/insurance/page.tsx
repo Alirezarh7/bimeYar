@@ -2,7 +2,6 @@ import {InsuranceOfferCard} from "../../component/general/insuranceCard/Insuranc
 import {GadgetButton} from "../../component/general/GadgetButton/GadgetButton.tsx";
 import {useWindowWidth} from "../../hook/useWindowWidth.ts";
 import CustomSidebar from "../../component/general/sliderItem/SideBarItem.tsx";
-import {useModalStore} from "../../store/modalStore.ts";
 import {useEffect, useState} from "react";
 
 interface Company {
@@ -47,7 +46,7 @@ const InsuranceOfferPage = () => {
         {
             id: 1,
             company: {
-                src: "public/insuranceCompany/company1.webp",
+                src: "./insuranceCompany/company1.webp",
                 alt: "البرز",
                 name: "بیمه البرز",
             },
@@ -78,7 +77,7 @@ const InsuranceOfferPage = () => {
         {
             id: 2,
             company: {
-                src: "public/insuranceCompany/company2.webp",
+                src: "./insuranceCompany/company2.webp",
                 alt: "سینا",
                 name: "بیمه سینا",
             },
@@ -109,7 +108,7 @@ const InsuranceOfferPage = () => {
         {
             id: 3,
             company: {
-                src: "public/insuranceCompany/company3.webp",
+                src: "./insuranceCompany/company3.webp",
                 alt: "دی",
                 name: "بیمه دی",
             },

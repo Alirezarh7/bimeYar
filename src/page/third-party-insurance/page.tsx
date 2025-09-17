@@ -292,6 +292,10 @@ const ThirdPartyInsurance: FC = () => {
         enqueueSnackbar(errors.hasInsurance.message, { variant: "error" });
         return;
       }
+      if(hasInsuranceVal === "new" ||  hasInsuranceVal === "no"){
+          navigate("/insurance")
+          return;
+      }
     }
     if (activeStep === 6) {
       const prevInsuranceCompanyValid = await trigger("prevInsuranceCompany");

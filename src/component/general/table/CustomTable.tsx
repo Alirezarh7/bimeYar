@@ -29,7 +29,7 @@ export default function ComparisonTable() {
                 <tbody className="bg-card divide-y divide-primary w-full">
                 {features.map((feature, i) => (
                     <tr key={i}>
-                        <td className="px-4 w-fit py-3 text-sm font-medium text-nowrap text-right text-secondary bg-background">
+                        <td className="px-4 w-fit py-3 text-sm font-medium text-nowrap text-right dark:text-[#468c7b] text-secondary bg-background">
                             {feature.name}
                         </td>
                         {feature.values.map((val, j) => (
