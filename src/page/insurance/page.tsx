@@ -1,7 +1,9 @@
 import {InsuranceOfferCard} from "../../component/general/insuranceCard/InsuranceOfferCard.tsx";
 import {GadgetButton} from "../../component/general/GadgetButton/GadgetButton.tsx";
-import {useNavigate} from "react-router-dom";
 import {useWindowWidth} from "../../hook/useWindowWidth.ts";
+import CustomSidebar from "../../component/general/sliderItem/SideBarItem.tsx";
+import {useModalStore} from "../../store/modalStore.ts";
+import {useEffect, useState} from "react";
 
 interface Company {
     src: string;
@@ -38,7 +40,9 @@ export interface InsuranceItem {
 }
 
 const InsuranceOfferPage = () => {
-    const navigate = useNavigate();
+
+    const [opneSidbaer, setOpneSidbaer] = useState<boolean>(false);
+
     const sampleData: InsuranceItem[] = [
         {
             id: 1,
@@ -165,18 +169,28 @@ const InsuranceOfferPage = () => {
             },
         },
     ];
-
+    useEffect(() => {
+        if (window.innerWidth>550){
+            setOpneSidbaer(true)
+        }
+    }, []);
     return (
         <>
+
             {sampleData.map((item) => (
                 <InsuranceOfferCard {...item} />
             ))}
             {useWindowWidth() > 550 ? null :
                 <GadgetButton
                     show={true}
-                    onClick={() => navigate('/')}
+                    onClick={() => {
+                        setOpneSidbaer(true)
+                    }}
                 />
             }
+            <CustomSidebar isSidebarOpen={opneSidbaer} setSidebarOpen={()=>{
+                setOpneSidbaer(false);
+            }} />
         </>
     );
 };

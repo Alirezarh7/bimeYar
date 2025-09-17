@@ -11,7 +11,7 @@ const MdFooter = () => {
 
   return (
     <>
-      <footer className="bg-[#d9d9d978] dark:bg-card  w-full hidden md:block">
+      <footer className=" fixed bottom-0 bg-[#d9d9d978] dark:bg-card  w-full hidden md:block">
         <div className="w-full max-w-6xl mx-auto p-5">
           <div className="flex flex-col items-center w-full gap-5">
             <div className="flex items-center justify-between w-full flex-col-reverse md:flex-row">
