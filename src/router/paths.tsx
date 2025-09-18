@@ -25,19 +25,21 @@ export const Paths: RouteConfig[] = [
     element: <PersonalInfoPage />,
   },
   {
-    path: "/profile/value",
+    path: "/profile/insurances/pending",
     label: "بیمه های در انتظار تمدید",
     element: <InsurancePendingPage />,
   },
   {
     path: "/profile/insurances/incomplete",
     label: "بیمه های ناتمام",
-    element: <InsuranceIncompletePage />,
+    // element: <InsuranceIncompletePage />,
+    element: <InsurancePurchasedPage />,
   },
   {
     path: "/profile/insurances/purchased",
     label: "بیمه های خریداری شده",
-    element: <InsurancePurchasedPage />,
+    // element: <InsurancePurchasedPage />,
+    element: <InsuranceIncompletePage />,
   },
   {
     path: "/profile/claims/vehicle-claims",
