@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { FiX } from "react-icons/fi";
 
 interface ModalProps {
@@ -9,7 +9,35 @@ interface ModalProps {
   title: string;
 }
 
-const ModelAnimation = ({ isOpen, onDismiss, children, title }: ModalProps) => {
+// ۱. تعریف Variants برای انیمیشن‌ها
+// انیمیشن پس‌زمینه (سیاه)
+const backdropVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+// انیمیشن خود مودال (حرکت از پایین و fade)
+const modalVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30, // شروع از ۳۰ پیکسل پایین‌تر
+  },
+  visible: {
+    opacity: 1,
+    y: 0, // حرکت به جای اصلی
+    transition: {
+      type: "spring", // افکت فنری برای حس بهتر
+      damping: 25,
+      stiffness: 200,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 30, // هنگام خروج به پایین برمی‌گردد
+  },
+};
+
+const ModalAnimation = ({ isOpen, onDismiss, children, title }: ModalProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -29,28 +57,32 @@ const ModelAnimation = ({ isOpen, onDismiss, children, title }: ModalProps) => {
           aria-modal="true"
           className="fixed inset-0 z-50 flex items-center justify-center"
         >
+          {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            variants={backdropVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
             onClick={onDismiss}
           />
+
+          {/* Modal Panel */}
           <motion.div
             dir="rtl"
             className="relative mx-4 w-full max-w-lg rounded-2xl bg-[var(--card)] shadow-xl flex flex-col max-h-[90vh]"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
           >
             <div className="flex items-center justify-between p-4 border-b flex-shrink-0">
-              <h2 className="text-lg font-bold  text-card-foreground">
+              <h2 className="text-lg font-bold text-[var(--card-foreground)]">
                 {title}
               </h2>
               <button
                 onClick={onDismiss}
-                className="p-2 rounded-full text-card-foreground hover:bg-gray-100"
+                className="p-2 rounded-full text-[var(--card-foreground)] hover:bg-[var(--hover)] transition-colors"
                 aria-label="بستن مودال"
               >
                 <FiX className="w-6 h-6" />
@@ -58,8 +90,8 @@ const ModelAnimation = ({ isOpen, onDismiss, children, title }: ModalProps) => {
             </div>
 
             <div
-              className="p-6 pb-0 flex-1 overflow-y-auto 
-                         scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-thumb-rounded-full"
+              className="p-6 flex-1 overflow-y-auto 
+                         scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-thumb-rounded-full dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800"
             >
               {children}
             </div>
@@ -70,4 +102,4 @@ const ModelAnimation = ({ isOpen, onDismiss, children, title }: ModalProps) => {
   );
 };
 
-export default ModelAnimation;
+export default ModalAnimation;
