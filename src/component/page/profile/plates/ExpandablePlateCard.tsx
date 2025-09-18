@@ -73,7 +73,7 @@ const ExpandablePlateCard = ({ plate }: any) => {
         </div>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full mt-4 pt-3 border-t border-gray-200 flex justify-center items-center gap-1 text-primary font-semibold text-sm"
+          className="w-full mt-4 pt-3 border-t border-gray-200 cursor-pointer flex justify-center items-center gap-1 text-primary font-semibold text-sm"
         >
           <span>{isExpanded ? "بستن مشخصات" : "مشاهده مشخصات"}</span>
           {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
