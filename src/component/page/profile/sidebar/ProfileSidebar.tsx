@@ -39,7 +39,7 @@ const ProfileSidebar = () => {
   return (
     <div
       dir="rtl"
-      className="w-[280px] bg-[var(--card)] border border-[var(--primary)] rounded-xl p-4 shadow-sm flex flex-col gap-1 text-gray-800"
+      className="w-[280px] bg-[var(--card)] shadow-sm rounded-xl p-4 flex flex-col gap-1 text-gray-800"
     >
       <div className="flex flex-col items-center">
         {/* <img
