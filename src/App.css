@@ -3,100 +3,161 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: IRANSans, serif;
+    font-family: IRANSans, serif;
 }
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-input: var(--input);
-  --color-input-foreground: var(--input-foreground);
-  --color-card: var(--card);
-  --color-hover: var(--hover);
-  --color-card-foreground: var(--card-foreground);
-  --color-muted: var(--muted);
-  --color-footerBack: var(--footerBack);
-  --animate-infinite-slider: infiniteSlider 20s linear infinite;
 
-  @keyframes infiniteSlider {
-    0% {
-      transform: translateX(0);
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-input: var(--input);
+    --color-badge-color : var(--badge-color);
+    --color-input-foreground: var(--input-foreground);
+    --color-card: var(--card);
+    --color-hover: var(--hover);
+    --color-card-foreground: var(--card-foreground);
+    --color-muted: var(--muted);
+    --color-footerBack: var(--footerBack);
+    --animate-infinite-slider: infiniteSlider 20s linear infinite;
+
+    @keyframes infiniteSlider {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(50%);
+        }
     }
-    100% {
-      transform: translateX(50%);
-    }
-  }
 }
 
 :root {
-  --primary: #02a67f;
-  --primary-foreground: white;
-  --secondary: #015945;
-  --secondary-foreground: white;
-  --input: #fefefe;
-  --input-foreground: #222;
-  --hover: #e8e8e8;
-  --card: white;
-  --card-foreground: #202020;
-  --background: #f3f3f3;
-  --foreground: black;
-  --chatBotColor: #d5ffed;
-  --muted: #494c57;
-  --footerBack: white;
+    --primary: #02a67f;
+    --primary-foreground: white;
+    --secondary: #015945;
+    --secondary-foreground: white;
+    --badge-color: #cf2626;
+    --input: #fefefe;
+    --input-foreground: #222;
+    --hover: #e8e8e8;
+    --card: white;
+    --card-foreground: #202020;
+    --background: #f3f3f3;
+    --foreground: black;
+    --chatBotColor: #d5ffed;
+    --muted: #494c57;
+    --footerBack: white;
 }
+
 .dark {
-  --primary: #02a67f;
-  --primary-foreground: white;
-  --secondary: #015945;
-  --secondary-foreground: white;
-  --input: #222;
-  --input-foreground: #fefefe;
-  --card: #272727;
-  --hover: #3f3f3f;
-  --card-foreground: white;
-  --background: #1e1e1e;
-  --foreground: white;
-  --muted: #494c57;
-  --chatBotColor: #015945;
-  --textColor: #cafbe2;
-  --footerBack: white;
+    --primary: #02a67f;
+    --primary-foreground: white;
+    --secondary: #16493e;
+    --badge-color: #ea4242;
+    --secondary-foreground: white;
+    --input: #202020;
+    --input-foreground: #fefefe;
+    --card: #272727;
+    --hover: #272727;
+    --card-foreground: white;
+    --background: #1e1e1e;
+    --foreground: white;
+    --muted: #494c57;
+    --chatBotColor: #015945;
+    --textColor: #cafbe2;
+    --footerBack: white;
 }
 
 .card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.06);
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.06);
 }
 
 body {
-  background-color: #f3f3f3;
+    background-color: #f3f3f3;
 }
+
 .dark body {
-  background-color: #1e1e1e;
+    background-color: #1e1e1e;
 }
 
 .pulse {
-  animation: pulse 2.2s infinite;
+    animation: pulse 2.2s infinite;
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  70% {
-    transform: scale(1.06);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1.06);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.dark .rmdp-top-class {
+    background-color: #272727;
+}
+
+.rmdp-top-class {
+    background-color: #ffffff;
+}
+
+.dark .sd {
+    color: white;
+}
+
+.sd {
+    color: #272727;
+}
+
+.rmdp-selected .sd {
+    background-color: #02a67f !important;
+}
+
+.rmdp-today .sd {
+    background-color: #a5ffeac0 !important;
+}
+
+.sd:hover {
+    background-color: #123f35b9 !important;
+}
+
+.dark .rmdp-header-values > * {
+    color: white;
+}
+
+.rmdp-header-values > * {
+    color: #272727;
+}
+
+.rmdp-week-day {
+    color: #02a67f !important;
+}
+
+.rmdp-arrow {
+    border: solid #02a67f;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    height: 3px;
+    margin-top: 5px;
+    padding: 2px;
+    width: 3px;
+}
+
+.rmdp-arrow-container:hover {
+    color: white !important;
+    background-color: #02a67f !important;
 }

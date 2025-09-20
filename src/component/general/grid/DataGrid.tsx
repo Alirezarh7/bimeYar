@@ -4,7 +4,6 @@ import {IoClose} from "react-icons/io5";
 import {Controller} from "react-hook-form";
 import {MdAddToPhotos, MdOutlineEdit} from "react-icons/md";
 import CustomInput from "../input/Input.tsx";
-import NumberInput from "../input/TableInput.tsx";
 import {useEffect, useState} from "react";
 import {useWindowWidth} from "../../../hook/useWindowWidth.ts";
 import {useQueryClient} from "@tanstack/react-query";
@@ -47,7 +46,6 @@ const DataGrid = ({
                     setCurrentPage
                   }: IProps) => {
   const [dropDownIndex, setDropDownIndex] = useState<number | null>(null);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleDropdown = (index: number) => {
     setDropDownIndex(prev => (prev === index ? null : index));
@@ -66,7 +64,7 @@ const DataGrid = ({
 
   return (
     <>
-      <div className="max-md:hidden p-2">
+      <div className="p-2">
         <div className=" w-full overflow-x-auto">
           <table className="table-auto w-full text-right text-sm">
             <thead className="bg-sliderBlueColor text-white text-sm ">
@@ -206,7 +204,7 @@ const DataGrid = ({
                                         <IoClose className="text-red-700 w-6 h-6 cursor-pointer"
                                                  onClick={() => onSubDelete(sub)}/>
                                         <p className={'text-[12px]'}>
-                                          خذف
+
                                         </p>
                                       </div>
                                     )}
@@ -258,157 +256,157 @@ const DataGrid = ({
           </div>
         ) : null}
       </div>
-
-      <div className=" md:hidden flex flex-col gap-5 p-1.5 py-4    ">
-        {bodyData?.item?.map((item, index) => {
-          const hasSubItems = item?.subPeriods?.length > 0;
-          return (
-            <div key={index} className="border border-sliderBlueColor/40 rounded-2xl shadow  bg-white">
-              <div className={'relative'}>
-                <div className={'absolute -top-3.5  rounded-full bg-white w-fit px-1.5 '}>
-                  {index + 1}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2 pt-2 ">
-                {headData.map((headItem, idx) => {
-                  if (!headItem) return null
-                  return (
-                    <div key={idx} className="flex justify-between items-center px-2 text-sm">
-                      <span className="font-semibold text-gray-600">{headItem.title}:</span>
-                      <span className="text-gray-800">
-                    {headItem.numberInput ? (
-                      <Controller
-                        name={`items.${index}.${headItem.name}`}
-                        control={control}
-                        render={({field: {value, onChange}}) => (
-                          <NumberInput value={value ?? 0} onChange={onChange}/>
-                        )}
-                      />
-                    ) : (
-                      item[headItem.key]
-                    )}
-                  </span>
-                    </div>
-                  )
-                })}
-              </div>
-              <div className='border-t border-sliderBlueColor/40 '>
-                <div className="flex justify-center gap-3 my-2 p-2">
-                  {onView &&
-                      <RiCalendarView className="text-green-700 w-5 h-5 cursor-pointer"
-                                      onClick={() => onView(item)}/>}
-                  {onAdd &&
-                      <div className={'flex flex-col justify-center items-center'}>
-                          <MdAddToPhotos className="text-green-700 w-5 h-5 cursor-pointer" onClick={() => onAdd(item)}/>
-                          <p>
-                              اضافه
-                          </p>
-                      </div>
-                  }
-                  {onPrint &&
-                      <SlPrinter className="text-blue-700 w-5 h-5 cursor-pointer" onClick={() => onPrint(item)}/>}
-                  {onEdit &&
-                      <div className={'flex flex-col justify-center items-center'}>
-                          <MdOutlineEdit className="text-yellow-600 w-5 h-5 cursor-pointer"
-                                         onClick={() => onEdit(item)}/>
-                          <p>
-                              ویرایش
-                          </p>
-                      </div>
-                  }
-                  {onDelete &&
-                      <div className={'flex flex-col justify-center items-center'}>
-                          <IoClose className="text-red-700 w-5 h-5 cursor-pointer" onClick={() => onDelete(item)}/>
-                          <p>
-                              حذف
-                          </p>
-                      </div>
-                  }
-                  {hasSubItems && subgroup && (
-                    <div className=" flex flex-col items-center justify-center text-sm  cursor-pointer"
-                         onClick={() => setOpenIndex(openIndex === index ? null : index)}>
-                      <p className={'text-blue-600 font-medium'}>{openIndex === index ? '‌▲' : '‌▼'}</p>
-                      <p>
-                        زیرگروه
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {
-                openIndex === index && hasSubItems && subgroup && (
-                  <div className="mt-2 mb-3 px-3 py-2 bg-gray-50 rounded-md border border-dashed border-gray-300">
-                    {item.subPeriods.map((sub: any, subIndex: number) => (
-                      <div key={subIndex} className="border-b border-gray-300 py-2 text-xs last:border-none">
-                        {headData.filter(h => h?.sub).map((h, i) => {
-                          if (!h) return null;
-                          return(
-                          <div key={i} className="flex justify-between items-center px-2 text-gray-700">
-                            <span className="font-semibold">{h.title}:</span>
-                            <span>{sub[h.key] ?? '-'}</span>
-                          </div>
-                          )
-                        })}
-                        {(onSubEdit || onSubDelete) && ( // ← نمایش دکمه‌های عملیات فقط در صورت فعال بودن
-                          <div className="flex justify-center gap-3 mt-2">
-                            {onSubEdit && (
-                              <MdOutlineEdit
-                                className="text-green-700 w-5 h-5 cursor-pointer"
-                                onClick={() => onSubEdit(sub)}
-                              />
-                            )}
-                            {onSubDelete && (
-                              <IoClose
-                                className="text-red-700 w-5 h-5 cursor-pointer"
-                                onClick={() => onSubDelete(sub)}
-                              />
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )
-              }
-            </div>
-
-          )
-            ;
-        })}
-        {totalPages > 1 ? (
-          <div className=" relative flex justify-center text-sm">
-            <div className=" bg-white/100 absolute top-2 gap-2 flex items-center ">
-              <button
-                disabled={currentPage === 1}
-                onClick={() => {
-                  setCurrentPage(currentPage - 1);
-                }}
-                className="px-3  py-1 border border-goldColor rounded hover:bg-gray-100  disabled:opacity-50"
-              >
-                قبلی
-              </button>
-
-              <span className="w-fit p-1 py-1 ">{currentPage}</span>
-              <span className="px-3 py-1 ">...</span>
-              <span className="w-fit p-1 py-1 ">{totalPages}</span>
-              <button
-                disabled={currentPage === totalPages}
-                onClick={() => {
-                  setCurrentPage(currentPage + 1);
-                }}
-                className="px-3  py-1 border border-goldColor rounded hover:bg-gray-100  disabled:opacity-50"
-              >
-                بعدی
-              </button>
-            </div>
-          </div>
-        ) : null}
-      </div>
     </>
   );
 };
 
 export default DataGrid;
+
+// <div className=" md:hidden flex flex-col gap-5 p-1.5 py-4    ">
+//     {bodyData?.item?.map((item, index) => {
+//         const hasSubItems = item?.subPeriods?.length > 0;
+//         return (
+//             <div key={index} className="border border-sliderBlueColor/40 rounded-2xl shadow  bg-white">
+//                 <div className={'relative'}>
+//                     <div className={'absolute -top-3.5  rounded-full bg-white w-fit px-1.5 '}>
+//                         {index + 1}
+//                     </div>
+//                 </div>
+//                 <div className="flex flex-col gap-2 pt-2 ">
+//                     {headData.map((headItem, idx) => {
+//                         if (!headItem) return null
+//                         return (
+//                             <div key={idx} className="flex justify-between items-center px-2 text-sm">
+//                                 <span className="font-semibold text-gray-600">{headItem.title}:</span>
+//                                 <span className="text-gray-800">
+//                     {headItem.numberInput ? (
+//                         <Controller
+//                             name={`items.${index}.${headItem.name}`}
+//                             control={control}
+//                             render={({field: {value, onChange}}) => (
+//                                 <NumberInput value={value ?? 0} onChange={onChange}/>
+//                             )}
+//                         />
+//                     ) : (
+//                         item[headItem.key]
+//                     )}
+//                   </span>
+//                             </div>
+//                         )
+//                     })}
+//                 </div>
+//                 <div className='border-t border-sliderBlueColor/40 '>
+//                     <div className="flex justify-center gap-3 my-2 p-2">
+//                         {onView &&
+//                             <RiCalendarView className="text-green-700 w-5 h-5 cursor-pointer"
+//                                             onClick={() => onView(item)}/>}
+//                         {onAdd &&
+//                             <div className={'flex flex-col justify-center items-center'}>
+//                                 <MdAddToPhotos className="text-green-700 w-5 h-5 cursor-pointer" onClick={() => onAdd(item)}/>
+//                                 <p>
+//                                     اضافه
+//                                 </p>
+//                             </div>
+//                         }
+//                         {onPrint &&
+//                             <SlPrinter className="text-blue-700 w-5 h-5 cursor-pointer" onClick={() => onPrint(item)}/>}
+//                         {onEdit &&
+//                             <div className={'flex flex-col justify-center items-center'}>
+//                                 <MdOutlineEdit className="text-yellow-600 w-5 h-5 cursor-pointer"
+//                                                onClick={() => onEdit(item)}/>
+//                                 <p>
+//                                     ویرایش
+//                                 </p>
+//                             </div>
+//                         }
+//                         {onDelete &&
+//                             <div className={'flex flex-col justify-center items-center'}>
+//                                 <IoClose className="text-red-700 w-5 h-5 cursor-pointer" onClick={() => onDelete(item)}/>
+//                                 <p>
+//                                     حذف
+//                                 </p>
+//                             </div>
+//                         }
+//                         {hasSubItems && subgroup && (
+//                             <div className=" flex flex-col items-center justify-center text-sm  cursor-pointer"
+//                                  onClick={() => setOpenIndex(openIndex === index ? null : index)}>
+//                                 <p className={'text-blue-600 font-medium'}>{openIndex === index ? '‌▲' : '‌▼'}</p>
+//                                 <p>
+//                                     زیرگروه
+//                                 </p>
+//                             </div>
+//                         )}
+//                     </div>
+//                 </div>
+//                 {
+//                     openIndex === index && hasSubItems && subgroup && (
+//                         <div className="mt-2 mb-3 px-3 py-2 bg-gray-50 rounded-md border border-dashed border-gray-300">
+//                             {item.subPeriods.map((sub: any, subIndex: number) => (
+//                                 <div key={subIndex} className="border-b border-gray-300 py-2 text-xs last:border-none">
+//                                     {headData.filter(h => h?.sub).map((h, i) => {
+//                                         if (!h) return null;
+//                                         return(
+//                                             <div key={i} className="flex justify-between items-center px-2 text-gray-700">
+//                                                 <span className="font-semibold">{h.title}:</span>
+//                                                 <span>{sub[h.key] ?? '-'}</span>
+//                                             </div>
+//                                         )
+//                                     })}
+//                                     {(onSubEdit || onSubDelete) && ( // ← نمایش دکمه‌های عملیات فقط در صورت فعال بودن
+//                                         <div className="flex justify-center gap-3 mt-2">
+//                                             {onSubEdit && (
+//                                                 <MdOutlineEdit
+//                                                     className="text-green-700 w-5 h-5 cursor-pointer"
+//                                                     onClick={() => onSubEdit(sub)}
+//                                                 />
+//                                             )}
+//                                             {onSubDelete && (
+//                                                 <IoClose
+//                                                     className="text-red-700 w-5 h-5 cursor-pointer"
+//                                                     onClick={() => onSubDelete(sub)}
+//                                                 />
+//                                             )}
+//                                         </div>
+//                                     )}
+//                                 </div>
+//                             ))}
+//                         </div>
+//                     )
+//                 }
+//             </div>
+//
+//         )
+//             ;
+//     })}
+//     {totalPages > 1 ? (
+//         <div className=" relative flex justify-center text-sm">
+//             <div className=" bg-white/100 absolute top-2 gap-2 flex items-center ">
+//                 <button
+//                     disabled={currentPage === 1}
+//                     onClick={() => {
+//                         setCurrentPage(currentPage - 1);
+//                     }}
+//                     className="px-3  py-1 border border-goldColor rounded hover:bg-gray-100  disabled:opacity-50"
+//                 >
+//                     قبلی
+//                 </button>
+//
+//                 <span className="w-fit p-1 py-1 ">{currentPage}</span>
+//                 <span className="px-3 py-1 ">...</span>
+//                 <span className="w-fit p-1 py-1 ">{totalPages}</span>
+//                 <button
+//                     disabled={currentPage === totalPages}
+//                     onClick={() => {
+//                         setCurrentPage(currentPage + 1);
+//                     }}
+//                     className="px-3  py-1 border border-goldColor rounded hover:bg-gray-100  disabled:opacity-50"
+//                 >
+//                     بعدی
+//                 </button>
+//             </div>
+//         </div>
+//     ) : null}
+// </div>
 
 
 

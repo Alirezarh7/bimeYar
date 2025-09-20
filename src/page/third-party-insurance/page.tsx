@@ -2,6 +2,13 @@ import { useState, type FC } from "react";
 import Steps from "../../component/general/step/Steps";
 import Step from "../../component/general/step/Step";
 import CustomSelect from "../../component/general/select/CustomSelect";
+import CustomInput from "../../component/general/input/Input";
+import { Controller, useForm } from "react-hook-form";
+import { type ThirdPartyInsuranceType } from "../../type/thirdPartyInsuranceType";
+import { thirdPartyInsuranceSchema } from "../../schema/thirdPartyInsuranceSchema";
+import { zodResolver } from "./../../../node_modules/@hookform/resolvers/zod/src/zod";
+import { enqueueSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 const carTypeArr = [
   { label: "سواری", value: "sedan" },
@@ -234,96 +241,217 @@ const insuranceCompanies = [
 ];
 
 const ThirdPartyInsurance: FC = () => {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(1);
+  const steps = 7;
+  const {
+    control,
+    handleSubmit,
+    trigger,
+    watch,
+    formState: { errors },
+  } = useForm<ThirdPartyInsuranceType>({
+    resolver: zodResolver(thirdPartyInsuranceSchema),
+  });
+
+  const hasInsuranceVal = watch("hasInsurance");
+
+  const nextStepHandler = async () => {
+    if (activeStep === 1) {
+      const cartypeValid = await trigger("carType");
+
+      if (!cartypeValid) {
+        enqueueSnackbar(errors.carType?.message ? errors.carType?.message : "نوع خودرو را انتخاب کنید", { variant: "error" });
+        return;
+      }
+    }
+    if (activeStep === 2) {
+      const carUsageValid = await trigger("carUsage");
+      if (!carUsageValid && errors.carUsage) {
+        enqueueSnackbar(errors.carUsage.message, { variant: "error" });
+        return;
+      }
+    }
+    if (activeStep === 3) {
+      const carBrandValid = await trigger("carBrand");
+      if (!carBrandValid && errors.carBrand) {
+        enqueueSnackbar(errors.carBrand.message, { variant: "error" });
+        return;
+      }
+    }
+    if (activeStep === 4) {
+      const carYearValid = await trigger("carYear");
+      if (!carYearValid && errors.carYear) {
+        enqueueSnackbar(errors.carYear.message, { variant: "error" });
+        return;
+      }
+    }
+    if (activeStep === 5) {
+      const hasInsuranceValid = await trigger("hasInsurance");
+      if (!hasInsuranceValid && errors.hasInsurance) {
+        enqueueSnackbar(errors.hasInsurance.message, { variant: "error" });
+        return;
+      }
+      if(hasInsuranceVal === "new" ||  hasInsuranceVal === "no"){
+          navigate("/insurance")
+          return;
+      }
+    }
+    if (activeStep === 6) {
+      const prevInsuranceCompanyValid = await trigger("prevInsuranceCompany");
+      if (!prevInsuranceCompanyValid && errors.prevInsuranceCompany) {
+        enqueueSnackbar(errors.prevInsuranceCompany.message, { variant: "error" });
+        return;
+      }
+    }
+    if (activeStep === 7) {
+      const prevInsuranceStartDateValid = await trigger("prevInsuranceStartDate");
+      if (!prevInsuranceStartDateValid && errors.prevInsuranceStartDate) {
+        enqueueSnackbar(errors.prevInsuranceStartDate.message, { variant: "error" });
+        return;
+      }
+    }
+    if (activeStep === steps) {
+      handleSubmit(async (data) => {
+        await localStorage.setItem("BuyInsurance", JSON.stringify(data));
+        navigate("/insurance");
+      })();
+      return;
+    } else {
+      setActiveStep((prev) => prev + 1);
+    }
+  };
+  const prevStepHandler = () => {
+    if (activeStep === 1) {
+      return;
+    } else {
+      setActiveStep((prev) => prev - 1);
+    }
+  };
+
   return (
     <div className="w-full max-w-7xl px-5 mx-auto my-10">
       <div className="w-full px-5 bg-card rounded-xl shadow-lg py-10">
-        <h4 className="text-3xl text-foreground font-bold">خرید بیمه شخص ثالث خودرو</h4>
-        <Steps activeStep={activeStep} steps={6}>
+        <h4 className="text-xl md:text-3xl text-foreground font-bold">خرید بیمه شخص ثالث خودرو</h4>
+        <Steps activeStep={activeStep} steps={steps}>
           <Step activeStep={activeStep} number={1} />
           <Step activeStep={activeStep} number={2} />
           <Step activeStep={activeStep} number={3} />
           <Step activeStep={activeStep} number={4} />
           <Step activeStep={activeStep} number={5} />
           <Step activeStep={activeStep} number={6} />
+          <Step activeStep={activeStep} number={7} />
         </Steps>
 
         <div className="w-full max-w-5xl mx-auto p-5">
           {activeStep === 1 && (
-            <div className="flex items-center justify-center w-full ">
-              <CustomSelect
-                className="w-full lg:w-1/2"
-                onChange={() => {
-                  setActiveStep(2);
-                }}
-                options={carTypeArr}
-                placeholder="نوع خودرو"
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">نوع خودرو را انتخاب کنید</h4>
+              <Controller
+                name="carType"
+                control={control}
+                render={({ field }) => <CustomSelect value={field.value} className="w-full md:w-1/2" options={carTypeArr} placeholder="انتخاب نوع خودرو" onChange={field.onChange} important />}
               />
+              {/* {errors.carType && <p className="text-red-500 text-sm">{errors.carType.message}</p>} */}
             </div>
           )}
           {activeStep === 2 && (
-            <div className="flex items-center justify-center w-full ">
-              <CustomSelect
-                className="w-full lg:w-1/2"
-                onChange={() => {
-                  setActiveStep(3);
-                }}
-                options={sedanTypeArr}
-                placeholder="کاربری"
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">کاربری خودرو را انتخاب کنید</h4>
+              <Controller
+                name="carUsage"
+                control={control}
+                render={({ field }) => <CustomSelect value={field.value} className="w-full md:w-1/2" options={sedanTypeArr} placeholder="انتخاب کاربری" onChange={field.onChange} important />}
               />
             </div>
           )}
           {activeStep === 3 && (
-            <div className="flex items-center justify-center w-full ">
-              <CustomSelect
-                className="w-full lg:w-1/2"
-                onChange={() => {
-                  setActiveStep(4);
-                }}
-                options={carBrandArr}
-                placeholder="برند خودرو"
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">برند خودرو را انتخاب کنید</h4>
+              <Controller
+                name="carBrand"
+                control={control}
+                render={({ field }) => <CustomSelect value={field.value} className="w-full md:w-1/2" options={carBrandArr} placeholder="برند خودرو" onChange={field.onChange} important />}
               />
             </div>
           )}
           {activeStep === 4 && (
-            <div className="flex items-center justify-center w-full ">
-              <CustomSelect
-                className="w-full lg:w-1/2"
-                onChange={() => {
-                  setActiveStep(5);
-                }}
-                options={yearsArr}
-                placeholder="سال تولید خودرو"
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">سال تولید خودرو را انتخاب کنید</h4>
+              <Controller
+                name="carYear"
+                control={control}
+                render={({ field }) => <CustomSelect value={field.value} className="w-full md:w-1/2" options={yearsArr} placeholder="سال تولید خودرو" onChange={field.onChange} important />}
               />
             </div>
           )}
           {activeStep === 5 && (
             <div className="grid grid-cols-12 w-full ">
-              <h5 className="font-semibold text-card-foreground col-span-12">آیا این خودرو تاکنون بیمه شخص ثالث داشته است؟</h5>
+              <h5 className="font-semibold text-card-foreground col-span-12 text-center">آیا این خودرو تاکنون بیمه شخص ثالث داشته است؟</h5>
               <div className="flex flex-col gap-5 items-center col-span-12 my-10">
-                <button
-                  onClick={() => setActiveStep(6)}
-                  className="bg-secondary text-secondary-foreground rounded-2xl p-3  cursor-pointer text-center hover:scale-105 transition-all duration-300 w-44"
-                >
-                  بله بیمه داشته است
-                </button>
-                <button className="bg-secondary text-secondary-foreground rounded-2xl p-3 cursor-pointer text-center hover:scale-105 transition-all duration-300 w-44">خودرو صفر کیلومتر است</button>
-                <button className="bg-secondary text-secondary-foreground rounded-2xl p-3 cursor-pointer text-center hover:scale-105 transition-all duration-300 w-44">خیر بیمه نداشته است</button>
+                <Controller
+                  name="hasInsurance"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => field.onChange("yes")}
+                        className={`${hasInsuranceVal === "yes" ? "bg-primary" : "bg-secondary"} text-secondary-foreground rounded-2xl p-3 w-44 cursor-pointer`}
+                      >
+                        بله بیمه داشته است
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => field.onChange("new")}
+                        className={`${hasInsuranceVal === "new" ? "bg-primary" : "bg-secondary"} text-secondary-foreground rounded-2xl p-3 w-44 cursor-pointer`}
+                      >
+                        خودرو صفر کیلومتر است
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => field.onChange("no")}
+                        className={`${hasInsuranceVal === "no" ? "bg-primary" : "bg-secondary"} text-secondary-foreground rounded-2xl p-3 w-44 cursor-pointer`}
+                      >
+                        خیر بیمه نداشته است
+                      </button>
+                    </>
+                  )}
+                />
               </div>
             </div>
           )}
           {activeStep === 6 && (
-            <div className="flex items-center justify-center w-full ">
-              <CustomSelect
-                className="w-full lg:w-1/2"
-                onChange={() => {
-                  // setActiveStep(5);
-                }}
-                options={insuranceCompanies}
-                placeholder="شرکت بیمه گر قبلی"
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">شرکت بیمه گر قبلی را انتخاب کنید</h4>
+              <Controller
+                name="prevInsuranceCompany"
+                control={control}
+                render={({ field }) => (
+                  <CustomSelect value={field.value} className="w-full md:w-1/2" options={insuranceCompanies} placeholder="شرکت بیمه گر قبلی" onChange={field.onChange} important />
+                )}
               />
             </div>
           )}
+          {activeStep === 7 && (
+            <div className="flex flex-col gap-10 items-center justify-center w-full ">
+              <h4 className="text-lg text-foreground font-semibold">تاریخ شروع بیمه نامه قبلی را انتخاب کنید</h4>
+              <Controller
+                name="prevInsuranceStartDate"
+                control={control}
+                render={({ field }) => <CustomInput value={field.value} isDatePicker={true} placeholder="تاریخ شروع بیمه نامه قبلی" onChange={field.onChange} />}
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between gap-5 w-full max-w-5xl mx-auto">
+          <button onClick={prevStepHandler} className="bg-primary text-primary-foreground font-medium text-center py-2 px-4 rounded-lg cursor-pointer">
+            قبلی
+          </button>
+          <button onClick={nextStepHandler} className="bg-primary text-primary-foreground font-medium text-center py-2 px-4 rounded-lg cursor-pointer">
+            بعدی
+          </button>
         </div>
       </div>
     </div>
