@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiPlus, FiTruck, FiGitMerge } from "react-icons/fi";
 import ExpandablePlateCard from "./ExpandablePlateCard";
 
 import AddPlateForm from "./AddPlateForm";
-import Drawer from "../../../general/drawer/Drawer";
-import CustomModal from "../../../general/modal/Modal";
 import ModelAnimation from "../../../general/modal/ModelAnimation";
 
 const PlateSection = ({ title, plates, vehicleType }: any) => {

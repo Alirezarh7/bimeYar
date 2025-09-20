@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import CustomSelect from "../../../general/select/CustomSelect";
 
 const PlateInput = () => (
@@ -160,19 +160,19 @@ const AddPlateForm = ({ onClose }: { onClose: () => void }) => {
             <CustomSelect
               options={dayOptions}
               placeholder="روز *"
-              valueID={birthDate.day}
+              value={birthDate.day!}
               onChange={(value: number) => handleDateChange("day", value)}
             />
             <CustomSelect
               options={monthOptions}
               placeholder="ماه *"
-              valueID={birthDate.month}
+              value={birthDate.month!}
               onChange={(value: number) => handleDateChange("month", value)}
             />
             <CustomSelect
               options={yearOptions}
               placeholder="سال *"
-              valueID={birthDate.year}
+              value={birthDate.year!}
               onChange={(value: number) => handleDateChange("year", value)}
             />
           </div>
