@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const IranianPlate = ({ p1, letter, p2, p3 }: any) => (
   <div className="flex items-center justify-center border-2 border-gray-500 rounded-md w-48 h-10 text-xl font-bold  bg-[var(--card)] text-card-foreground">

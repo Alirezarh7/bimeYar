@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 
 type ProfileLayoutProps = {
-  children: React.ReactNode;
-  pageKey: string; // ۱. یک پراپرتی برای دریافت کلید منحصر به فرد صفحه اضافه می‌کنیم
+  children?: React.ReactNode;
+  pageKey?: string; // ۱. یک پراپرتی برای دریافت کلید منحصر به فرد صفحه اضافه می‌کنیم
 };
 
 // ۲. همان Variants قبلی را اینجا تعریف می‌کنیم

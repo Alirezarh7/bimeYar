@@ -1,4 +1,3 @@
-import React from "react";
 import PlateSection from "../../../component/page/profile/plates/PlateSection";
 import ProfileLayout from "../../../component/layout/ProfileLayout";
 
