@@ -1,4 +1,3 @@
-import React from "react";
 import IranianPlate from "./IranianPlate";
 import { FiChevronLeft, FiArrowLeft } from "react-icons/fi";
 import { FaCar, FaShieldAlt } from "react-icons/fa";
@@ -24,7 +23,6 @@ const PlateCard = ({
   plate,
   isSelected = false,
   onDetailsClick,
-  onBackClick,
 }: any) => {
   return (
     <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col md:flex-row items-center gap-6 justify-between">
