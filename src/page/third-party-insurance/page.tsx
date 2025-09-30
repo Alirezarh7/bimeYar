@@ -166,7 +166,6 @@ const carBrandArr = [
 ];
 
 const yearsArr = [
-  { label: "2025 - 1404", value: "2025" },
   { label: "2024 - 1403", value: "2024" },
   { label: "2023 - 1402", value: "2023" },
   { label: "2022 - 1401", value: "2022" },
@@ -292,9 +291,9 @@ const ThirdPartyInsurance: FC = () => {
         enqueueSnackbar(errors.hasInsurance.message, { variant: "error" });
         return;
       }
-      if(hasInsuranceVal === "new" ||  hasInsuranceVal === "no"){
-          navigate("/insurance")
-          return;
+      if (hasInsuranceVal === "new" || hasInsuranceVal === "no") {
+        navigate("/insurance");
+        return;
       }
     }
     if (activeStep === 6) {
@@ -401,13 +400,7 @@ const ThirdPartyInsurance: FC = () => {
                       >
                         بله بیمه داشته است
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => field.onChange("new")}
-                        className={`${hasInsuranceVal === "new" ? "bg-primary" : "bg-secondary"} text-secondary-foreground rounded-2xl p-3 w-44 cursor-pointer`}
-                      >
-                        خودرو صفر کیلومتر است
-                      </button>
+
                       <button
                         type="button"
                         onClick={() => field.onChange("no")}
