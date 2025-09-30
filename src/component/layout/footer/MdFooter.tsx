@@ -11,10 +11,14 @@ const MdFooter = () => {
 
   return (
     <>
-      <footer className=" relative bottom-0 w-full">
-        <p className="text-primary-foreground dark:text-primary-foreground bg-[#015945] mx-auto py-4 text-center">
-          تمامی حقوق این وبسایت متعلق به شرکت <span className="text-bold text-primary-foreground text-center text-sm md:text-base dark:text-primary-foreground">بیمه یار</span> می باشد.
-        </p>
+      <footer className=" relative  bottom-0 w-full">
+        <div className={'right-0 left-0'}>
+          <p className="text-primary-foreground dark:text-primary-foreground bg-[#015945] mx-auto py-4 text-center">
+            تمامی حقوق این وبسایت متعلق به شرکت <span
+            className="text-bold text-primary-foreground text-center text-sm md:text-base dark:text-primary-foreground">بیمه یار</span> می
+            باشد.
+          </p>
+        </div>
       </footer>
     </>
   );
