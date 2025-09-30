@@ -11,6 +11,7 @@ import MyPlatesPage from "../page/profile/plates/page.tsx";
 import InsuranceOfferPage from "../page/insurance/page.tsx";
 import ComparePage from "../page/compare/page.tsx";
 import ThirdPartyInsuranceNewCar from "../page/third-party-insurance-new-car/page.tsx";
+import CarInsurance from "../page/car-insurance/page.tsx";
 
 export interface RouteConfig {
   path: string;
@@ -113,6 +114,11 @@ export const Paths: RouteConfig[] = [
     path: "/third-party-insurance-new-car",
     label: "خرید بیمه شخص ثالث خودرو نو شماره",
     element: <ThirdPartyInsuranceNewCar />,
+  },
+  {
+    path: "/car-Insurance",
+    label: "بیمه های وسیله نقلیه",
+    element: <CarInsurance />,
   },
   {
     path: "/insurance",
