@@ -328,7 +328,7 @@ const ThirdPartyInsuranceNewCar: FC = () => {
   return (
     <div className="w-full max-w-7xl px-5 mx-auto my-10">
       <div className="w-full px-5 bg-card rounded-xl shadow-lg py-10">
-        <h4 className="text-xl md:text-3xl text-foreground font-bold">خرید بیمه شخص ثالث خودرو</h4>
+        <h4 className="text-xl md:text-3xl text-foreground font-bold">خرید بیمه شخص ثالث خودرو نو شماره</h4>
         <Steps activeStep={activeStep} steps={steps}>
           <Step activeStep={activeStep} number={1} />
           <Step activeStep={activeStep} number={2} />
