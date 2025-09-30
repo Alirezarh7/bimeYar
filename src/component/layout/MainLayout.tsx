@@ -7,7 +7,7 @@ const MainLayout = () => {
   return (
     <>
       <Header/>
-      <main className={'min-h-screen pt-10'}>
+      <main className={'h-full pb-14 pt-3 '}>
         <WebRouter/>
       </main>
       <ChatDrawer/>
