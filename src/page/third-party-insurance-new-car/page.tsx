@@ -2,10 +2,10 @@ import { useState, type FC } from "react";
 import Steps from "../../component/general/step/Steps";
 import Step from "../../component/general/step/Step";
 import CustomSelect from "../../component/general/select/CustomSelect";
-import CustomInput from "../../component/general/input/Input";
+// import CustomInput from "../../component/general/input/Input";
 import { Controller, useForm } from "react-hook-form";
-import { type ThirdPartyInsuranceType } from "../../type/thirdPartyInsuranceType";
-import { thirdPartyInsuranceSchema } from "../../schema/thirdPartyInsuranceSchema";
+import { type ThirdPartyInsuranceNewCarType } from "../../type/thirdPartyInsuranceType";
+import { thirdPartyInsuranceNewCarSchema } from "../../schema/thirdPartyInsuranceSchema";
 import { zodResolver } from "./../../../node_modules/@hookform/resolvers/zod/src/zod";
 import { enqueueSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
@@ -165,95 +165,96 @@ const carBrandArr = [
   { label: "یوآز", value: "uaz" },
 ];
 
-const yearsArr = [
-  { label: "2024 - 1403", value: "2024" },
-  { label: "2023 - 1402", value: "2023" },
-  { label: "2022 - 1401", value: "2022" },
-  { label: "2021 - 1400", value: "2021" },
-  { label: "2020 - 1399", value: "2020" },
-  { label: "2019 - 1398", value: "2019" },
-  { label: "2018 - 1397", value: "2018" },
-  { label: "2017 - 1396", value: "2017" },
-  { label: "2016 - 1395", value: "2016" },
-  { label: "2015 - 1394", value: "2015" },
-  { label: "2014 - 1393", value: "2014" },
-  { label: "2013 - 1392", value: "2013" },
-  { label: "2012 - 1391", value: "2012" },
-  { label: "2011 - 1390", value: "2011" },
-  { label: "2010 - 1389", value: "2010" },
-  { label: "2009 - 1388", value: "2009" },
-  { label: "2008 - 1387", value: "2008" },
-  { label: "2007 - 1386", value: "2007" },
-  { label: "2006 - 1385", value: "2006" },
-  { label: "2005 - 1384", value: "2005" },
-  { label: "2004 - 1383", value: "2004" },
-  { label: "2003 - 1382", value: "2003" },
-  { label: "2002 - 1381", value: "2002" },
-  { label: "2001 - 1380", value: "2001" },
-  { label: "2000 - 1379", value: "2000" },
-  { label: "1999 - 1378", value: "1999" },
-  { label: "1998 - 1377", value: "1998" },
-  { label: "1997 - 1376", value: "1997" },
-  { label: "1996 - 1375", value: "1996" },
-  { label: "1995 - 1374", value: "1995" },
-  { label: "1994 - 1373", value: "1994" },
-  { label: "1993 - 1372", value: "1993" },
-  { label: "1992 - 1371", value: "1992" },
-  { label: "1991 - 1370", value: "1991" },
-  { label: "1990 - 1369", value: "1990" },
-  { label: "1989 - 1368", value: "1989" },
-  { label: "1988 - 1367", value: "1988" },
-  { label: "1987 - 1366", value: "1987" },
-  { label: "1986 - 1365", value: "1986" },
-  { label: "1985 - 1364", value: "1985" },
-  { label: "1984 - 1363", value: "1984" },
-];
-const insuranceCompanies = [
-  { label: "ایران", value: "iran" },
-  { label: "آسیا", value: "asia" },
-  { label: "البرز", value: "alborz" },
-  { label: "پارسیان", value: "parsian" },
-  { label: "دانا", value: "dana" },
-  { label: "سرمد", value: "sarmad" },
-  { label: "آرمان", value: "arman" },
-  { label: "آسماری", value: "asemari" },
-  { label: "امید", value: "omid" },
-  { label: "تجارت نو", value: "tejarat_no" },
-  { label: "تعاون", value: "taavon" },
-  { label: "حافظ", value: "hafez" },
-  { label: "حکمت صبا", value: "hekmat_saba" },
-  { label: "خاورمیانه", value: "khavarmiyaneh" },
-  { label: "دی", value: "day" },
-  { label: "رازی", value: "razi" },
-  { label: "سامان", value: "saman" },
-  { label: "سینا", value: "sina" },
-  { label: "ما", value: "ma" },
-  { label: "معلم", value: "moallem" },
-  { label: "ملت", value: "mellat" },
-  { label: "میهن", value: "mihan" },
-  { label: "نوین", value: "novin" },
-  { label: "هوشمند فردا", value: "hooshmand_farda" },
-  { label: "پاسارگاد", value: "pasargad" },
-  { label: "پردیس", value: "pardis" },
-  { label: "کارآفرین", value: "karafarin" },
-  { label: "کوثر", value: "kosar" },
-];
+// const yearsArr = [
+//   { label: "2025 - 1404", value: "2025" },
+//   { label: "2024 - 1403", value: "2024" },
+//   { label: "2023 - 1402", value: "2023" },
+//   { label: "2022 - 1401", value: "2022" },
+//   { label: "2021 - 1400", value: "2021" },
+//   { label: "2020 - 1399", value: "2020" },
+//   { label: "2019 - 1398", value: "2019" },
+//   { label: "2018 - 1397", value: "2018" },
+//   { label: "2017 - 1396", value: "2017" },
+//   { label: "2016 - 1395", value: "2016" },
+//   { label: "2015 - 1394", value: "2015" },
+//   { label: "2014 - 1393", value: "2014" },
+//   { label: "2013 - 1392", value: "2013" },
+//   { label: "2012 - 1391", value: "2012" },
+//   { label: "2011 - 1390", value: "2011" },
+//   { label: "2010 - 1389", value: "2010" },
+//   { label: "2009 - 1388", value: "2009" },
+//   { label: "2008 - 1387", value: "2008" },
+//   { label: "2007 - 1386", value: "2007" },
+//   { label: "2006 - 1385", value: "2006" },
+//   { label: "2005 - 1384", value: "2005" },
+//   { label: "2004 - 1383", value: "2004" },
+//   { label: "2003 - 1382", value: "2003" },
+//   { label: "2002 - 1381", value: "2002" },
+//   { label: "2001 - 1380", value: "2001" },
+//   { label: "2000 - 1379", value: "2000" },
+//   { label: "1999 - 1378", value: "1999" },
+//   { label: "1998 - 1377", value: "1998" },
+//   { label: "1997 - 1376", value: "1997" },
+//   { label: "1996 - 1375", value: "1996" },
+//   { label: "1995 - 1374", value: "1995" },
+//   { label: "1994 - 1373", value: "1994" },
+//   { label: "1993 - 1372", value: "1993" },
+//   { label: "1992 - 1371", value: "1992" },
+//   { label: "1991 - 1370", value: "1991" },
+//   { label: "1990 - 1369", value: "1990" },
+//   { label: "1989 - 1368", value: "1989" },
+//   { label: "1988 - 1367", value: "1988" },
+//   { label: "1987 - 1366", value: "1987" },
+//   { label: "1986 - 1365", value: "1986" },
+//   { label: "1985 - 1364", value: "1985" },
+//   { label: "1984 - 1363", value: "1984" },
+// ];
+// const insuranceCompanies = [
+//   { label: "ایران", value: "iran" },
+//   { label: "آسیا", value: "asia" },
+//   { label: "البرز", value: "alborz" },
+//   { label: "پارسیان", value: "parsian" },
+//   { label: "دانا", value: "dana" },
+//   { label: "سرمد", value: "sarmad" },
+//   { label: "آرمان", value: "arman" },
+//   { label: "آسماری", value: "asemari" },
+//   { label: "امید", value: "omid" },
+//   { label: "تجارت نو", value: "tejarat_no" },
+//   { label: "تعاون", value: "taavon" },
+//   { label: "حافظ", value: "hafez" },
+//   { label: "حکمت صبا", value: "hekmat_saba" },
+//   { label: "خاورمیانه", value: "khavarmiyaneh" },
+//   { label: "دی", value: "day" },
+//   { label: "رازی", value: "razi" },
+//   { label: "سامان", value: "saman" },
+//   { label: "سینا", value: "sina" },
+//   { label: "ما", value: "ma" },
+//   { label: "معلم", value: "moallem" },
+//   { label: "ملت", value: "mellat" },
+//   { label: "میهن", value: "mihan" },
+//   { label: "نوین", value: "novin" },
+//   { label: "هوشمند فردا", value: "hooshmand_farda" },
+//   { label: "پاسارگاد", value: "pasargad" },
+//   { label: "پردیس", value: "pardis" },
+//   { label: "کارآفرین", value: "karafarin" },
+//   { label: "کوثر", value: "kosar" },
+// ];
 
-const ThirdPartyInsurance: FC = () => {
+const ThirdPartyInsuranceNewCar: FC = () => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(1);
-  const steps = 7;
+  const steps = 3;
   const {
     control,
     handleSubmit,
     trigger,
-    watch,
+    // watch,
     formState: { errors },
-  } = useForm<ThirdPartyInsuranceType>({
-    resolver: zodResolver(thirdPartyInsuranceSchema),
+  } = useForm<ThirdPartyInsuranceNewCarType>({
+    resolver: zodResolver(thirdPartyInsuranceNewCarSchema),
   });
 
-  const hasInsuranceVal = watch("hasInsurance");
+  //   const hasInsuranceVal = watch("hasInsurance");
 
   const nextStepHandler = async () => {
     if (activeStep === 1) {
@@ -278,38 +279,34 @@ const ThirdPartyInsurance: FC = () => {
         return;
       }
     }
-    if (activeStep === 4) {
-      const carYearValid = await trigger("carYear");
-      if (!carYearValid && errors.carYear) {
-        enqueueSnackbar(errors.carYear.message, { variant: "error" });
-        return;
-      }
-    }
-    if (activeStep === 5) {
-      const hasInsuranceValid = await trigger("hasInsurance");
-      if (!hasInsuranceValid && errors.hasInsurance) {
-        enqueueSnackbar(errors.hasInsurance.message, { variant: "error" });
-        return;
-      }
-      if (hasInsuranceVal === "new" || hasInsuranceVal === "no") {
-        navigate("/insurance");
-        return;
-      }
-    }
-    if (activeStep === 6) {
-      const prevInsuranceCompanyValid = await trigger("prevInsuranceCompany");
-      if (!prevInsuranceCompanyValid && errors.prevInsuranceCompany) {
-        enqueueSnackbar(errors.prevInsuranceCompany.message, { variant: "error" });
-        return;
-      }
-    }
-    if (activeStep === 7) {
-      const prevInsuranceStartDateValid = await trigger("prevInsuranceStartDate");
-      if (!prevInsuranceStartDateValid && errors.prevInsuranceStartDate) {
-        enqueueSnackbar(errors.prevInsuranceStartDate.message, { variant: "error" });
-        return;
-      }
-    }
+    // if (activeStep === 4) {
+    //   const carYearValid = await trigger("carYear");
+    //   if (!carYearValid && errors.carYear) {
+    //     enqueueSnackbar(errors.carYear.message, { variant: "error" });
+    //     return;
+    //   }
+    // }
+    // if (activeStep === 5) {
+    //   const hasInsuranceValid = await trigger("hasInsurance");
+    //   if (!hasInsuranceValid && errors.hasInsurance) {
+    //     enqueueSnackbar(errors.hasInsurance.message, { variant: "error" });
+    //     return;
+    //   }
+    // }
+    // if (activeStep === 6) {
+    //   const prevInsuranceCompanyValid = await trigger("prevInsuranceCompany");
+    //   if (!prevInsuranceCompanyValid && errors.prevInsuranceCompany) {
+    //     enqueueSnackbar(errors.prevInsuranceCompany.message, { variant: "error" });
+    //     return;
+    //   }
+    // }
+    // if (activeStep === 7) {
+    //   const prevInsuranceStartDateValid = await trigger("prevInsuranceStartDate");
+    //   if (!prevInsuranceStartDateValid && errors.prevInsuranceStartDate) {
+    //     enqueueSnackbar(errors.prevInsuranceStartDate.message, { variant: "error" });
+    //     return;
+    //   }
+    // }
     if (activeStep === steps) {
       handleSubmit(async (data) => {
         await localStorage.setItem("BuyInsurance", JSON.stringify(data));
@@ -336,10 +333,10 @@ const ThirdPartyInsurance: FC = () => {
           <Step activeStep={activeStep} number={1} />
           <Step activeStep={activeStep} number={2} />
           <Step activeStep={activeStep} number={3} />
-          <Step activeStep={activeStep} number={4} />
+          {/* <Step activeStep={activeStep} number={4} />
           <Step activeStep={activeStep} number={5} />
           <Step activeStep={activeStep} number={6} />
-          <Step activeStep={activeStep} number={7} />
+          <Step activeStep={activeStep} number={7} /> */}
         </Steps>
 
         <div className="w-full max-w-5xl mx-auto p-5">
@@ -374,7 +371,7 @@ const ThirdPartyInsurance: FC = () => {
               />
             </div>
           )}
-          {activeStep === 4 && (
+          {/* {activeStep === 4 && (
             <div className="flex flex-col gap-10 items-center justify-center w-full ">
               <h4 className="text-lg text-foreground font-semibold">سال تولید خودرو را انتخاب کنید</h4>
               <Controller
@@ -383,8 +380,8 @@ const ThirdPartyInsurance: FC = () => {
                 render={({ field }) => <CustomSelect value={field.value} className="w-full md:w-1/2" options={yearsArr} placeholder="سال تولید خودرو" onChange={field.onChange} important />}
               />
             </div>
-          )}
-          {activeStep === 5 && (
+          )} */}
+          {/* {activeStep === 5 && (
             <div className="grid grid-cols-12 w-full ">
               <h5 className="font-semibold text-card-foreground col-span-12 text-center">آیا این خودرو تاکنون بیمه شخص ثالث داشته است؟</h5>
               <div className="flex flex-col gap-5 items-center col-span-12 my-10">
@@ -400,7 +397,13 @@ const ThirdPartyInsurance: FC = () => {
                       >
                         بله بیمه داشته است
                       </button>
-
+                      <button
+                        type="button"
+                        onClick={() => field.onChange("new")}
+                        className={`${hasInsuranceVal === "new" ? "bg-primary" : "bg-secondary"} text-secondary-foreground rounded-2xl p-3 w-44 cursor-pointer`}
+                      >
+                        خودرو صفر کیلومتر است
+                      </button>
                       <button
                         type="button"
                         onClick={() => field.onChange("no")}
@@ -413,8 +416,8 @@ const ThirdPartyInsurance: FC = () => {
                 />
               </div>
             </div>
-          )}
-          {activeStep === 6 && (
+          )} */}
+          {/* {activeStep === 6 && (
             <div className="flex flex-col gap-10 items-center justify-center w-full ">
               <h4 className="text-lg text-foreground font-semibold">شرکت بیمه گر قبلی را انتخاب کنید</h4>
               <Controller
@@ -425,8 +428,8 @@ const ThirdPartyInsurance: FC = () => {
                 )}
               />
             </div>
-          )}
-          {activeStep === 7 && (
+          )} */}
+          {/* {activeStep === 7 && (
             <div className="flex flex-col gap-10 items-center justify-center w-full ">
               <h4 className="text-lg text-foreground font-semibold">تاریخ شروع بیمه نامه قبلی را انتخاب کنید</h4>
               <Controller
@@ -435,7 +438,7 @@ const ThirdPartyInsurance: FC = () => {
                 render={({ field }) => <CustomInput value={field.value} isDatePicker={true} placeholder="تاریخ شروع بیمه نامه قبلی" onChange={field.onChange} />}
               />
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="flex items-center justify-between gap-5 w-full max-w-5xl mx-auto">
@@ -450,4 +453,4 @@ const ThirdPartyInsurance: FC = () => {
     </div>
   );
 };
-export default ThirdPartyInsurance;
+export default ThirdPartyInsuranceNewCar;
