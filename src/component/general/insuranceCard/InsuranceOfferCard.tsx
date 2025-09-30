@@ -20,6 +20,7 @@ export function InsuranceOfferCard(dataForShow: IProps) {
   const [showInstallmentDetails, setShowInstallmentDetails] = useState(false);
 
   const addComparisonInsurance = (data: IProps) => {
+      console.log('sLkadfaklsjdhf;lk')
     const ComparisonInsuranceArr: IProps[] = JSON.parse(localStorage.getItem("ComparisonInsuranceArr") as string);
     if (ComparisonInsuranceArr) {
       if (ComparisonInsuranceArr.find((item) => item.id === data.id)) {
@@ -30,10 +31,12 @@ export function InsuranceOfferCard(dataForShow: IProps) {
         return;
       } else {
         localStorage.setItem("ComparisonInsuranceArr", JSON.stringify([...ComparisonInsuranceArr, data]));
+          window.dispatchEvent(new Event("comparison-update"));
         enqueueSnackbar("به لیست مقایسه اضافه شد.", { variant: "success" });
       }
     } else {
       localStorage.setItem("ComparisonInsuranceArr", JSON.stringify([data]));
+        window.dispatchEvent(new Event("comparison-update"));
       enqueueSnackbar("به لیست مقایسه اضافه شد.", { variant: "success" });
     }
   };

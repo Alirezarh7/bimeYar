@@ -7,11 +7,11 @@ const MainLayout = () => {
   return (
     <>
       <Header/>
-      <main>
+      <main className={'min-h-screen pt-10'}>
         <WebRouter/>
       </main>
       <ChatDrawer/>
-      <div className={'max-md:mt-20'}>
+      <div className={''}>
         <Footer/>
       </div>
     </>
