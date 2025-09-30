@@ -134,7 +134,7 @@ const Footer = () => {
         <MdFooter />
       ) : (
         <>
-          <div className=" fixed bottom-0 left-0 right-0 py-2 px-4 flex border border-primary bg-card justify-between items-center shadow-xl rounded-t-3xl z-30 ">
+          <div className=" fixed bottom-0 left-0 right-0 py-2 px-4 flex border border-primary bg-card justify-between items-center shadow-xl rounded-t-3xl z-30  ">
             {navItems.map((item) => (
               <div
                 key={item.id}

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import CarInsuranceCard from "../../component/page/car-insurance/CarInsuranceCard";
-import { CarIcon } from "../../icons/Icon";
+import {CarIcon, NewIcon} from "../../icons/Icon";
 
 const carInsuranceData = [
   {
@@ -11,7 +11,7 @@ const carInsuranceData = [
   },
   {
     url: "/third-party-insurance-new-car",
-    icon: <CarIcon className="h-42 w-42 dark:opacity-50" />,
+    icon: <NewIcon className="h-42 w-42 dark:opacity-50" />,
     title: "خرید بیمه شخص ثالث نو شماره",
     subTitle: "برای خرید بیمه شخص ثالث خودرو های صفر ",
   },
