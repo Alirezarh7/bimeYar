@@ -27,6 +27,9 @@ const ThirdPartyInsurance: FC = () => {
       <Link className="bg-primary text-primary-foreground text-center font-medium rounded-lg p-3 my-5" to="/third-party-insurance">
         خرید بیمه شخص ثالث
       </Link>
+      <Link className="bg-primary text-primary-foreground text-center font-medium rounded-lg p-3 my-5" to="/third-party-insurance-new-car">
+        خرید بیمه شخص ثالث خودرو نو شماره
+      </Link>
     </div>
   );
 };
