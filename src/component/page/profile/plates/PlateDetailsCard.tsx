@@ -1,4 +1,3 @@
-import React from "react";
 import { FiClipboard, FiEdit2, FiTrash2 } from "react-icons/fi";
 
 const DetailRow = ({ label, value }: any) => (
@@ -8,7 +7,7 @@ const DetailRow = ({ label, value }: any) => (
   </div>
 );
 
-const PlateDetailsCard = ({ plate, onClose }: any) => {
+const PlateDetailsCard = ({ plate }: any) => {
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
       <div className="flex justify-between items-center mb-4">
