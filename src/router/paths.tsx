@@ -111,7 +111,7 @@ export const Paths: RouteConfig[] = [
   },
   {
     path: "/third-party-insurance-new-car",
-    label: "خرید بیمه شخص ثالث خودرو صفر",
+    label: "خرید بیمه شخص ثالث خودرو نو شماره",
     element: <ThirdPartyInsuranceNewCar />,
   },
   {
