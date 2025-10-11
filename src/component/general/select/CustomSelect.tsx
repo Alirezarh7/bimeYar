@@ -55,11 +55,11 @@ const CustomSelect = ({ options, placeholder, valueID, onChange, important, disa
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    if (value) {
-      handleSelectOption(value);
-    }
-  });
+  // useEffect(() => {
+  //   if (value) {
+  //     handleSelectOption(value);
+  //   }
+  // });
 
   const normalizeString = (str: string) => {
     return str.replace(/ي/g, "ی").replace(/ك/g, "ک");
